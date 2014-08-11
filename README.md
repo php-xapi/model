@@ -1,15 +1,7 @@
-xAPI
-====
+xAPI Model Classes
+==================
 
-[![Build Status](https://travis-ci.org/xabbuh/xapi.svg?branch=master)](https://travis-ci.org/xabbuh/xapi)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/xabbuh/xapi/badges/quality-score.png?s=176833c9dd53501e31729b623881104a2fa696f2)](https://scrutinizer-ci.com/g/xabbuh/xapi/)
+[![Build Status](https://travis-ci.org/xabbuh/xapi-model.png?branch=master)](https://travis-ci.org/xabbuh/xapi-model)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/xabbuh/xapi-model/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/xabbuh/xapi-model/?branch=master)
 
-A bundle of PHP libraries covering different aspects of the Experience API:
-
-* [a client library](Client/README.md)
-* [common functions of xAPI related implementations](Common/README.md)
-
-License
--------
-
-All libraries are licensed under the [MIT license](LICENSE).
+Package providing model classes for the xAPI libraries.
