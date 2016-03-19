@@ -1,9 +1,9 @@
 {
-    "name": "xabbuh/xapi-model",
+    "name": "php-xapi/model",
     "type": "library",
     "description": "Experience API model classes",
     "keywords": ["xAPI", "Experience API", "Tin Can API", "models"],
-    "homepage": "https://github.com/php-xapi/xapi-model",
+    "homepage": "https://github.com/php-xapi/model",
     "license": "MIT",
     "authors": [
         {
@@ -14,6 +14,9 @@
     "require": {
         "php": ">=5.3.0",
         "php-xapi/exception": "~0.1"
+    },
+    "conflict": {
+        "xabbuh/xapi-model": "*"
     },
     "autoload": {
         "psr-4": {
