@@ -14,6 +14,7 @@ namespace Xabbuh\XApi\Client\Tests;
 use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\Group;
+use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 use Xabbuh\XApi\Model\StatementsFilter;
 use Xabbuh\XApi\Model\Verb;
 
@@ -34,19 +35,11 @@ class StatementsFilterTest extends \PHPUnit_Framework_TestCase
 
     public function testByActor()
     {
-        $agent = new Agent('alice@example.com');
+        $agent = new Agent(InverseFunctionalIdentifier::withMbox('alice@example.com'));
         $this->statementsFilter->byActor($agent);
         $filter = $this->statementsFilter->getFilter();
 
         $this->assertEquals($agent, $filter['agent']);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testByActorWithNotIdentifiedGroup()
-    {
-        $this->statementsFilter->byActor(new Group());
     }
 
     public function testByVerb()

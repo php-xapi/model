@@ -4,6 +4,9 @@ CHANGELOG
 0.2.0
 -----
 
+* added a dedicated class to refer to inverse functional identifiers, refer to
+  the upgrade file for more detailed information
+
 * marked the `Statement` class as final
 
 0.1.0

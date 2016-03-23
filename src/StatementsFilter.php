@@ -29,15 +29,9 @@ class StatementsFilter
      * @param Actor $actor The Actor to filter by
      *
      * @return self The statements filter
-     *
-     * @throws \InvalidArgumentException if the Actor is not identified
      */
     public function byActor(Actor $actor)
     {
-        if (null === $actor->getInverseFunctionalIdentifier()) {
-            throw new \InvalidArgumentException('Actor must be identified');
-        }
-
         $this->filter['agent'] = $actor;
 
         return $this;

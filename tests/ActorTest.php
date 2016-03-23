@@ -15,6 +15,7 @@ use Xabbuh\XApi\Model\Account;
 use Xabbuh\XApi\Model\Actor;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\Group;
+use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 
 /**
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
@@ -55,94 +56,94 @@ class ActorTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             'agent-and-group' => array(
-                new Agent(),
-                new Group(),
+                new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
             ),
             'group-and-agent' => array(
-                new Group(),
-                new Agent(),
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
+                new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
             ),
             'agents-with-different-mboxes' => array(
-                new Agent('christian@example.com'),
-                new Agent('bob@example.com'),
+                new Agent(InverseFunctionalIdentifier::withMbox('christian@example.com')),
+                new Agent(InverseFunctionalIdentifier::withMbox('bob@example.com')),
             ),
             'groups-with-different-mboxes' => array(
-                new Group('christian@example.com'),
-                new Group('bob@example.com'),
+                new Group(InverseFunctionalIdentifier::withMbox('christian@example.com')),
+                new Group(InverseFunctionalIdentifier::withMbox('bob@example.com')),
             ),
             'agents-with-different-mbox-hashsums' => array(
-                new Agent(null, 'foo'),
-                new Agent(null, 'bar'),
+                new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
+                new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('bar')),
             ),
             'groups-with-different-mbox-hashsums' => array(
-                new Group(null, 'foo'),
-                new Group(null, 'bar'),
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('bar')),
             ),
             'agents-with-different-openids' => array(
-                new Agent(null, null, 'aaron.openid.example.org'),
-                new Agent(null, null, 'bob.openid.example.org'),
+                new Agent(InverseFunctionalIdentifier::withOpenId('aaron.openid.example.org')),
+                new Agent(InverseFunctionalIdentifier::withOpenId('bob.openid.example.org')),
             ),
             'groups-with-different-openids' => array(
-                new Group(null, null, 'aaron.openid.example.org'),
-                new Group(null, null, 'bob.openid.example.org'),
+                new Group(InverseFunctionalIdentifier::withOpenId('aaron.openid.example.org')),
+                new Group(InverseFunctionalIdentifier::withOpenId('bob.openid.example.org')),
             ),
             'agents-with-first-account-null' => array(
-                new Agent(null, null, null, null),
-                new Agent(null, null, null, new Account('user account', 'http://example.com/bob')),
+                new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
+                new Agent(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/bob'))),
             ),
             'agents-with-other-account-null' => array(
-                new Agent(null, null, null, new Account('user account', 'http://example.com/bob')),
-                new Agent(null, null, null, null),
+                new Agent(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/bob'))),
+                new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
             ),
             'groups-with-first-account-null' => array(
-                new Group(null, null, null, null),
-                new Group(null, null, null, new Account('user account', 'http://example.com/bob')),
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
+                new Group(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/bob'))),
             ),
             'groups-with-other-account-null' => array(
-                new Group(null, null, null, new Account('user account', 'http://example.com/bob')),
-                new Group(null, null, null, null),
+                new Group(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/bob'))),
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
             ),
             'agents-with-different-account-names' => array(
-                new Agent(null, null, null, new Account('user account', 'http://example.com/bob')),
-                new Agent(null, null, null, new Account('another user account', 'http://example.com/bob')),
+                new Agent(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/bob'))),
+                new Agent(InverseFunctionalIdentifier::withAccount(new Account('another user account', 'http://example.com/bob'))),
             ),
             'agents-with-different-account-home-pages' => array(
-                new Agent(null, null, null, new Account('user account', 'http://example.com/bob')),
-                new Agent(null, null, null, new Account('user account', 'http://example.com/christian')),
+                new Agent(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/bob'))),
+                new Agent(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/christian'))),
             ),
             'groups-with-different-account-names' => array(
-                new Group(null, null, null, new Account('user account', 'http://example.com/bob')),
-                new Group(null, null, null, new Account('another user account', 'http://example.com/bob')),
+                new Group(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/bob'))),
+                new Group(InverseFunctionalIdentifier::withAccount(new Account('another user account', 'http://example.com/bob'))),
             ),
             'groups-with-different-account-home-pages' => array(
-                new Group(null, null, null, new Account('user account', 'http://example.com/bob')),
-                new Group(null, null, null, new Account('user account', 'http://example.com/christian')),
+                new Group(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/bob'))),
+                new Group(InverseFunctionalIdentifier::withAccount(new Account('user account', 'http://example.com/christian'))),
             ),
             'agents-with-different-names' => array(
-                new Agent(null, null, null, null, 'Christian'),
-                new Agent(null, null, null, null, 'Bob'),
+                new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), 'Christian'),
+                new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), 'Bob'),
             ),
             'groups-with-different-names' => array(
-                new Group(null, null, null, null, 'Christian'),
-                new Group(null, null, null, null, 'Bob'),
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), 'Christian'),
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), 'Bob'),
             ),
             'groups-with-different-number-of-members' => array(
-                new Group(null, null, null, null, null, array(
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), array(
                     $this->createAgent1(),
                     $this->createAgent2(),
                     $this->createAgent3(),
                 )),
-                new Group(null, null, null, null, null, array(
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), array(
                     $this->createAgent1(),
                     $this->createAgent3(),
                 )),
             ),
             'groups-with-different-members' => array(
-                new Group(null, null, null, null, null, array(
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), array(
                     $this->createAgent1(),
                     $this->createAgent2(),
                 )),
-                new Group(null, null, null, null, null, array(
+                new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), array(
                     $this->createAgent1(),
                     $this->createAgent3(),
                 )),
@@ -152,26 +153,26 @@ class ActorTest extends \PHPUnit_Framework_TestCase
 
     private function createAgent()
     {
-        return new Agent('mailto:christian@example.com', null, null, null, 'Christian');
+        return new Agent(InverseFunctionalIdentifier::withMbox('mailto:christian@example.com'), 'Christian');
     }
 
     private function createAgent1()
     {
-        return new Agent('mailto:andrew@example.com', null, null, null, 'Andrew Downes');
+        return new Agent(InverseFunctionalIdentifier::withMbox('mailto:andrew@example.com'), 'Andrew Downes');
     }
 
     private function createAgent2()
     {
-        return new Agent(null, null, 'aaron.openid.example.org', null, 'Aaron Silvers');
+        return new Agent(InverseFunctionalIdentifier::withOpenId('aaron.openid.example.org'), 'Aaron Silvers');
     }
 
     private function createAgent3()
     {
-        return new Agent('mailto:christian@example.com', null, null, null, 'Christian');
+        return new Agent(InverseFunctionalIdentifier::withMbox('mailto:christian@example.com'), 'Christian');
     }
 
     private function createGroup()
     {
-        return new Group(null, null, null, new Account('GroupAccount', 'http://example.com/homePage'), 'Example Group');
+        return new Group(InverseFunctionalIdentifier::withAccount(new Account('GroupAccount', 'http://example.com/homePage')), 'Example Group');
     }
 }

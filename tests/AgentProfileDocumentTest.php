@@ -15,6 +15,7 @@ use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\AgentProfile;
 use Xabbuh\XApi\Model\AgentProfileDocument;
 use Xabbuh\XApi\Model\DocumentData;
+use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 
 /**
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
@@ -23,6 +24,6 @@ class AgentProfileDocumentTest extends AbstractDocumentTest
 {
     protected function createDocument(DocumentData $data)
     {
-        return new AgentProfileDocument(new AgentProfile('profile-id', new Agent()), $data);
+        return new AgentProfileDocument(new AgentProfile('profile-id', new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo'))), $data);
     }
 }

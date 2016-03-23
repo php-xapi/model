@@ -15,6 +15,7 @@ use Xabbuh\XApi\Model\Account;
 use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\Group;
+use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 use Xabbuh\XApi\Model\Statement;
 use Xabbuh\XApi\Model\Verb;
 
@@ -27,7 +28,7 @@ class StatementTest extends \PHPUnit_Framework_TestCase
     {
         $statement = new Statement(
             'e05aa883-acaf-40ad-bf54-02c8ce485fb0',
-            new Agent(),
+            new Agent(InverseFunctionalIdentifier::withMboxSha1Sum('foo')),
             new Verb('the-verb-id'),
             new Activity()
         );
@@ -42,7 +43,7 @@ class StatementTest extends \PHPUnit_Framework_TestCase
 
     public function testGetVoidStatement()
     {
-        $actor = new Agent('mailto:xapi@adlnet.gov');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:xapi@adlnet.gov'));
         $statement = new Statement(
             'e05aa883-acaf-40ad-bf54-02c8ce485fb0',
             $actor,
@@ -95,7 +96,7 @@ class StatementTest extends \PHPUnit_Framework_TestCase
 
     private function createMinimalStatement()
     {
-        $actor = new Agent('mailto:xapi@adlnet.gov');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:xapi@adlnet.gov'));
         $verb = new Verb('http://adlnet.gov/expapi/verbs/created', array('en-US' => 'created'));
         $activity = new Activity('http://example.adlnet.gov/xapi/example/activity');
 
@@ -104,18 +105,18 @@ class StatementTest extends \PHPUnit_Framework_TestCase
 
     private function createStatementWithGroupAuthority()
     {
-        $actor = new Agent('mailto:xapi@adlnet.gov');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:xapi@adlnet.gov'));
         $verb = new Verb('http://adlnet.gov/expapi/verbs/created', array('en-US' => 'created'));
         $activity = new Activity('http://example.adlnet.gov/xapi/example/activity');
-        $user = new Agent(null, null, null, new Account('oauth_consumer_x75db', 'http://example.com/xAPI/OAuth/Token'));
-        $application = new Agent('mailto:bob@example.com');
-        $authority = new Group(null, null, null, null, null, array($user, $application));
+        $user = new Agent(InverseFunctionalIdentifier::withAccount(new Account('oauth_consumer_x75db', 'http://example.com/xAPI/OAuth/Token')));
+        $application = new Agent(InverseFunctionalIdentifier::withMbox('mailto:bob@example.com'));
+        $authority = new Group(InverseFunctionalIdentifier::withMboxSha1Sum('foo'), array($user, $application));
 
         return new Statement('12345678-1234-5678-8234-567812345678', $actor, $verb, $activity, null, $authority);
     }
 
     private function createAgent()
     {
-        return new Agent('mailto:christian@example.com', null, null, null, 'Christian');
+        return new Agent(InverseFunctionalIdentifier::withMbox('mailto:christian@example.com'), 'Christian');
     }
 }

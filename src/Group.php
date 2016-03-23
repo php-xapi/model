@@ -24,16 +24,13 @@ final class Group extends Actor
     private $members = array();
 
     /**
-     * @param string  $mbox
-     * @param string  $mboxSha1Sum
-     * @param string  $openId
-     * @param Account $account
-     * @param string  $name
-     * @param Agent[] $members
+     * @param InverseFunctionalIdentifier $iri
+     * @param string                      $name
+     * @param Agent[]                     $members
      */
-    public function __construct($mbox = null, $mboxSha1Sum = null, $openId = null, Account $account = null, $name = null, array $members = array())
+    public function __construct(InverseFunctionalIdentifier $iri, $name = null, array $members = array())
     {
-        parent::__construct($mbox, $mboxSha1Sum, $openId, $account, $name);
+        parent::__construct($iri, $name);
 
         $this->members = $members;
     }

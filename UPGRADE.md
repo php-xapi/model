@@ -4,5 +4,70 @@ UPGRADE
 Upgrading from 0.1 to 0.2
 -------------------------
 
+* the getter methods to retrieve the inverse functional identifier properties
+  `mbox`, `mboxsha1sum`, `openid`, and `account` have been removed from the
+  `Actor` class
+
+* the `getInverseFunctionalIdentifier()` method in the `Actor` class no longer
+  returns a string, but returns an `InverseFunctionalIdentifier` instance
+  instead
+
+* A new class `InverseFunctionalIdentifier` was introduced to reflect the
+  inverse functional identifier of an actor. It reflects the fact that an IRI
+  must only contain exactly one property of `mbox`, `mboxsha1sum`, `openid`,
+  and `account` by providing four factory methods to obtain an IRI instance:
+
+  * `withMbox()`
+
+  * `withMboxSha1Sum()`
+
+  * `withOpenId()`
+
+  * `withAccount()`
+
+  You now need to pass an `InverseFunctionalIdentifier` when creating an actor
+  or group.
+
+  Before:
+
+  ```php
+  use Xabbuh\XApi\Model\Agent;
+  use Xabbuh\XApi\Model\Group;
+
+  $agent = new Agent(
+      'mailto:christian@example.com',
+      null,
+      null,
+      null,
+      'Christian'
+  );
+  $group = new Group(
+      null,
+      null,
+      null,
+      new Account('GroupAccount', 'http://example.com/homePage'),
+      'Example Group'
+  );
+  ```
+
+  After:
+
+  ```php
+  use Xabbuh\XApi\Model\Agent;
+  use Xabbuh\XApi\Model\Group;
+  use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+
+  $agent = new Agent(
+      InverseFunctionalIdentifier::withMbox('mailto:christian@example.com'),
+      'Christian'
+  );
+  $group = new Group(
+      InverseFunctionalIdentifier::withAccount(
+          new Account('GroupAccount', 'http://example.com/homePage')
+      ),
+      'Example Group'
+  );
+  ```
+
 * The `Statement` class is now marked as final. This means that you can no
-  longer extend this.
+  longer extend it.

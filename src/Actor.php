@@ -19,75 +19,36 @@ namespace Xabbuh\XApi\Model;
 abstract class Actor
 {
     /**
+     * The actor's {@link InverseFunctionalIdentifier inverse functional identifier}
+     *
+     * @var InverseFunctionalIdentifier
+     */
+    private $iri;
+
+    /**
      * Name of the {@link Agent} or {@link Group}
      * @var string
      */
     private $name;
 
     /**
-     * A mailto IRI
-     * @var string
+     * @param InverseFunctionalIdentifier $iri
+     * @param string                      $name
      */
-    private $mbox;
-
-    /**
-     * The SHA1 hash of a mailto IRI
-     * @var string
-     */
-    private $mboxSha1Sum;
-
-    /**
-     * An openID uniquely identifying an Agent
-     * @var string
-     */
-    private $openId;
-
-    /**
-     * A user account on an existing system
-     * @var Account
-     */
-    private $account;
-
-    /**
-     * @param string  $mbox
-     * @param string  $mboxSha1Sum
-     * @param string  $openId
-     * @param Account $account
-     * @param string  $name
-     */
-    public function __construct($mbox = null, $mboxSha1Sum = null, $openId = null, Account $account = null, $name = null)
+    public function __construct(InverseFunctionalIdentifier $iri, $name = null)
     {
+        $this->iri = $iri;
         $this->name = $name;
-        $this->mbox = $mbox;
-        $this->mboxSha1Sum = $mboxSha1Sum;
-        $this->openId = $openId;
-        $this->account = $account;
     }
 
     /**
-     * Returns the Actor's inverse functional identifier.
+     * Returns the Actor's {@link InverseFunctionalIdentifier inverse functional identifier}.
      *
-     * @return string The inverse functional identifier
+     * @return InverseFunctionalIdentifier The inverse functional identifier
      */
     public function getInverseFunctionalIdentifier()
     {
-        if (null !== $this->mbox) {
-            return $this->mbox;
-        }
-
-        if (null !== $this->mboxSha1Sum) {
-            return $this->mboxSha1Sum;
-        }
-
-        if (null !== $this->openId) {
-            return $this->openId;
-        }
-
-        if (null !== $this->account) {
-            return $this->account;
-        }
-
-        return null;
+        return $this->iri;
     }
 
     /**
@@ -98,46 +59,6 @@ abstract class Actor
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Returns the mailto IRI.
-     *
-     * @return string The mailto IRI
-     */
-    public function getMbox()
-    {
-        return $this->mbox;
-    }
-
-    /**
-     * Returns the SHA1 hash of a mailto IRI.
-     *
-     * @return string The SHA1 hash of a mailto IRI
-     */
-    public function getMboxSha1Sum()
-    {
-        return $this->mboxSha1Sum;
-    }
-
-    /**
-     * Returns the openID.
-     *
-     * @return string The openID
-     */
-    public function getOpenId()
-    {
-        return $this->openId;
-    }
-
-    /**
-     * Returns the user account of an existing system.
-     *
-     * @return Account The user account of an existing system
-     */
-    public function getAccount()
-    {
-        return $this->account;
     }
 
     /**
@@ -155,27 +76,7 @@ abstract class Actor
             return false;
         }
 
-        if ($this->mbox !== $actor->mbox) {
-            return false;
-        }
-
-        if ($this->mboxSha1Sum !== $actor->mboxSha1Sum) {
-            return false;
-        }
-
-        if ($this->openId !== $actor->openId) {
-            return false;
-        }
-
-        if (null === $this->account && null !== $actor->account) {
-            return false;
-        }
-
-        if (null !== $this->account && null === $actor->account) {
-            return false;
-        }
-
-        if (null !== $this->account && !$this->account->equals($actor->account)) {
+        if (!$this->iri->equals($actor->getInverseFunctionalIdentifier())) {
             return false;
         }
 
