@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.2.0
+-----
+
+* marked the `Statement` class as final
+
 0.1.0
 -----
 
