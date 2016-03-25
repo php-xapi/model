@@ -18,7 +18,7 @@ namespace Xabbuh\XApi\Model;
  */
 final class Agent extends Actor
 {
-    public function __construct(InverseFunctionalIdentifier $iri, $name)
+    public function __construct(InverseFunctionalIdentifier $iri, $name = null)
     {
         parent::__construct($iri, $name);
     }
