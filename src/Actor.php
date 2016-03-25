@@ -35,7 +35,7 @@ abstract class Actor
      * @param InverseFunctionalIdentifier $iri
      * @param string                      $name
      */
-    public function __construct(InverseFunctionalIdentifier $iri, $name = null)
+    public function __construct(InverseFunctionalIdentifier $iri = null, $name = null)
     {
         $this->iri = $iri;
         $this->name = $name;
@@ -76,7 +76,11 @@ abstract class Actor
             return false;
         }
 
-        if (!$this->iri->equals($actor->getInverseFunctionalIdentifier())) {
+        if (null !== $this->iri xor null !== $actor->iri) {
+            return false;
+        }
+
+        if (null !== $this->iri && !$this->iri->equals($actor->getInverseFunctionalIdentifier())) {
             return false;
         }
 

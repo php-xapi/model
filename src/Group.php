@@ -28,7 +28,7 @@ final class Group extends Actor
      * @param string                      $name
      * @param Agent[]                     $members
      */
-    public function __construct(InverseFunctionalIdentifier $iri, $name = null, array $members = array())
+    public function __construct(InverseFunctionalIdentifier $iri = null, $name = null, array $members = array())
     {
         parent::__construct($iri, $name);
 

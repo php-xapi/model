@@ -33,6 +33,11 @@ class ActorTest extends \PHPUnit_Framework_TestCase
         $group2 = $this->createGroup();
 
         $this->assertTrue($group1->equals($group2));
+
+        $anonymousGroup1 = new Group(null, 'anonymous group');
+        $anonymousGroup2 = new Group(null, 'anonymous group');
+
+        $this->assertTrue($anonymousGroup1->equals($anonymousGroup2), 'Anonymous groups are equal when they have the same name');
     }
 
     public function testAgentAndGroupDoNotEqual()
@@ -147,6 +152,14 @@ class ActorTest extends \PHPUnit_Framework_TestCase
                     $this->createAgent1(),
                     $this->createAgent3(),
                 )),
+            ),
+            'anonymous-and-identified-group' => array(
+                new Group(null, 'Example Group'),
+                $this->createGroup(),
+            ),
+            'anonymous-groups-with-different-names' => array(
+                new Group(null, 'Example Group'),
+                new Group(null, 'Another group'),
             ),
         );
     }
