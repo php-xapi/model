@@ -70,7 +70,7 @@ final class InverseFunctionalIdentifier
         return $iri;
     }
 
-    public static function withAccount($account)
+    public static function withAccount(Account $account)
     {
         $iri = new InverseFunctionalIdentifier();
         $iri->account = $account;
