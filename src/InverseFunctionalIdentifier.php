@@ -79,6 +79,46 @@ final class InverseFunctionalIdentifier
     }
 
     /**
+     * Returns the mailto IRI.
+     *
+     * @return string The mailto IRI
+     */
+    public function getMbox()
+    {
+        return $this->mbox;
+    }
+
+    /**
+     * Returns the SHA1 hash of a mailto IRI.
+     *
+     * @return string The SHA1 hash of a mailto IRI
+     */
+    public function getMboxSha1Sum()
+    {
+        return $this->mboxSha1Sum;
+    }
+
+    /**
+     * Returns the openID.
+     *
+     * @return string The openID
+     */
+    public function getOpenId()
+    {
+        return $this->openId;
+    }
+
+    /**
+     * Returns the user account of an existing system.
+     *
+     * @return Account The user account of an existing system
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
      * Checks if another IRI is equal.
      *
      * Two inverse functional identifiers are equal if and only if all of their
