@@ -46,10 +46,10 @@ final class Score
      */
     public function __construct($scaled, $raw, $min, $max)
     {
-        $this->scaled = (float) $scaled;
-        $this->raw = (float) $raw;
-        $this->min = (float) $min;
-        $this->max = (float) $max;
+        $this->scaled = $scaled;
+        $this->raw = $raw;
+        $this->min = $min;
+        $this->max = $max;
     }
 
     /**

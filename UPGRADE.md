@@ -1,6 +1,13 @@
 UPGRADE
 =======
 
+Upgrading from 0.2.0 to 0.2.1
+-----------------------------
+
+* Data passed to the `Score` class during construction is no longer cast to
+  `float` values to ensure that integers are not needlessly cast. You need to
+  make sure to always pass the expected data types when build `Score` objects.
+
 Upgrading from 0.1 to 0.2
 -------------------------
 

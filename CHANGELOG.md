@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+* values passed to the constructor of the `Score` class are no longer cast to
+  `float`
+
 0.2.0
 -----
 
