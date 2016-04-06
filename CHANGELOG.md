@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
+* all values of a score are optional, pass `null` to omit them
+
 * values passed to the constructor of the `Score` class are no longer cast to
   `float`
 

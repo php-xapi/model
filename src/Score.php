@@ -44,7 +44,7 @@ final class Score
      * @param float $min
      * @param float $max
      */
-    public function __construct($scaled, $raw, $min, $max)
+    public function __construct($scaled = null, $raw = null, $min = null, $max = null)
     {
         $this->scaled = $scaled;
         $this->raw = $raw;
