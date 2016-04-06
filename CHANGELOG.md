@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+* throw an exception when not existing document data is accessed instead of
+  failing with a PHP notice
+
 * all values of a score are optional, pass `null` to omit them
 
 * values passed to the constructor of the `Score` class are no longer cast to

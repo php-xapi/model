@@ -32,6 +32,11 @@ class AgentProfileDocumentSpec extends ObjectBehavior
         $this->offsetExists('z')->shouldReturn(false);
     }
 
+    function it_throws_exception_when_not_existing_data_is_being_read()
+    {
+        $this->shouldThrow('\InvalidArgumentException')->duringOffsetGet('z');
+    }
+
     function its_data_cannot_be_manipulated()
     {
         $this->shouldThrow('\Xabbuh\XApi\Common\Exception\UnsupportedOperationException')->duringOffsetSet('z', 'baz');

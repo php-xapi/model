@@ -47,6 +47,10 @@ final class DocumentData implements \ArrayAccess
      */
     public function offsetGet($offset)
     {
+        if (!isset($this->data[$offset])) {
+            throw new \InvalidArgumentException(sprintf('No data for name "%s" registered.', $offset));
+        }
+
         return $this->data[$offset];
     }
 
