@@ -45,13 +45,13 @@ final class Result
     private $duration;
 
     /**
-     * @param Score       $score
-     * @param bool        $success
-     * @param bool        $completion
+     * @param Score|null  $score
+     * @param bool|null   $success
+     * @param bool|null   $completion
      * @param string|null $response
      * @param string|null $duration
      */
-    public function __construct(Score $score, $success, $completion, $response = null, $duration = null)
+    public function __construct(Score $score = null, $success = null, $completion = null, $response = null, $duration = null)
     {
         $this->score = $score;
         $this->success = $success;
