@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+0.3.0
+-----
+
+* added the possibility to attach an IRL to an activity definition that acts as
+  a reference to a document that contains human-readable information about the
+  activity
+
 * all values of an activity definition are optional, pass `null` to omit them
 
 * all values of a result are optional, pass `null` to omit them

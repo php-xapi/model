@@ -37,15 +37,24 @@ final class Definition
     private $type;
 
     /**
+     * An IRL where human-readable information describing the {@link Activity} can be found.
+     *
+     * @var string|null
+     */
+    private $moreInfo;
+
+    /**
      * @param array|null  $name
      * @param array|null  $description
      * @param string|null $type
+     * @param string|null $moreInfo
      */
-    public function __construct(array $name = null, array $description = null, $type = null)
+    public function __construct(array $name = null, array $description = null, $type = null, $moreInfo = null)
     {
         $this->name = $name;
         $this->description = $description;
         $this->type = $type;
+        $this->moreInfo = $moreInfo;
     }
 
     /**
@@ -79,6 +88,16 @@ final class Definition
     }
 
     /**
+     * Returns an IRL where human-readable information about the activity can be found.
+     *
+     * @return string|null
+     */
+    public function getMoreInfo()
+    {
+        return $this->moreInfo;
+    }
+
+    /**
      * Checks if another definition is equal.
      *
      * Two definitions are equal if and only if all of their properties are equal.
@@ -90,6 +109,10 @@ final class Definition
     public function equals(Definition $definition)
     {
         if ($this->type !== $definition->type) {
+            return false;
+        }
+
+        if ($this->moreInfo !== $definition->moreInfo) {
             return false;
         }
 

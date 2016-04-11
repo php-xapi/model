@@ -20,7 +20,8 @@ class DefinitionSpec extends ObjectBehavior
         $this->beConstructedWith(
             array('en-US' => 'test'),
             array('en-US' => 'test'),
-            'http://id.tincanapi.com/activitytype/unit-test'
+            'http://id.tincanapi.com/activitytype/unit-test',
+            'https://github.com/adlnet/xAPI_LRS_Test'
         );
 
         $name = $this->getName();
@@ -34,6 +35,7 @@ class DefinitionSpec extends ObjectBehavior
         $description->shouldHaveKeyWithValue('en-US', 'test');
 
         $this->getType()->shouldReturn('http://id.tincanapi.com/activitytype/unit-test');
+        $this->getMoreInfo()->shouldReturn('https://github.com/adlnet/xAPI_LRS_Test');
     }
 
     function it_can_be_empty()
@@ -41,5 +43,6 @@ class DefinitionSpec extends ObjectBehavior
         $this->getName()->shouldReturn(null);
         $this->getDescription()->shouldReturn(null);
         $this->getType()->shouldReturn(null);
+        $this->getMoreInfo()->shouldReturn(null);
     }
 }
