@@ -26,7 +26,7 @@ final class Verb
 
     /**
      * Human readable representation of the verb in one or more languages
-     * @var array
+     * @var array|null
      */
     private $display;
 
@@ -34,7 +34,7 @@ final class Verb
      * @param string $id
      * @param array  $display
      */
-    public function __construct($id, array $display = array())
+    public function __construct($id, array $display = null)
     {
         $this->id = $id;
         $this->display = $display;
@@ -53,7 +53,7 @@ final class Verb
     /**
      * Returns the human readable representation of the Verb in one or more languages.
      *
-     * @return array The language map
+     * @return array|null The language map
      */
     public function getDisplay()
     {

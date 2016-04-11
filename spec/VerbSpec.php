@@ -29,6 +29,14 @@ class VerbSpec extends ObjectBehavior
         $this->getDisplay()->shouldReturn(array('en-US' => 'test'));
     }
 
+    function its_display_property_is_null_if_omitted()
+    {
+        $this->beConstructedWith('http://tincanapi.com/conformancetest/verbid');
+
+        $this->getId()->shouldReturn('http://tincanapi.com/conformancetest/verbid');
+        $this->getDisplay()->shouldReturn(null);
+    }
+
     function it_creates_voiding_verb_through_factory_method()
     {
         $this->beConstructedThrough(array('Xabbuh\XApi\Model\Verb', 'createVoidVerb'));

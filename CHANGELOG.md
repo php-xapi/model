@@ -4,6 +4,10 @@ CHANGELOG
 0.3.0
 -----
 
+* changed the default value of the `display` property of the `Verb` class to
+  `null` (was the empty array before) to make it possible to distinguish the
+  empty list from the case when the `display` property was omitted
+
 * added the possibility to attach an IRL to an activity definition that acts as
   a reference to a document that contains human-readable information about the
   activity

@@ -1,6 +1,12 @@
 UPGRADE
 =======
 
+Upgrading from 0.2 to 0.3
+-------------------------
+
+* The default value of the `display` property of the `Verb` class was changed
+  to `null` (was the empty array before).
+
 Upgrading from 0.2.0 to 0.2.1
 -----------------------------
 
