@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
+* all values of an activity definition are optional, pass `null` to omit them
+
 * all values of a result are optional, pass `null` to omit them
 
 * throw an exception when not existing document data is accessed instead of

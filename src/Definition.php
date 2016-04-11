@@ -36,7 +36,12 @@ final class Definition
      */
     private $type;
 
-    public function __construct(array $name, array $description, $type)
+    /**
+     * @param array|null  $name
+     * @param array|null  $description
+     * @param string|null $type
+     */
+    public function __construct(array $name = null, array $description = null, $type = null)
     {
         $this->name = $name;
         $this->description = $description;
