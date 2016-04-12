@@ -12,6 +12,7 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
+use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\Score;
 
 class ResultSpec extends ObjectBehavior
@@ -35,5 +36,12 @@ class ResultSpec extends ObjectBehavior
         $this->getCompletion()->shouldReturn(null);
         $this->getResponse()->shouldReturn(null);
         $this->getDuration()->shouldReturn(null);
+
+        $this->equals(new Result())->shouldReturn(true);
+    }
+
+    function it_is_empty_and_is_not_equal_to_a_result_with_a_score()
+    {
+        $this->equals(new Result(new Score(1)))->shouldReturn(false);
     }
 }

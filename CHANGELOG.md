@@ -4,6 +4,9 @@ CHANGELOG
 0.4.0
 -----
 
+ * fixed some edge cases in the `equals()` methods of the `Definition`, `Result`,
+   and `Verb` classes
+
  * Made `Object` a parent class of the `Actor` class to reflect the fact that
    actors can also be objects in xAPI statements.
 

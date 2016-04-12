@@ -124,23 +124,35 @@ final class Definition
             return false;
         }
 
-        foreach ($this->name as $language => $value) {
-            if (!isset($definition->name[$language])) {
-                return false;
-            }
+        if (!is_array($this->name) xor !is_array($definition->name)) {
+            return false;
+        }
 
-            if ($value !== $definition->name[$language]) {
-                return false;
+        if (!is_array($this->description) xor !is_array($definition->description)) {
+            return false;
+        }
+
+        if (is_array($this->name)) {
+            foreach ($this->name as $language => $value) {
+                if (!isset($definition->name[$language])) {
+                    return false;
+                }
+
+                if ($value !== $definition->name[$language]) {
+                    return false;
+                }
             }
         }
 
-        foreach ($this->description as $language => $value) {
-            if (!isset($definition->description[$language])) {
-                return false;
-            }
+        if (is_array($this->description)) {
+            foreach ($this->description as $language => $value) {
+                if (!isset($definition->description[$language])) {
+                    return false;
+                }
 
-            if ($value !== $definition->description[$language]) {
-                return false;
+                if ($value !== $definition->description[$language]) {
+                    return false;
+                }
             }
         }
 

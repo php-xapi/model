@@ -75,17 +75,23 @@ final class Verb
             return false;
         }
 
+        if (!is_array($this->display) xor !is_array($verb->display)) {
+            return false;
+        }
+
         if (count($this->display) !== count($verb->getDisplay())) {
             return false;
         }
 
-        foreach ($this->display as $language => $value) {
-            if (!isset($verb->display[$language])) {
-                return false;
-            }
+        if (is_array($this->display)) {
+            foreach ($this->display as $language => $value) {
+                if (!isset($verb->display[$language])) {
+                    return false;
+                }
 
-            if ($value !== $verb->display[$language]) {
-                return false;
+                if ($value !== $verb->display[$language]) {
+                    return false;
+                }
             }
         }
 

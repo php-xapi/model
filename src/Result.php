@@ -123,7 +123,11 @@ final class Result
      */
     public function equals(Result $result)
     {
-        if (!$this->score->equals($result->score)) {
+        if (null !== $this->score xor null !== $result->score) {
+            return false;
+        }
+
+        if (null !== $this->score && !$this->score->equals($result->score)) {
             return false;
         }
 

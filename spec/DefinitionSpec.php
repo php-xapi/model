@@ -12,6 +12,7 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
+use Xabbuh\XApi\Model\Definition;
 
 class DefinitionSpec extends ObjectBehavior
 {
@@ -44,5 +45,17 @@ class DefinitionSpec extends ObjectBehavior
         $this->getDescription()->shouldReturn(null);
         $this->getType()->shouldReturn(null);
         $this->getMoreInfo()->shouldReturn(null);
+
+        $this->equals(new Definition())->shouldReturn(true);
+    }
+
+    function it_is_different_when_names_are_omitted_and_other_definition_contains_an_empty_list_of_names()
+    {
+        $this->equals(new Definition(array()))->shouldReturn(false);
+    }
+
+    function it_is_different_when_descriptions_are_omitted_and_other_definition_contains_an_empty_list_of_descriptions()
+    {
+        $this->equals(new Definition(null, array()))->shouldReturn(false);
     }
 }
