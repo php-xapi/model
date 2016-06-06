@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+* made sure that boolean statements filter parameters are passed as the strings
+  `'true'` and `'false'`
+
 * added missing return statements to some methods of the `StatementsFilter`
   class to ensure the fluent interface
 

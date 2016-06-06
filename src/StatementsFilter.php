@@ -86,9 +86,9 @@ class StatementsFilter
      */
     public function enableRelatedActivityFilter()
     {
-        $this->filter['related_activities'] = true;
+        $this->filter['related_activities'] = 'true';
 
-       return $this;
+        return $this;
     }
 
     /**
@@ -98,7 +98,7 @@ class StatementsFilter
      */
     public function disableRelatedActivityFilter()
     {
-        $this->filter['related_activities'] = false;
+        $this->filter['related_activities'] = 'false';
 
         return $this;
     }
@@ -110,7 +110,7 @@ class StatementsFilter
      */
     public function enableRelatedAgentFilter()
     {
-        $this->filter['related_agents'] = true;
+        $this->filter['related_agents'] = 'true';
 
         return $this;
     }
@@ -122,7 +122,7 @@ class StatementsFilter
      */
     public function disableRelatedAgentFilter()
     {
-        $this->filter['related_agents'] = false;
+        $this->filter['related_agents'] = 'false';
 
         return $this;
     }
@@ -215,7 +215,7 @@ class StatementsFilter
      */
     public function includeAttachments()
     {
-        $this->filter['attachments'] = true;
+        $this->filter['attachments'] = 'true';
 
         return $this;
     }
@@ -227,7 +227,7 @@ class StatementsFilter
      */
     public function excludeAttachments()
     {
-        $this->filter['attachments'] = false;
+        $this->filter['attachments'] = 'false';
 
         return $this;
     }
@@ -239,7 +239,7 @@ class StatementsFilter
      */
     public function ascending()
     {
-        $this->filter['ascending'] = 'True';
+        $this->filter['ascending'] = 'true';
 
         return $this;
     }
@@ -251,7 +251,7 @@ class StatementsFilter
      */
     public function descending()
     {
-        $this->filter['ascending'] = 'False';
+        $this->filter['ascending'] = 'false';
 
         return $this;
     }

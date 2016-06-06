@@ -68,7 +68,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('related_activities', true);
+        $filter->shouldHaveKeyWithValue('related_activities', 'true');
     }
 
     function it_can_disable_to_filter_related_activities()
@@ -77,7 +77,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('related_activities', false);
+        $filter->shouldHaveKeyWithValue('related_activities', 'false');
     }
 
     function it_can_enable_to_filter_related_agents()
@@ -86,7 +86,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('related_agents', true);
+        $filter->shouldHaveKeyWithValue('related_agents', 'true');
     }
 
     function it_can_disable_to_filter_related_agents()
@@ -95,7 +95,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('related_agents', false);
+        $filter->shouldHaveKeyWithValue('related_agents', 'false');
     }
 
     function it_can_include_attachments()
@@ -104,7 +104,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('attachments', true);
+        $filter->shouldHaveKeyWithValue('attachments', 'true');
     }
 
     function it_can_exclude_attachments()
@@ -113,7 +113,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('attachments', false);
+        $filter->shouldHaveKeyWithValue('attachments', 'false');
     }
 
     function it_can_filter_by_timestamp()
@@ -131,7 +131,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('ascending', 'True');
+        $filter->shouldHaveKeyWithValue('ascending', 'true');
     }
 
     function it_can_sort_the_result_in_descending_order()
@@ -140,7 +140,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('ascending', 'False');
+        $filter->shouldHaveKeyWithValue('ascending', 'false');
     }
 
     function it_can_limit_the_number_of_results()
