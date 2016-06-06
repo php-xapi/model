@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+* added missing return statements to some methods of the `StatementsFilter`
+  class to ensure the fluent interface
+
 0.3.0
 -----
 

@@ -28,7 +28,7 @@ class StatementsFilterSpec extends ObjectBehavior
     function it_can_filter_by_actor()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $this->byActor($actor);
+        $this->byActor($actor)->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -37,7 +37,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_filter_by_verb()
     {
-        $this->byVerb(new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test')));
+        $this->byVerb(new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test')))->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -46,7 +46,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_filter_by_activity()
     {
-        $this->byActivity(new Activity('http://tincanapi.com/conformancetest/activityid'));
+        $this->byActivity(new Activity('http://tincanapi.com/conformancetest/activityid'))->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -55,7 +55,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_filter_by_registration()
     {
-        $this->byRegistration('foo');
+        $this->byRegistration('foo')->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -64,7 +64,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_enable_to_filter_related_activities()
     {
-        $this->enableRelatedActivityFilter();
+        $this->enableRelatedActivityFilter()->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -73,7 +73,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_disable_to_filter_related_activities()
     {
-        $this->disableRelatedActivityFilter();
+        $this->disableRelatedActivityFilter()->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -82,7 +82,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_enable_to_filter_related_agents()
     {
-        $this->enableRelatedAgentFilter();
+        $this->enableRelatedAgentFilter()->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -91,7 +91,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_disable_to_filter_related_agents()
     {
-        $this->disableRelatedAgentFilter();
+        $this->disableRelatedAgentFilter()->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -100,7 +100,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_include_attachments()
     {
-        $this->includeAttachments();
+        $this->includeAttachments()->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -109,7 +109,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_exclude_attachments()
     {
-        $this->excludeAttachments();
+        $this->excludeAttachments()->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -118,16 +118,16 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_filter_by_timestamp()
     {
-        $this->since(\DateTime::createFromFormat(\DateTime::ISO8601, '2013-05-18T05:32:34Z'));
+        $this->since(\DateTime::createFromFormat(\DateTime::ISO8601, '2013-05-18T05:32:34Z'))->shouldReturn($this);
         $this->getFilter()->shouldHaveKeyWithValue('since', '2013-05-18T05:32:34+00:00');
 
-        $this->until(\DateTime::createFromFormat(\DateTime::ISO8601, '2014-05-18T05:32:34Z'));
+        $this->until(\DateTime::createFromFormat(\DateTime::ISO8601, '2014-05-18T05:32:34Z'))->shouldReturn($this);
         $this->getFilter()->shouldHaveKeyWithValue('until', '2014-05-18T05:32:34+00:00');
     }
 
     function it_can_sort_the_result_in_ascending_order()
     {
-        $this->ascending();
+        $this->ascending()->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -136,7 +136,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_sort_the_result_in_descending_order()
     {
-        $this->descending();
+        $this->descending()->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -145,7 +145,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_limit_the_number_of_results()
     {
-        $this->limit(10);
+        $this->limit(10)->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
@@ -159,13 +159,13 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_change_the_result_format()
     {
-        $this->format('ids');
+        $this->format('ids')->shouldReturn($this);
         $this->getFilter()->shouldHaveKeyWithValue('format', 'ids');
 
-        $this->format('exact');
+        $this->format('exact')->shouldReturn($this);
         $this->getFilter()->shouldHaveKeyWithValue('format', 'exact');
 
-        $this->format('canonical');
+        $this->format('canonical')->shouldReturn($this);
         $this->getFilter()->shouldHaveKeyWithValue('format', 'canonical');
     }
 

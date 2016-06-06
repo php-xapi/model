@@ -75,6 +75,8 @@ class StatementsFilter
     public function byRegistration($registration)
     {
         $this->filter['registration'] = $registration;
+
+        return $this;
     }
 
     /**
@@ -85,6 +87,8 @@ class StatementsFilter
     public function enableRelatedActivityFilter()
     {
         $this->filter['related_activities'] = true;
+
+       return $this;
     }
 
     /**
@@ -95,6 +99,8 @@ class StatementsFilter
     public function disableRelatedActivityFilter()
     {
         $this->filter['related_activities'] = false;
+
+        return $this;
     }
 
     /**
@@ -105,6 +111,8 @@ class StatementsFilter
     public function enableRelatedAgentFilter()
     {
         $this->filter['related_agents'] = true;
+
+        return $this;
     }
 
     /**
@@ -115,6 +123,8 @@ class StatementsFilter
     public function disableRelatedAgentFilter()
     {
         $this->filter['related_agents'] = false;
+
+        return $this;
     }
 
     /**
@@ -194,6 +204,8 @@ class StatementsFilter
         }
 
         $this->filter['format'] = $format;
+
+        return $this;
     }
 
     /**
@@ -204,6 +216,8 @@ class StatementsFilter
     public function includeAttachments()
     {
         $this->filter['attachments'] = true;
+
+        return $this;
     }
 
     /**
@@ -214,6 +228,8 @@ class StatementsFilter
     public function excludeAttachments()
     {
         $this->filter['attachments'] = false;
+
+        return $this;
     }
 
     /**
