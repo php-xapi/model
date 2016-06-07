@@ -1,14 +1,14 @@
 CHANGELOG
 =========
 
+0.3.0
+-----
+
 * made sure that boolean statements filter parameters are passed as the strings
   `'true'` and `'false'`
 
 * added missing return statements to some methods of the `StatementsFilter`
   class to ensure the fluent interface
-
-0.3.0
------
 
 * changed the default value of the `display` property of the `Verb` class to
   `null` (was the empty array before) to make it possible to distinguish the
