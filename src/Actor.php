@@ -16,7 +16,7 @@ namespace Xabbuh\XApi\Model;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-abstract class Actor
+abstract class Actor extends Object
 {
     /**
      * The actor's {@link InverseFunctionalIdentifier inverse functional identifier}
@@ -66,12 +66,16 @@ abstract class Actor
      *
      * Two actors are equal if and only if all of their properties are equal.
      *
-     * @param Actor $actor The actor to compare with
+     * @param Object $actor The actor to compare with
      *
      * @return bool True if the actors are equal, false otherwise
      */
-    public function equals(Actor $actor)
+    public function equals(Object $actor)
     {
+        if (!parent::equals($actor)) {
+            return false;
+        }
+
         if ($this->name !== $actor->name) {
             return false;
         }

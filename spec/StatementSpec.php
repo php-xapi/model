@@ -77,4 +77,15 @@ class StatementSpec extends ObjectBehavior
         $authorizedStatement->getObject()->equals($this->getObject())->shouldBe(true);
         $authorizedStatement->getAuthority()->equals($this->getAuthority())->shouldBe(false);
     }
+
+    function its_object_can_be_an_agent()
+    {
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
+        $this->beConstructedWith('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object);
+
+        $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\Object');
+        $this->getObject()->shouldBe($object);
+    }
 }

@@ -12,6 +12,8 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
+use Xabbuh\XApi\Model\Activity;
+use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 
 class AgentSpec extends ObjectBehavior
@@ -30,5 +32,19 @@ class AgentSpec extends ObjectBehavior
 
         $this->getInverseFunctionalIdentifier()->shouldReturn($iri);
         $this->getName()->shouldReturn('test');
+    }
+
+    function it_is_not_equal_to_a_group()
+    {
+        $this->beConstructedWith(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+
+        $this->equals(new Group(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com')))->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_an_activity()
+    {
+        $this->beConstructedWith(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+
+        $this->equals(new Activity())->shouldReturn(false);
     }
 }

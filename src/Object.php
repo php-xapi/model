@@ -23,9 +23,12 @@ abstract class Object
      *
      * Two objects are equal if and only if all of their properties are equal.
      *
-     * @param \Xabbuh\XApi\Model\Object $object The object to compare with
+     * @param Object $object The object to compare with
      *
      * @return bool True if the objects are equal, false otherwise
      */
-    abstract public function equals(Object $object);
+    public function equals(Object $object)
+    {
+        return get_class($this) === get_class($object);
+    }
 }

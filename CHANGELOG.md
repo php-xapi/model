@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+0.4.0
+-----
+
+ * Made `Object` a parent class of the `Actor` class to reflect the fact that
+   actors can also be objects in xAPI statements.
+
+ * The argument type of the `equals()` method in the `Actor` base class was
+   changed from `Actor` to `Object` to be compatible with the same method from
+   the parent `Object` class.
+
 0.3.0
 -----
 

@@ -26,13 +26,9 @@ final class Agent extends Actor
     /**
      * {@inheritdoc}
      */
-    public function equals(Actor $actor)
+    public function equals(Object $actor)
     {
         if (!parent::equals($actor)) {
-            return false;
-        }
-
-        if ('Xabbuh\XApi\Model\Agent' !== get_class($actor)) {
             return false;
         }
 

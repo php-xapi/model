@@ -1,6 +1,13 @@
 UPGRADE
 =======
 
+Upgrading from 0.3 to 0.4
+-------------------------
+
+ * The argument type of the `equals()` method in the `Actor` base class was
+   changed from `Actor` to `Object` to be compatible with the same method from
+   the parent `Object` class.
+
 Upgrading from 0.2 to 0.3
 -------------------------
 
