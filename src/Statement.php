@@ -255,6 +255,10 @@ final class Statement
             return false;
         }
 
+        if ($this->created != $statement->created) {
+            return false;
+        }
+
         return true;
     }
 }

@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
+ * also compare timestamps when performing statement equality checks
+
 0.4.0
 -----
 

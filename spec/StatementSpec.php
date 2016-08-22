@@ -16,6 +16,7 @@ use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\Statement;
 use Xabbuh\XApi\Model\Verb;
 
 class StatementSpec extends ObjectBehavior
@@ -87,5 +88,29 @@ class StatementSpec extends ObjectBehavior
 
         $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\Object');
         $this->getObject()->shouldBe($object);
+    }
+
+    function it_does_not_equal_another_statement_with_different_timestamp()
+    {
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
+        $this->beConstructedWith('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
+
+        $otherStatement = new Statement('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2015-07-23T12:34:02-05:00'));
+
+        $this->equals($otherStatement)->shouldBe(false);
+    }
+
+    function it_equals_another_statement_with_same_timestamp()
+    {
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
+        $this->beConstructedWith('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
+
+        $otherStatement = new Statement('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
+
+        $this->equals($otherStatement)->shouldBe(true);
     }
 }
