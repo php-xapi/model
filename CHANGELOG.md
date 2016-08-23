@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+0.5.0
+-----
+
+ * added `Context`, `ContextActivities`, and `Extensions` classes that represent
+   statement contexts, their context's activities, and statement extensions
+   respectively
+
 0.4.1
 -----
 

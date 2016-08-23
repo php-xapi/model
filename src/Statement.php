@@ -58,7 +58,12 @@ final class Statement
      */
     private $stored;
 
-    public function __construct($id, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null)
+    /**
+     * @var Context|null A context giving the statement more meaning
+     */
+    private $context;
+
+    public function __construct($id, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null)
     {
         $this->id = $id;
         $this->actor = $actor;
@@ -68,6 +73,7 @@ final class Statement
         $this->authority = $authority;
         $this->created = $created;
         $this->stored = $stored;
+        $this->context = $context;
     }
 
     /**
@@ -149,6 +155,16 @@ final class Statement
     public function getStored()
     {
         return $this->stored;
+    }
+
+    /**
+     * Returns the context that gives the statement more meaning.
+     *
+     * @return Context|null
+     */
+    public function getContext()
+    {
+        return $this->context;
     }
 
     /**
