@@ -4,6 +4,8 @@ CHANGELOG
 0.5.0
 -----
 
+ * added a `StatementFactory` to ease the creation of complex xAPI statements
+
  * added `Context`, `ContextActivities`, and `Extensions` classes that represent
    statement contexts, their context's activities, and statement extensions
    respectively
