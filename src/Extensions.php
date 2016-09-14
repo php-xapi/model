@@ -62,4 +62,28 @@ final class Extensions implements \ArrayAccess
     {
         throw new UnsupportedOperationException('xAPI statement extensions are immutable.');
     }
+
+    public function getExtensions()
+    {
+        return $this->extensions;
+    }
+
+    public function equals(Extensions $otherExtensions)
+    {
+        if (count($this->extensions) !== count($otherExtensions->extensions)) {
+            return false;
+        }
+
+        foreach ($this->extensions as $key => $value) {
+            if (!array_key_exists($key, $otherExtensions->extensions)) {
+                return false;
+            }
+
+            if ($this->extensions[$key] != $otherExtensions[$key]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

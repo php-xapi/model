@@ -12,6 +12,7 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
+use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\Score;
 
@@ -43,5 +44,23 @@ class ResultSpec extends ObjectBehavior
     function it_is_empty_and_is_not_equal_to_a_result_with_a_score()
     {
         $this->equals(new Result(new Score(1)))->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_result_if_not_both_results_have_extensions()
+    {
+        $this->beConstructedWith(new Score(1), true, true, 'test', 'PT2H');
+
+        $this
+            ->equals(new Result(new Score(1), true, true, 'test', 'PT2H', new Extensions(array('http://id.tincanapi.com/extension/subject' => 'Conformance Testing'))))
+            ->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_result_if_extensions_are_not_equal()
+    {
+        $this->beConstructedWith(new Score(1), true, true, 'test', 'PT2H', new Extensions(array('http://id.tincanapi.com/extension/topic' => 'Conformance Testing')));
+
+        $this
+            ->equals(new Result(new Score(1), true, true, 'test', 'PT2H', new Extensions(array('http://id.tincanapi.com/extension/subject' => 'Conformance Testing'))))
+            ->shouldReturn(false);
     }
 }

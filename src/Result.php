@@ -45,19 +45,26 @@ final class Result
     private $duration;
 
     /**
-     * @param Score|null  $score
-     * @param bool|null   $success
-     * @param bool|null   $completion
-     * @param string|null $response
-     * @param string|null $duration
+     * @var Extensions|null Extensions associated with this result
      */
-    public function __construct(Score $score = null, $success = null, $completion = null, $response = null, $duration = null)
+    private $extensions;
+
+    /**
+     * @param Score|null      $score
+     * @param bool|null       $success
+     * @param bool|null       $completion
+     * @param string|null     $response
+     * @param string|null     $duration
+     * @param Extensions|null $extensions
+     */
+    public function __construct(Score $score = null, $success = null, $completion = null, $response = null, $duration = null, Extensions $extensions = null)
     {
         $this->score = $score;
         $this->success = $success;
         $this->completion = $completion;
         $this->response = $response;
         $this->duration = $duration;
+        $this->extensions = $extensions;
     }
 
     /**
@@ -113,6 +120,16 @@ final class Result
     }
 
     /**
+     * Returns the extensions associated with the result.
+     *
+     * @return Extensions|null The extensions
+     */
+    public function getExtensions()
+    {
+        return $this->extensions;
+    }
+
+    /**
      * Checks if another result is equal.
      *
      * Two results are equal if and only if all of their properties are equal.
@@ -144,6 +161,14 @@ final class Result
         }
 
         if ($this->duration !== $result->duration) {
+            return false;
+        }
+
+        if (null !== $this->extensions xor null !== $result->extensions) {
+            return false;
+        }
+
+        if (null !== $this->extensions && !$this->extensions->equals($result->extensions)) {
             return false;
         }
 
