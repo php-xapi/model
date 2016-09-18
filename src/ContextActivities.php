@@ -18,68 +18,126 @@ namespace Xabbuh\XApi\Model;
  */
 final class ContextActivities
 {
-    private $parentActivity;
-    private $groupingActivity;
-    private $categoryActivity;
-    private $otherActivity;
+    private $parentActivities;
+    private $groupingActivities;
+    private $categoryActivities;
+    private $otherActivities;
 
-    public function __construct(Activity $parentActivity = null, Activity $groupingActivity = null, Activity $categoryActivity = null, Activity $otherActivity = null)
+    /**
+     * @param Activity[]|null $parentActivities
+     * @param Activity[]|null $groupingActivities
+     * @param Activity[]|null $categoryActivities
+     * @param Activity[]|null $otherActivities
+     */
+    public function __construct(array $parentActivities = null, array $groupingActivities = null, array $categoryActivities = null, array $otherActivities = null)
     {
-        $this->parentActivity = $parentActivity;
-        $this->groupingActivity = $groupingActivity;
-        $this->categoryActivity = $categoryActivity;
-        $this->otherActivity = $otherActivity;
+        $this->parentActivities = $parentActivities;
+        $this->groupingActivities = $groupingActivities;
+        $this->categoryActivities = $categoryActivities;
+        $this->otherActivities = $otherActivities;
     }
 
-    public function withParentActivity(Activity $parentActivity)
+    public function withAddedParentActivity(Activity $parentActivity)
     {
         $contextActivities = clone $this;
-        $contextActivities->parentActivity = $parentActivity;
+
+        if (!is_array($contextActivities->parentActivities)) {
+            $contextActivities->parentActivities = array();
+        }
+
+        $contextActivities->parentActivities[] = $parentActivity;
 
         return $contextActivities;
     }
 
-    public function withGroupingActivity(Activity $groupingActivity)
+    public function withoutParentActivities()
     {
         $contextActivities = clone $this;
-        $contextActivities->groupingActivity = $groupingActivity;
+        $contextActivities->parentActivities = null;
 
         return $contextActivities;
     }
 
-    public function withCategoryActivity(Activity $categoryActivity)
+    public function withAddedGroupingActivity(Activity $groupingActivity)
     {
         $contextActivities = clone $this;
-        $contextActivities->categoryActivity = $categoryActivity;
+
+        if (!is_array($contextActivities->groupingActivities)) {
+            $contextActivities->groupingActivities = array();
+        }
+
+        $contextActivities->groupingActivities[] = $groupingActivity;
 
         return $contextActivities;
     }
 
-    public function withOtherActivity(Activity $otherActivity)
+    public function withoutGroupingActivities()
     {
         $contextActivities = clone $this;
-        $contextActivities->otherActivity = $otherActivity;
+        $contextActivities->groupingActivities = null;
 
         return $contextActivities;
     }
 
-    public function getParentActivity()
+    public function withAddedCategoryActivity(Activity $categoryActivity)
     {
-        return $this->parentActivity;
+        $contextActivities = clone $this;
+
+        if (!is_array($contextActivities->categoryActivities)) {
+            $contextActivities->categoryActivities = array();
+        }
+
+        $contextActivities->categoryActivities[] = $categoryActivity;
+
+        return $contextActivities;
     }
 
-    public function getGroupingActivity()
+    public function withoutCategoryActivities()
     {
-        return $this->groupingActivity;
+        $contextActivities = clone $this;
+        $contextActivities->categoryActivities = null;
+
+        return $contextActivities;
     }
 
-    public function getCategoryActivity()
+    public function withAddedOtherActivity(Activity $otherActivity)
     {
-        return $this->categoryActivity;
+        $contextActivities = clone $this;
+
+        if (!is_array($contextActivities->otherActivities)) {
+            $contextActivities->otherActivities = array();
+        }
+
+        $contextActivities->otherActivities[] = $otherActivity;
+
+        return $contextActivities;
     }
 
-    public function getOtherActivity()
+    public function withoutOtherActivities()
     {
-        return $this->otherActivity;
+        $contextActivities = clone $this;
+        $contextActivities->otherActivities = null;
+
+        return $contextActivities;
+    }
+
+    public function getParentActivities()
+    {
+        return $this->parentActivities;
+    }
+
+    public function getGroupingActivities()
+    {
+        return $this->groupingActivities;
+    }
+
+    public function getCategoryActivities()
+    {
+        return $this->categoryActivities;
+    }
+
+    public function getOtherActivities()
+    {
+        return $this->otherActivities;
     }
 }
