@@ -191,4 +191,61 @@ final class Context
     {
         return $this->extensions;
     }
+
+    public function equals(Context $context)
+    {
+        if ($this->registration !== $context->registration) {
+            return false;
+        }
+
+        if (null !== $this->instructor xor null !== $context->instructor) {
+            return false;
+        }
+
+        if (null !== $this->instructor && !$this->instructor->equals($context->instructor)) {
+            return false;
+        }
+
+        if (null !== $this->team xor null !== $context->team) {
+            return false;
+        }
+
+        if (null !== $this->team && !$this->team->equals($context->instructor)) {
+            return false;
+        }
+
+        if ($this->contextActivities != $context->contextActivities) {
+            return false;
+        }
+
+        if ($this->revision !== $context->revision) {
+            return false;
+        }
+
+        if ($this->platform !== $context->platform) {
+            return false;
+        }
+
+        if ($this->language !== $context->language) {
+            return false;
+        }
+
+        if (null !== $this->statement xor null !== $context->statement) {
+            return false;
+        }
+
+        if (null !== $this->statement && !$this->statement->equals($context->instructor)) {
+            return false;
+        }
+
+        if (null !== $this->extensions xor null !== $context->extensions) {
+            return false;
+        }
+
+        if (null !== $this->extensions && !$this->extensions->equals($context->instructor)) {
+            return false;
+        }
+
+        return true;
+    }
 }

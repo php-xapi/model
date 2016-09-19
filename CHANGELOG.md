@@ -4,6 +4,8 @@ CHANGELOG
 0.5.0
 -----
 
+ * added a `$context` attribute to `SubStatement` instances
+
  * added `equals()` method to the `Result` model class
 
  * added a `StatementFactory` to ease the creation of complex xAPI statements

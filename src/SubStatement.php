@@ -43,13 +43,19 @@ final class SubStatement extends Object
      */
     private $result;
 
-    public function __construct($id, Actor $actor, Verb $verb, Object $object, Result $result = null)
+    /**
+     * @var Context The {@link Statement} {@link Context}
+     */
+    private $context;
+
+    public function __construct($id, Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null)
     {
         $this->id = $id;
         $this->actor = $actor;
         $this->verb = $verb;
         $this->object = $object;
         $this->result = $result;
+        $this->context = $context;
     }
 
     /**
@@ -100,6 +106,16 @@ final class SubStatement extends Object
     public function getResult()
     {
         return $this->result;
+    }
+
+    /**
+     * Returns the {@link Statement} {@link Context}.
+     *
+     * @return Context The Context
+     */
+    public function getContext()
+    {
+        return $this->context;
     }
 
     /**
@@ -178,6 +194,14 @@ final class SubStatement extends Object
         }
 
         if (null !== $this->result && !$this->result->equals($statement->result)) {
+            return false;
+        }
+
+        if (null !== $this->context xor null !== $statement->context) {
+            return false;
+        }
+
+        if (null !== $this->context && !$this->context->equals($statement->context)) {
             return false;
         }
 
