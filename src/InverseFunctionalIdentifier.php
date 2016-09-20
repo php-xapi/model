@@ -39,7 +39,7 @@ final class InverseFunctionalIdentifier
     private $account;
 
     /**
-     * Use on of the with*() factory methods to obtain an InverseFunctionalIdentifier
+     * Use one of the with*() factory methods to obtain an InverseFunctionalIdentifier
      * instance.
      */
     private function __construct()
