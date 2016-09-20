@@ -4,6 +4,10 @@ UPGRADE
 Upgrading from 0.4 to 0.5
 -------------------------
 
+* The constructor of the `SubStatement` class now throws an exception when
+  a `SubStatement` instance is passed as the `$object` argument to comply
+  with the Experience API spec which does not allow to nest sub statements.
+
 * The `$id` attribute has been removed from the `SubStatement` class. Also,
   the `$id` argument of the class constructor has been removed respectively.
   The first constructor argument is now the sub statement's actor.

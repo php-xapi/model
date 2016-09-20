@@ -66,4 +66,14 @@ class SubStatementSpec extends ObjectBehavior
 
         $this->equals($subStatement)->shouldReturn(false);
     }
+
+    function it_rejects_to_hold_another_sub_statement_as_object()
+    {
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $subStatement = new SubStatement($actor, $verb, $object);
+
+        $this->shouldThrow('\InvalidArgumentException')->during('__construct', array($actor, $verb, $subStatement));
+    }
 }

@@ -4,6 +4,10 @@ CHANGELOG
 0.5.0
 -----
 
+* The constructor of the `SubStatement` class now throws an exception when
+  a `SubStatement` instance is passed as the `$object` argument to comply
+  with the Experience API spec which does not allow to nest sub statements.
+
 * Remove the `$id` property from the `SubStatement` class as a sub statement
   must not have an id.
 

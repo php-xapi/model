@@ -45,6 +45,10 @@ final class SubStatement extends Object
 
     public function __construct(Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null)
     {
+        if ($object instanceof SubStatement) {
+            throw new \InvalidArgumentException('Nesting sub statements is forbidden by the xAPI spec.');
+        }
+
         $this->actor = $actor;
         $this->verb = $verb;
         $this->object = $object;
