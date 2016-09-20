@@ -12,12 +12,23 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
+use Xabbuh\XApi\Model\StatementId;
+use Xabbuh\XApi\Model\StatementReference;
 
 class StatementReferenceSpec extends ObjectBehavior
 {
     function it_is_an_xapi_object()
     {
-        $this->beConstructedWith('16fd2706-8baf-433b-82eb-8c7fada847da');
+        $this->beConstructedWith(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da'));
         $this->shouldHaveType('Xabbuh\XApi\Model\Object');
+    }
+
+    function it_is_equal_to_another_reference_with_the_same_statement_id()
+    {
+        $this->beConstructedWith(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da'));
+
+        $statementReference = new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da'));
+
+        $this->equals($statementReference)->shouldReturn(true);
     }
 }

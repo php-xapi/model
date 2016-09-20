@@ -20,6 +20,7 @@ use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 use Xabbuh\XApi\Model\Result;
+use Xabbuh\XApi\Model\StatementId;
 use Xabbuh\XApi\Model\StatementReference;
 use Xabbuh\XApi\Model\SubStatement;
 use Xabbuh\XApi\Model\Verb;
@@ -68,7 +69,7 @@ class SubStatementSpec extends ObjectBehavior
             ->withRevision('test')
             ->withPlatform('test')
             ->withLanguage('en-US')
-            ->withStatement(new StatementReference('16fd2706-8baf-433b-82eb-8c7fada847da'))
+            ->withStatement(new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da')))
             ->withExtensions(new Extensions(array()))
         ;
         $subStatement = new SubStatement($actor, $verb, $object, null, $context);
@@ -108,7 +109,7 @@ class SubStatementSpec extends ObjectBehavior
 
     public function it_returns_a_new_instance_with_object()
     {
-        $statementReference = new StatementReference('12345678-1234-5678-8234-567812345678');
+        $statementReference = new StatementReference(StatementId::fromString('12345678-1234-5678-8234-567812345678'));
         $subStatement = $this->withObject($statementReference);
 
         $subStatement->shouldNotBe($this);

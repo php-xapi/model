@@ -8,6 +8,7 @@ use Xabbuh\XApi\Model\ContextActivities;
 use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\StatementId;
 use Xabbuh\XApi\Model\StatementReference;
 
 class ContextSpec extends ObjectBehavior
@@ -107,7 +108,7 @@ class ContextSpec extends ObjectBehavior
 
     public function it_returns_a_new_instance_with_statement_reference()
     {
-        $statementReference = new StatementReference('16fd2706-8baf-433b-82eb-8c7fada847da');
+        $statementReference = new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da'));
         $context = $this->withStatement($statementReference);
 
         $this->getStatement()->shouldBeNull();

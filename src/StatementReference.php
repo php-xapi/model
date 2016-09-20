@@ -18,23 +18,15 @@ namespace Xabbuh\XApi\Model;
  */
 final class StatementReference extends Object
 {
-    /**
-     * @var string The id of the referenced Statement
-     */
     private $statementId;
 
-    /**
-     * @param string $statementId
-     */
-    public function __construct($statementId)
+    public function __construct(StatementId $statementId)
     {
         $this->statementId = $statementId;
     }
 
     /**
      * Returns the id of the referenced Statement.
-     *
-     * @return string The id
      */
     public function getStatementId()
     {
@@ -52,6 +44,6 @@ final class StatementReference extends Object
 
         /** @var StatementReference $object */
 
-        return $this->statementId === $object->statementId;
+        return $this->statementId->equals($object->statementId);
     }
 }

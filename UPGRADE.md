@@ -4,6 +4,34 @@ UPGRADE
 Upgrading from 0.4 to 0.5
 -------------------------
 
+* Statement ids are no longer plain strings, but are `StatementId` value objects:
+
+  Before:
+
+  ```php
+  // passing an id to the Statement constructor
+  $statement = new Statement('16fd2706-8baf-433b-82eb-8c7fada847da', ...);
+
+  // building a new statement based on an existing one with a different id
+  $statement = $statement->withId('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
+
+  // reference another statement with its id
+  $statementRef = new StatementReference('16fd2706-8baf-433b-82eb-8c7fada847da');
+  ```
+
+  After:
+
+  ```php
+  // passing an id to the Statement constructor
+  $statement = new Statement(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da'), ...);
+
+  // building a new statement based on an existing one with a different id
+  $statement = $statement->withId(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'));
+
+  // reference another statement with its id
+  $statementRef = new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da'));
+  ```
+
 * The constructor of the `SubStatement` class now throws an exception when
   a `SubStatement` instance is passed as the `$object` argument to comply
   with the Experience API spec which does not allow to nest sub statements.

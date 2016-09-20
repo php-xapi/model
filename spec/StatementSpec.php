@@ -19,6 +19,7 @@ use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\Statement;
+use Xabbuh\XApi\Model\StatementId;
 use Xabbuh\XApi\Model\StatementReference;
 use Xabbuh\XApi\Model\Verb;
 
@@ -26,17 +27,18 @@ class StatementSpec extends ObjectBehavior
 {
     function let()
     {
+        $id = StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
-        $this->beConstructedWith('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object);
+        $this->beConstructedWith($id, $actor, $verb, $object);
     }
 
     function it_creates_reference_to_itself()
     {
         $reference = $this->getStatementReference();
         $reference->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementReference');
-        $reference->getStatementId()->shouldReturn('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
+        $reference->getStatementId()->equals(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'))->shouldReturn(true);
     }
 
     function it_creates_statement_voiding_itself()
@@ -48,7 +50,7 @@ class StatementSpec extends ObjectBehavior
 
         $voidedStatement = $voidingStatement->getObject();
         $voidedStatement->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementReference');
-        $voidedStatement->getStatementId()->shouldReturn('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
+        $voidedStatement->getStatementId()->equals(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'))->shouldReturn(true);
     }
 
     function it_can_be_authorized()
@@ -69,7 +71,7 @@ class StatementSpec extends ObjectBehavior
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
         $authority = new Group(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $this->beConstructedWith('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, $authority);
+        $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object, null, $authority);
 
         $authority = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
         $authorizedStatement = $this->withAuthority($authority);
@@ -87,7 +89,7 @@ class StatementSpec extends ObjectBehavior
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
-        $this->beConstructedWith('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object);
+        $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object);
 
         $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\Object');
         $this->getObject()->shouldBe($object);
@@ -98,9 +100,9 @@ class StatementSpec extends ObjectBehavior
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
-        $this->beConstructedWith('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
+        $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
 
-        $otherStatement = new Statement('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2015-07-23T12:34:02-05:00'));
+        $otherStatement = new Statement(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object, null, null, new \DateTime('2015-07-23T12:34:02-05:00'));
 
         $this->equals($otherStatement)->shouldBe(false);
     }
@@ -110,20 +112,21 @@ class StatementSpec extends ObjectBehavior
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
-        $this->beConstructedWith('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
+        $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
 
-        $otherStatement = new Statement('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
+        $otherStatement = new Statement(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
 
         $this->equals($otherStatement)->shouldBe(true);
     }
 
     public function it_returns_a_new_instance_with_id()
     {
-        $statement = $this->withId('12345678-1234-5678-8234-567812345678');
+        $id = StatementId::fromString('12345678-1234-5678-8234-567812345678');
+        $statement = $this->withId($id);
 
         $statement->shouldNotBe($this);
         $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
-        $statement->getId()->shouldReturn('12345678-1234-5678-8234-567812345678');
+        $statement->getId()->shouldReturn($id);
     }
 
     public function it_returns_a_new_instance_with_actor()
@@ -148,7 +151,7 @@ class StatementSpec extends ObjectBehavior
 
     public function it_returns_a_new_instance_with_object()
     {
-        $statementReference = new StatementReference('12345678-1234-5678-8234-567812345678');
+        $statementReference = new StatementReference(StatementId::fromString('12345678-1234-5678-8234-567812345678'));
         $statement = $this->withObject($statementReference);
 
         $statement->shouldNotBe($this);

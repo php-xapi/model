@@ -8,6 +8,7 @@ use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\Context;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 use Xabbuh\XApi\Model\Result;
+use Xabbuh\XApi\Model\StatementId;
 use Xabbuh\XApi\Model\Verb;
 
 class StatementFactorySpec extends ObjectBehavior
@@ -23,7 +24,7 @@ class StatementFactorySpec extends ObjectBehavior
 
     function it_configures_all_statement_properties()
     {
-        $id = '39e24cc4-69af-4b01-a824-1fdc6ea8a3af';
+        $id = StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid');
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
@@ -127,7 +128,7 @@ class StatementFactorySpec extends ObjectBehavior
 
     private function configureAllProperties()
     {
-        $id = '39e24cc4-69af-4b01-a824-1fdc6ea8a3af';
+        $id = StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid');
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');

@@ -19,7 +19,7 @@ namespace Xabbuh\XApi\Model;
 final class Statement
 {
     /**
-     * @var string The unique identifier
+     * @var StatementId|null The unique identifier
      */
     private $id;
 
@@ -63,7 +63,7 @@ final class Statement
      */
     private $context;
 
-    public function __construct($id, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null)
+    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null)
     {
         $this->id = $id;
         $this->actor = $actor;
@@ -76,12 +76,7 @@ final class Statement
         $this->context = $context;
     }
 
-    /**
-     * @param string $id
-     *
-     * @return Statement
-     */
-    public function withId($id)
+    public function withId(StatementId $id = null)
     {
         $statement = clone $this;
         $statement->id = $id;
@@ -164,7 +159,7 @@ final class Statement
     /**
      * Returns the Statement's unique identifier.
      *
-     * @return string The identifier
+     * @return StatementId|null The identifier
      */
     public function getId()
     {
@@ -314,7 +309,11 @@ final class Statement
      */
     public function equals(Statement $statement)
     {
-        if ($this->id !== $statement->id) {
+        if (null === $this->id && null !== $statement->id) {
+            return false;
+        }
+
+        if (null !== $this->id && !$this->id->equals($statement->id)) {
             return false;
         }
 

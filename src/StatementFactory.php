@@ -30,7 +30,7 @@ final class StatementFactory
     private $stored;
     private $authority;
 
-    public function withId($id)
+    public function withId(StatementId $id)
     {
         $this->id = $id;
     }

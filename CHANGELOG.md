@@ -4,6 +4,8 @@ CHANGELOG
 0.5.0
 -----
 
+* Added a value object for statement ids.
+
 * The constructor of the `SubStatement` class now throws an exception when
   a `SubStatement` instance is passed as the `$object` argument to comply
   with the Experience API spec which does not allow to nest sub statements.
