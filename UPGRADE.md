@@ -1,6 +1,13 @@
 UPGRADE
 =======
 
+Upgrading from 0.4 to 0.5
+-------------------------
+
+* The `$id` attribute has been removed from the `SubStatement` class. Also,
+  the `$id` argument of the class constructor has been removed respectively.
+  The first constructor argument is now the sub statement's actor.
+
 Upgrading from 0.3 to 0.4
 -------------------------
 

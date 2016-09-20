@@ -4,6 +4,9 @@ CHANGELOG
 0.5.0
 -----
 
+* Remove the `$id` property from the `SubStatement` class as a sub statement
+  must not have an id.
+
 * added a `$context` attribute to `SubStatement` instances
 
 * added `equals()` method to the `Result` model class

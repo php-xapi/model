@@ -19,11 +19,6 @@ namespace Xabbuh\XApi\Model;
 final class SubStatement extends Object
 {
     /**
-     * @var string The unique identifier
-     */
-    private $id;
-
-    /**
      * @var Verb $verb The {@link Verb}
      */
     private $verb;
@@ -48,24 +43,13 @@ final class SubStatement extends Object
      */
     private $context;
 
-    public function __construct($id, Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null)
+    public function __construct(Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null)
     {
-        $this->id = $id;
         $this->actor = $actor;
         $this->verb = $verb;
         $this->object = $object;
         $this->result = $result;
         $this->context = $context;
-    }
-
-    /**
-     * Returns the Statement's unique identifier.
-     *
-     * @return string The identifier
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -168,10 +152,6 @@ final class SubStatement extends Object
         }
 
         /** @var SubStatement $statement */
-
-        if ($this->id !== $statement->id) {
-            return false;
-        }
 
         if (!$this->actor->equals($statement->actor)) {
             return false;

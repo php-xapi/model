@@ -30,7 +30,7 @@ class SubStatementSpec extends ObjectBehavior
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
-        $this->beConstructedWith('16fd2706-8baf-433b-82eb-8c7fada847da', $actor, $verb, $object);
+        $this->beConstructedWith($actor, $verb, $object);
 
         $this->shouldHaveType('Xabbuh\XApi\Model\Object');
     }
@@ -40,9 +40,9 @@ class SubStatementSpec extends ObjectBehavior
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
-        $this->beConstructedWith('16fd2706-8baf-433b-82eb-8c7fada847da', $actor, $verb, $object, null, new Context());
+        $this->beConstructedWith($actor, $verb, $object, null, new Context());
 
-        $subStatement = new SubStatement('16fd2706-8baf-433b-82eb-8c7fada847da', $actor, $verb, $object);
+        $subStatement = new SubStatement($actor, $verb, $object);
 
         $this->equals($subStatement)->shouldReturn(false);
 
@@ -62,7 +62,7 @@ class SubStatementSpec extends ObjectBehavior
             ->withStatement(new StatementReference('16fd2706-8baf-433b-82eb-8c7fada847da'))
             ->withExtensions(new Extensions(array()))
         ;
-        $subStatement = new SubStatement('16fd2706-8baf-433b-82eb-8c7fada847da', $actor, $verb, $object, null, $context);
+        $subStatement = new SubStatement($actor, $verb, $object, null, $context);
 
         $this->equals($subStatement)->shouldReturn(false);
     }
