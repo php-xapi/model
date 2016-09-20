@@ -21,19 +21,19 @@ abstract class Actor extends Object
     /**
      * The actor's {@link InverseFunctionalIdentifier inverse functional identifier}
      *
-     * @var InverseFunctionalIdentifier
+     * @var InverseFunctionalIdentifier|null
      */
     private $iri;
 
     /**
      * Name of the {@link Agent} or {@link Group}
-     * @var string
+     * @var string|null
      */
     private $name;
 
     /**
-     * @param InverseFunctionalIdentifier $iri
-     * @param string                      $name
+     * @param InverseFunctionalIdentifier|null $iri
+     * @param string|null                      $name
      */
     public function __construct(InverseFunctionalIdentifier $iri = null, $name = null)
     {
@@ -44,7 +44,7 @@ abstract class Actor extends Object
     /**
      * Returns the Actor's {@link InverseFunctionalIdentifier inverse functional identifier}.
      *
-     * @return InverseFunctionalIdentifier The inverse functional identifier
+     * @return InverseFunctionalIdentifier|null The inverse functional identifier
      */
     public function getInverseFunctionalIdentifier()
     {
@@ -54,7 +54,7 @@ abstract class Actor extends Object
     /**
      * Returns the name of the {@link Agent} or {@link Group}.
      *
-     * @return string The name
+     * @return string|null The name
      */
     public function getName()
     {
@@ -76,6 +76,10 @@ abstract class Actor extends Object
             return false;
         }
 
+        if (!$actor instanceof Actor) {
+            return false;
+        }
+
         if ($this->name !== $actor->name) {
             return false;
         }
@@ -84,7 +88,7 @@ abstract class Actor extends Object
             return false;
         }
 
-        if (null !== $this->iri && !$this->iri->equals($actor->getInverseFunctionalIdentifier())) {
+        if (null !== $this->iri && null !== $actor->iri && !$this->iri->equals($actor->iri)) {
             return false;
         }
 
