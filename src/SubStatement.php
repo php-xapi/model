@@ -118,35 +118,6 @@ final class SubStatement extends Object
     }
 
     /**
-     * Returns a {@link StatementReference} for the Statement.
-     *
-     * @return StatementReference The reference
-     */
-    public function getStatementReference()
-    {
-        $reference = new StatementReference($this->id);
-
-        return $reference;
-    }
-
-    /**
-     * Returns a Statement that voids the current Statement.
-     *
-     * @param Actor $actor The Actor voiding this Statement
-     *
-     * @return Statement The voiding Statement
-     */
-    public function getVoidStatement(Actor $actor)
-    {
-        return new Statement(
-            null,
-            $actor,
-            Verb::createVoidVerb(),
-            $this->getStatementReference()
-        );
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function equals(Object $statement)

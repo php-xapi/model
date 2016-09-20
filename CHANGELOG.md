@@ -8,8 +8,10 @@ CHANGELOG
   a `SubStatement` instance is passed as the `$object` argument to comply
   with the Experience API spec which does not allow to nest sub statements.
 
-* Remove the `$id` property from the `SubStatement` class as a sub statement
-  must not have an id.
+* Removed the `$id` property from the `SubStatement` class as well as the
+  `getStatementReference()` and `getVoidStatement()` methods which relied
+  on the existence of an id as a sub statement must not have an id according
+  to the xAPI spec.
 
 * added a `$context` attribute to `SubStatement` instances
 

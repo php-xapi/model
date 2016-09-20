@@ -12,6 +12,9 @@ Upgrading from 0.4 to 0.5
   the `$id` argument of the class constructor has been removed respectively.
   The first constructor argument is now the sub statement's actor.
 
+* The `getStatementReference()` and `getVoidStatement()` methods have been
+  removed from the `SubStatement` class as they are not usable without an id.
+
 Upgrading from 0.3 to 0.4
 -------------------------
 
