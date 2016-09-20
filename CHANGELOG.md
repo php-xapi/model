@@ -19,6 +19,9 @@ CHANGELOG
 
 * added a `StatementFactory` to ease the creation of complex xAPI statements
 
+* Added `with*()` methods to `Result`, `Score`, `Statement`, `SubStatement`
+  that allow the creation of new model objects based on existing instances.
+
 * added `Context`, `ContextActivities`, and `Extensions` classes that represent
   statement contexts, their context's activities, and statement extensions
   respectively

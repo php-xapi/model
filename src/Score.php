@@ -53,6 +53,58 @@ final class Score
     }
 
     /**
+     * @param float $scaled
+     *
+     * @return Score
+     */
+    public function withScaled($scaled)
+    {
+        $score = clone $this;
+        $score->scaled = $scaled;
+
+        return $score;
+    }
+
+    /**
+     * @param float $raw
+     *
+     * @return Score
+     */
+    public function withRaw($raw)
+    {
+        $score = clone $this;
+        $score->raw = $raw;
+
+        return $score;
+    }
+
+    /**
+     * @param float $min
+     *
+     * @return Score
+     */
+    public function withMin($min)
+    {
+        $score = clone $this;
+        $score->min = $min;
+
+        return $score;
+    }
+
+    /**
+     * @param float $max
+     *
+     * @return Score
+     */
+    public function withMax($max)
+    {
+        $score = clone $this;
+        $score->max = $max;
+
+        return $score;
+    }
+
+    /**
      * Returns the Agent's scaled score (a number between -1 and 1).
      *
      * @return float The scaled score

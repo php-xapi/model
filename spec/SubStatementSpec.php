@@ -19,12 +19,21 @@ use Xabbuh\XApi\Model\ContextActivities;
 use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\StatementReference;
 use Xabbuh\XApi\Model\SubStatement;
 use Xabbuh\XApi\Model\Verb;
 
 class SubStatementSpec extends ObjectBehavior
 {
+    function let()
+    {
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $this->beConstructedWith($actor, $verb, $object);
+    }
+
     function it_is_an_xapi_object()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
@@ -75,5 +84,55 @@ class SubStatementSpec extends ObjectBehavior
         $subStatement = new SubStatement($actor, $verb, $object);
 
         $this->shouldThrow('\InvalidArgumentException')->during('__construct', array($actor, $verb, $subStatement));
+    }
+
+    public function it_returns_a_new_instance_with_actor()
+    {
+        $actor = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
+        $subStatement = $this->withActor($actor);
+
+        $subStatement->shouldNotBe($this);
+        $subStatement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\SubStatement');
+        $subStatement->getActor()->shouldReturn($actor);
+    }
+
+    public function it_returns_a_new_instance_with_verb()
+    {
+        $verb = new Verb('http://adlnet.gov/expapi/verbs/voided');
+        $subStatement = $this->withVerb($verb);
+
+        $subStatement->shouldNotBe($this);
+        $subStatement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\SubStatement');
+        $subStatement->getVerb()->shouldReturn($verb);
+    }
+
+    public function it_returns_a_new_instance_with_object()
+    {
+        $statementReference = new StatementReference('12345678-1234-5678-8234-567812345678');
+        $subStatement = $this->withObject($statementReference);
+
+        $subStatement->shouldNotBe($this);
+        $subStatement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\SubStatement');
+        $subStatement->getObject()->shouldReturn($statementReference);
+    }
+
+    public function it_returns_a_new_instance_with_result()
+    {
+        $result = new Result();
+        $subStatement = $this->withResult($result);
+
+        $subStatement->shouldNotBe($this);
+        $subStatement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\SubStatement');
+        $subStatement->getResult()->shouldReturn($result);
+    }
+
+    public function it_returns_a_new_instance_with_context()
+    {
+        $context = new Context();
+        $subStatement = $this->withContext($context);
+
+        $subStatement->shouldNotBe($this);
+        $subStatement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\SubStatement');
+        $subStatement->getContext()->shouldReturn($context);
     }
 }

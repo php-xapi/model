@@ -14,9 +14,12 @@ namespace spec\Xabbuh\XApi\Model;
 use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
+use Xabbuh\XApi\Model\Context;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\Statement;
+use Xabbuh\XApi\Model\StatementReference;
 use Xabbuh\XApi\Model\Verb;
 
 class StatementSpec extends ObjectBehavior
@@ -112,5 +115,94 @@ class StatementSpec extends ObjectBehavior
         $otherStatement = new Statement('39e24cc4-69af-4b01-a824-1fdc6ea8a3af', $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
 
         $this->equals($otherStatement)->shouldBe(true);
+    }
+
+    public function it_returns_a_new_instance_with_id()
+    {
+        $statement = $this->withId('12345678-1234-5678-8234-567812345678');
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getId()->shouldReturn('12345678-1234-5678-8234-567812345678');
+    }
+
+    public function it_returns_a_new_instance_with_actor()
+    {
+        $actor = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
+        $statement = $this->withActor($actor);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getActor()->shouldReturn($actor);
+    }
+
+    public function it_returns_a_new_instance_with_verb()
+    {
+        $verb = new Verb('http://adlnet.gov/expapi/verbs/voided');
+        $statement = $this->withVerb($verb);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getVerb()->shouldReturn($verb);
+    }
+
+    public function it_returns_a_new_instance_with_object()
+    {
+        $statementReference = new StatementReference('12345678-1234-5678-8234-567812345678');
+        $statement = $this->withObject($statementReference);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getObject()->shouldReturn($statementReference);
+    }
+
+    public function it_returns_a_new_instance_with_result()
+    {
+        $result = new Result();
+        $statement = $this->withResult($result);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getResult()->shouldReturn($result);
+    }
+
+    public function it_returns_a_new_instance_with_authority()
+    {
+        $authority = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
+        $statement = $this->withAuthority($authority);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getAuthority()->shouldReturn($authority);
+    }
+
+    public function it_returns_a_new_instance_with_timestamp()
+    {
+        $timestamp = new \DateTime('2014-07-23T12:34:02-05:00');
+        $statement = $this->withTimestamp($timestamp);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getTimestamp()->shouldReturn($timestamp);
+    }
+
+    public function it_returns_a_new_instance_with_stored()
+    {
+        $stored = new \DateTime('2014-07-23T12:34:02-05:00');
+        $statement = $this->withStored($stored);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getStored()->shouldReturn($stored);
+    }
+
+    public function it_returns_a_new_instance_with_context()
+    {
+        $context = new Context();
+        $statement = $this->withContext($context);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getContext()->shouldReturn($context);
     }
 }

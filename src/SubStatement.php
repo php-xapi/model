@@ -56,6 +56,46 @@ final class SubStatement extends Object
         $this->context = $context;
     }
 
+    public function withActor(Actor $actor)
+    {
+        $subStatement = clone $this;
+        $subStatement->actor = $actor;
+
+        return $subStatement;
+    }
+
+    public function withVerb(Verb $verb)
+    {
+        $subStatement = clone $this;
+        $subStatement->verb = $verb;
+
+        return $subStatement;
+    }
+
+    public function withObject(Object $object)
+    {
+        $subStatement = clone $this;
+        $subStatement->object = $object;
+
+        return $subStatement;
+    }
+
+    public function withResult(Result $result)
+    {
+        $subStatement = clone $this;
+        $subStatement->result = $result;
+
+        return $subStatement;
+    }
+
+    public function withContext(Context $context)
+    {
+        $subStatement = clone $this;
+        $subStatement->context = $context;
+
+        return $subStatement;
+    }
+
     /**
      * Returns the Statement's {@link Verb}.
      *

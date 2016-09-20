@@ -63,4 +63,74 @@ class ResultSpec extends ObjectBehavior
             ->equals(new Result(new Score(1), true, true, 'test', 'PT2H', new Extensions(array('http://id.tincanapi.com/extension/subject' => 'Conformance Testing'))))
             ->shouldReturn(false);
     }
+
+    public function it_returns_a_new_instance_with_score()
+    {
+        $score = new Score(1);
+        $result = $this->withScore($score);
+
+        $this->getScore()->shouldBeNull();
+
+        $result->shouldNotBe($this);
+        $result->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Result');
+        $result->getScore()->shouldReturn($score);
+    }
+
+    public function it_returns_a_new_instance_with_success()
+    {
+        $this->beConstructedWith(null, false);
+        $result = $this->withSuccess(true);
+
+        $this->getSuccess()->shouldReturn(false);
+
+        $result->shouldNotBe($this);
+        $result->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Result');
+        $result->getSuccess()->shouldReturn(true);
+    }
+
+    public function it_returns_a_new_instance_with_completion()
+    {
+        $this->beConstructedWith(null, null, false);
+        $result = $this->withCompletion(true);
+
+        $this->getCompletion()->shouldReturn(false);
+
+        $result->shouldNotBe($this);
+        $result->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Result');
+        $result->getCompletion()->shouldReturn(true);
+    }
+
+    public function it_returns_a_new_instance_with_response()
+    {
+        $result = $this->withResponse('test');
+
+        $this->getResponse()->shouldReturn(null);
+
+        $result->shouldNotBe($this);
+        $result->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Result');
+        $result->getResponse()->shouldReturn('test');
+    }
+
+    public function it_returns_a_new_instance_with_duration()
+    {
+        $result = $this->withDuration('PT2H');
+
+        $this->getDuration()->shouldReturn(null);
+
+        $result->shouldNotBe($this);
+        $result->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Result');
+        $result->getDuration()->shouldReturn('PT2H');
+    }
+
+    public function it_returns_a_new_instance_with_extensions()
+    {
+        $extensions = new Extensions(array());
+        $result = $this->withExtensions($extensions);
+
+        $this->getScore()->shouldBeNull();
+
+        $result->shouldNotBe($this);
+        $result->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Result');
+        $result->getExtensions()->shouldReturn($extensions);
+    }
 }

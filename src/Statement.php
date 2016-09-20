@@ -77,6 +77,91 @@ final class Statement
     }
 
     /**
+     * @param string $id
+     *
+     * @return Statement
+     */
+    public function withId($id)
+    {
+        $statement = clone $this;
+        $statement->id = $id;
+
+        return $statement;
+    }
+
+    public function withActor(Actor $actor)
+    {
+        $statement = clone $this;
+        $statement->actor = $actor;
+
+        return $statement;
+    }
+
+    public function withVerb(Verb $verb)
+    {
+        $statement = clone $this;
+        $statement->verb = $verb;
+
+        return $statement;
+    }
+
+    public function withObject(Object $object)
+    {
+        $statement = clone $this;
+        $statement->object = $object;
+
+        return $statement;
+    }
+
+    public function withResult(Result $result)
+    {
+        $statement = clone $this;
+        $statement->result = $result;
+
+        return $statement;
+    }
+
+    /**
+     * Creates a new Statement based on the current one containing an Authority
+     * that asserts the Statement true.
+     *
+     * @param Actor $authority The Authority asserting the Statement true
+     *
+     * @return Statement The new Statement
+     */
+    public function withAuthority(Actor $authority)
+    {
+        $statement = clone $this;
+        $statement->authority = $authority;
+
+        return $statement;
+    }
+
+    public function withTimestamp(\DateTime $timestamp)
+    {
+        $statement = clone $this;
+        $statement->created = $timestamp;
+
+        return $statement;
+    }
+
+    public function withStored(\DateTime $stored)
+    {
+        $statement = clone $this;
+        $statement->stored = $stored;
+
+        return $statement;
+    }
+
+    public function withContext(Context $context)
+    {
+        $statement = clone $this;
+        $statement->context = $context;
+
+        return $statement;
+    }
+
+    /**
      * Returns the Statement's unique identifier.
      *
      * @return string The identifier
@@ -134,6 +219,17 @@ final class Statement
     public function getAuthority()
     {
         return $this->authority;
+    }
+
+    /**
+     * Returns the timestamp of when the events described in this statement
+     * occurred.
+     *
+     * @return \DateTime The timestamp
+     */
+    public function getTimestamp()
+    {
+        return $this->created;
     }
 
     /**
@@ -205,19 +301,6 @@ final class Statement
             Verb::createVoidVerb(),
             $this->getStatementReference()
         );
-    }
-
-    /**
-     * Creates a new Statement based on the current one containing an Authority
-     * that asserts the Statement true.
-     *
-     * @param Actor $authority The Authority asserting the Statement true
-     *
-     * @return Statement The new Statement
-     */
-    public function withAuthority(Actor $authority)
-    {
-        return new Statement($this->id, $this->actor, $this->verb, $this->object, $this->result, $authority);
     }
 
     /**

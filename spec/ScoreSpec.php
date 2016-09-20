@@ -64,4 +64,48 @@ class ScoreSpec extends ObjectBehavior
         $this->getMin()->shouldReturn(null);
         $this->getMax()->shouldReturn(100);
     }
+
+    public function it_returns_a_new_instance_with_scaled()
+    {
+        $score = $this->withScaled(1);
+
+        $this->getScaled()->shouldBeNull();
+
+        $score->shouldNotBe($this);
+        $score->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Score');
+        $score->getScaled()->shouldReturn(1);
+    }
+
+    public function it_returns_a_new_instance_with_raw()
+    {
+        $score = $this->withRaw(100);
+
+        $this->getRaw()->shouldBeNull();
+
+        $score->shouldNotBe($this);
+        $score->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Score');
+        $score->getRaw()->shouldReturn(100);
+    }
+
+    public function it_returns_a_new_instance_with_min()
+    {
+        $score = $this->withMin(0);
+
+        $this->getMin()->shouldBeNull();
+
+        $score->shouldNotBe($this);
+        $score->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Score');
+        $score->getMin()->shouldReturn(0);
+    }
+
+    public function it_returns_a_new_instance_with_max()
+    {
+        $score = $this->withMax(100);
+
+        $this->getMax()->shouldBeNull();
+
+        $score->shouldNotBe($this);
+        $score->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Score');
+        $score->getMax()->shouldReturn(100);
+    }
 }

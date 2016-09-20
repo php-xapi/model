@@ -67,6 +67,74 @@ final class Result
         $this->extensions = $extensions;
     }
 
+    public function withScore(Score $score = null)
+    {
+        $result = clone $this;
+        $result->score = $score;
+
+        return $result;
+    }
+
+    /**
+     * @param bool|null $success
+     *
+     * @return Result
+     */
+    public function withSuccess($success)
+    {
+        $result = clone $this;
+        $result->success = $success;
+
+        return $result;
+    }
+
+    /**
+     * @param bool|null $completion
+     *
+     * @return Result
+     */
+    public function withCompletion($completion)
+    {
+        $result = clone $this;
+        $result->completion = $completion;
+
+        return $result;
+    }
+
+    /**
+     * @param string|null $response
+     *
+     * @return Result
+     */
+    public function withResponse($response)
+    {
+        $result = clone $this;
+        $result->response = $response;
+
+        return $result;
+    }
+
+    /**
+     * @param string|null $duration
+     *
+     * @return Result
+     */
+    public function withDuration($duration)
+    {
+        $result = clone $this;
+        $result->duration = $duration;
+
+        return $result;
+    }
+
+    public function withExtensions(Extensions $extensions = null)
+    {
+        $result = clone $this;
+        $result->extensions = $extensions;
+
+        return $result;
+    }
+
     /**
      * Returns the user's score.
      *
