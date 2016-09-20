@@ -20,19 +20,19 @@ final class Definition
 {
     /**
      * The human readable activity name
-     * @var array
+     * @var array|null
      */
     private $name;
 
     /**
      * The human readable activity description
-     * @var array
+     * @var array|null
      */
     private $description;
 
     /**
      * The type of the {@link Activity}
-     * @var string
+     * @var string|null
      */
     private $type;
 
@@ -60,7 +60,7 @@ final class Definition
     /**
      * Returns the human readable names.
      *
-     * @return array The name language map
+     * @return array|null The name language map
      */
     public function getName()
     {
@@ -70,7 +70,7 @@ final class Definition
     /**
      * Returns the human readable descriptions.
      *
-     * @return array The description language map
+     * @return array|null The description language map
      */
     public function getDescription()
     {
@@ -80,7 +80,7 @@ final class Definition
     /**
      * Returns the {@link Activity} type.
      *
-     * @return string The type
+     * @return string|null The type
      */
     public function getType()
     {

@@ -168,7 +168,7 @@ final class Result
             return false;
         }
 
-        if (null !== $this->extensions && !$this->extensions->equals($result->extensions)) {
+        if (null !== $this->extensions && null !== $result->extensions && !$this->extensions->equals($result->extensions)) {
             return false;
         }
 
