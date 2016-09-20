@@ -4,33 +4,33 @@ CHANGELOG
 0.5.0
 -----
 
- * added a `$context` attribute to `SubStatement` instances
+* added a `$context` attribute to `SubStatement` instances
 
- * added `equals()` method to the `Result` model class
+* added `equals()` method to the `Result` model class
 
- * added a `StatementFactory` to ease the creation of complex xAPI statements
+* added a `StatementFactory` to ease the creation of complex xAPI statements
 
- * added `Context`, `ContextActivities`, and `Extensions` classes that represent
-   statement contexts, their context's activities, and statement extensions
-   respectively
+* added `Context`, `ContextActivities`, and `Extensions` classes that represent
+  statement contexts, their context's activities, and statement extensions
+  respectively
 
 0.4.1
 -----
 
- * also compare timestamps when performing statement equality checks
+* also compare timestamps when performing statement equality checks
 
 0.4.0
 -----
 
- * fixed some edge cases in the `equals()` methods of the `Definition`, `Result`,
-   and `Verb` classes
+* fixed some edge cases in the `equals()` methods of the `Definition`, `Result`,
+  and `Verb` classes
 
- * Made `Object` a parent class of the `Actor` class to reflect the fact that
-   actors can also be objects in xAPI statements.
+* Made `Object` a parent class of the `Actor` class to reflect the fact that
+  actors can also be objects in xAPI statements.
 
- * The argument type of the `equals()` method in the `Actor` base class was
-   changed from `Actor` to `Object` to be compatible with the same method from
-   the parent `Object` class.
+* The argument type of the `equals()` method in the `Actor` base class was
+  changed from `Actor` to `Object` to be compatible with the same method from
+  the parent `Object` class.
 
 0.3.0
 -----
