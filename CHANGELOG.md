@@ -4,6 +4,11 @@ CHANGELOG
 0.5.0
 -----
 
+* Added a `LanguageMap` value object class to model the `$display` property
+  of `Verb` instances as well as the `$name` and `$description` properties
+  of the `Definition` class (all these properties have been plain PHP arrays
+  before).
+
 * Added a value object for statement ids.
 
 * The constructor of the `SubStatement` class now throws an exception when

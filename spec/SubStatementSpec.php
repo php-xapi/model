@@ -19,6 +19,7 @@ use Xabbuh\XApi\Model\ContextActivities;
 use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\LanguageMap;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\StatementId;
 use Xabbuh\XApi\Model\StatementReference;
@@ -30,7 +31,7 @@ class SubStatementSpec extends ObjectBehavior
     function let()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
         $this->beConstructedWith($actor, $verb, $object);
     }
@@ -38,7 +39,7 @@ class SubStatementSpec extends ObjectBehavior
     function it_is_an_xapi_object()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
         $this->beConstructedWith($actor, $verb, $object);
 
@@ -48,7 +49,7 @@ class SubStatementSpec extends ObjectBehavior
     function it_is_different_from_another_sub_statement_if_contexts_differ()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
         $this->beConstructedWith($actor, $verb, $object, null, new Context());
 
@@ -80,7 +81,7 @@ class SubStatementSpec extends ObjectBehavior
     function it_rejects_to_hold_another_sub_statement_as_object()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
         $subStatement = new SubStatement($actor, $verb, $object);
 

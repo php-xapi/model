@@ -12,6 +12,7 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
+use Xabbuh\XApi\Model\LanguageMap;
 use Xabbuh\XApi\Model\Verb;
 
 class VerbSpec extends ObjectBehavior
@@ -24,10 +25,11 @@ class VerbSpec extends ObjectBehavior
 
     function its_properties_can_be_read()
     {
-        $this->beConstructedWith('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $languageMap = LanguageMap::create(array('en-US' => 'test'));
+        $this->beConstructedWith('http://tincanapi.com/conformancetest/verbid', $languageMap);
 
         $this->getId()->shouldReturn('http://tincanapi.com/conformancetest/verbid');
-        $this->getDisplay()->shouldReturn(array('en-US' => 'test'));
+        $this->getDisplay()->shouldReturn($languageMap);
     }
 
     function its_display_property_is_null_if_omitted()
@@ -50,7 +52,7 @@ class VerbSpec extends ObjectBehavior
     {
         $this->beConstructedWith('http://tincanapi.com/conformancetest/verbid');
 
-        $this->equals(new Verb('http://tincanapi.com/conformancetest/verbid', array()))->shouldReturn(false);
+        $this->equals(new Verb('http://tincanapi.com/conformancetest/verbid', new LanguageMap()))->shouldReturn(false);
     }
 
     function it_is_equal_when_verb_id_is_equal_and_display_values_are_omitted()

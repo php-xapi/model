@@ -20,13 +20,13 @@ final class Definition
 {
     /**
      * The human readable activity name
-     * @var array|null
+     * @var LanguageMap|null
      */
     private $name;
 
     /**
      * The human readable activity description
-     * @var array|null
+     * @var LanguageMap|null
      */
     private $description;
 
@@ -44,12 +44,12 @@ final class Definition
     private $moreInfo;
 
     /**
-     * @param array|null  $name
-     * @param array|null  $description
-     * @param string|null $type
-     * @param string|null $moreInfo
+     * @param LanguageMap|null $name
+     * @param LanguageMap|null $description
+     * @param string|null      $type
+     * @param string|null      $moreInfo
      */
-    public function __construct(array $name = null, array $description = null, $type = null, $moreInfo = null)
+    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null)
     {
         $this->name = $name;
         $this->description = $description;
@@ -60,7 +60,7 @@ final class Definition
     /**
      * Returns the human readable names.
      *
-     * @return array|null The name language map
+     * @return LanguageMap|null The name language map
      */
     public function getName()
     {
@@ -70,7 +70,7 @@ final class Definition
     /**
      * Returns the human readable descriptions.
      *
-     * @return array|null The description language map
+     * @return LanguageMap|null The description language map
      */
     public function getDescription()
     {

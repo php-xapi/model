@@ -4,6 +4,10 @@ UPGRADE
 Upgrading from 0.4 to 0.5
 -------------------------
 
+* The `$display` property of the `Verb` class as well as the `$name` and
+  `$description` properties of the `Definition` class are no longer plain
+  PHP arrays, but are now instances of `LanguageMap`.
+
 * Statement ids are no longer plain strings, but are `StatementId` value objects:
 
   Before:

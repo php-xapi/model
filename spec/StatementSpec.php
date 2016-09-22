@@ -17,6 +17,7 @@ use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\Context;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\LanguageMap;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\Statement;
 use Xabbuh\XApi\Model\StatementId;
@@ -29,7 +30,7 @@ class StatementSpec extends ObjectBehavior
     {
         $id = StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
         $this->beConstructedWith($id, $actor, $verb, $object);
     }
@@ -68,7 +69,7 @@ class StatementSpec extends ObjectBehavior
     function it_overrides_existing_authority_when_it_is_authorized()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Activity('http://tincanapi.com/conformancetest/activityid');
         $authority = new Group(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
         $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object, null, $authority);
@@ -87,7 +88,7 @@ class StatementSpec extends ObjectBehavior
     function its_object_can_be_an_agent()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
         $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object);
 
@@ -98,7 +99,7 @@ class StatementSpec extends ObjectBehavior
     function it_does_not_equal_another_statement_with_different_timestamp()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
         $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
 
@@ -110,7 +111,7 @@ class StatementSpec extends ObjectBehavior
     function it_equals_another_statement_with_same_timestamp()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
         $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object, null, null, new \DateTime('2014-07-23T12:34:02-05:00'));
 

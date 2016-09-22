@@ -15,6 +15,7 @@ use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\LanguageMap;
 use Xabbuh\XApi\Model\Verb;
 
 class StatementsFilterSpec extends ObjectBehavior
@@ -37,7 +38,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_filter_by_verb()
     {
-        $this->byVerb(new Verb('http://tincanapi.com/conformancetest/verbid', array('en-US' => 'test')))->shouldReturn($this);
+        $this->byVerb(new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test'))))->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
