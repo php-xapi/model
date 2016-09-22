@@ -27,6 +27,11 @@
             "Xabbuh\\XApi\\Model\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\Xabbuh\\XApi\\Model\\": "spec/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "0.5.x-dev"

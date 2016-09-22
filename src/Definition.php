@@ -14,9 +14,25 @@ namespace Xabbuh\XApi\Model;
 /**
  * Definition of an {@link Activity}.
  *
+ * A number of derived classes exists each of them covering a specialized
+ * type of user interaction:
+ *
+ * <ul>
+ *   <li>ChoiceInteractionDefinition</li>
+ *   <li>FillInteractionDefinition</li>
+ *   <li>LikertInteractionDefinition</li>
+ *   <li>LongFillInInteractionDefinition</li>
+ *   <li>MatchingInteractionDefinition</li>
+ *   <li>NumericInteractionDefinition</li>
+ *   <li>PerformanceInteractionDefinition</li>
+ *   <li>OtherInteractionDefinition</li>
+ *   <li>SequencingInteractionDefinition</li>
+ *   <li>TrueFalseInteractionDefinition</li>
+ * </ul>
+ *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-final class Definition
+class Definition
 {
     /**
      * The human readable activity name
@@ -108,6 +124,10 @@ final class Definition
      */
     public function equals(Definition $definition)
     {
+        if (get_class($this) !== get_class($definition)) {
+            return false;
+        }
+
         if ($this->type !== $definition->type) {
             return false;
         }
