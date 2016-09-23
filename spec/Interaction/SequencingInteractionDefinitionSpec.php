@@ -38,14 +38,14 @@ class SequencingInteractionDefinitionSpec extends InteractionDefinitionSpec
 
     function it_is_not_equal_if_only_this_interaction_has_choices()
     {
-        $this->beConstructedWith(null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
 
         $this->equals($this->createEmptyDefinition())->shouldReturn(false);
     }
 
     function it_is_not_equal_if_number_of_choices_differs()
     {
-        $this->beConstructedWith(null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
 
         $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withChoices(array(new InteractionComponent('test'), new InteractionComponent('foo')));
@@ -55,7 +55,7 @@ class SequencingInteractionDefinitionSpec extends InteractionDefinitionSpec
 
     function it_is_not_equal_if_choices_differ()
     {
-        $this->beConstructedWith(null, null, null, null, null, array(new InteractionComponent('foo')));
+        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('foo')));
 
         $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withChoices(array(new InteractionComponent('bar')));
@@ -65,7 +65,7 @@ class SequencingInteractionDefinitionSpec extends InteractionDefinitionSpec
 
     function it_is_equal_if_choices_are_equal()
     {
-        $this->beConstructedWith(null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
 
         $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withChoices(array(new InteractionComponent('test')));

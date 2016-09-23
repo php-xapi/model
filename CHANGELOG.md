@@ -4,6 +4,8 @@ CHANGELOG
 0.5.0
 -----
 
+* Added missing extensions to activity definitions.
+
 * Added `with*()` methods for the `$name`, `$description`, `$type`, and `$moreInfo`
   properties of the `Definition` class and its subclasses to ease the creation
   of new `Definition` objects based on existing instances.

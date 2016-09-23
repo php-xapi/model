@@ -41,14 +41,14 @@ abstract class InteractionDefinitionSpec extends DefinitionSpec
 
     function it_is_not_equal_if_only_this_interaction_has_correct_responses_pattern()
     {
-        $this->beConstructedWith(null, null, null, null, array('test'));
+        $this->beConstructedWith(null, null, null, null, null, array('test'));
 
         $this->equals($this->createEmptyDefinition())->shouldReturn(false);
     }
 
     function it_is_not_equal_if_number_of_correct_responses_pattern_differs()
     {
-        $this->beConstructedWith(null, null, null, null, array('test'));
+        $this->beConstructedWith(null, null, null, null, null, array('test'));
 
         $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withCorrectResponsesPattern(array('test', 'foo'));
@@ -58,7 +58,7 @@ abstract class InteractionDefinitionSpec extends DefinitionSpec
 
     function it_is_not_equal_if_correct_responses_pattern_values_differ()
     {
-        $this->beConstructedWith(null, null, null, null, array('foo'));
+        $this->beConstructedWith(null, null, null, null, null, array('foo'));
 
         $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withCorrectResponsesPattern(array('bar'));
@@ -68,7 +68,7 @@ abstract class InteractionDefinitionSpec extends DefinitionSpec
 
     function it_is_equal_if_correct_responses_pattern_values_are_equal()
     {
-        $this->beConstructedWith(null, null, null, null, array('test'));
+        $this->beConstructedWith(null, null, null, null, null, array('test'));
 
         $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withCorrectResponsesPattern(array('test'));

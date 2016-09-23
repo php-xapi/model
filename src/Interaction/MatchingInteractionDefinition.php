@@ -12,6 +12,7 @@
 namespace Xabbuh\XApi\Model\Interaction;
 
 use Xabbuh\XApi\Model\Definition;
+use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\LanguageMap;
 
 /**
@@ -30,13 +31,14 @@ final class MatchingInteractionDefinition extends InteractionDefinition
      * @param LanguageMap|null            $description
      * @param string|null                 $type
      * @param string|null                 $moreInfo
+     * @param Extensions|null             $extensions
      * @param string[]|null               $correctResponsesPattern
      * @param InteractionComponent[]|null $source
      * @param InteractionComponent[]|null $target
      */
-    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null, array $correctResponsesPattern = null, array $source = null, array $target = null)
+    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null, Extensions $extensions = null, array $correctResponsesPattern = null, array $source = null, array $target = null)
     {
-        parent::__construct($name, $description, $type, $moreInfo, $correctResponsesPattern);
+        parent::__construct($name, $description, $type, $moreInfo, $extensions, $correctResponsesPattern);
 
         $this->source = $source;
         $this->target = $target;

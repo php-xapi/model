@@ -12,6 +12,7 @@
 namespace Xabbuh\XApi\Model\Interaction;
 
 use Xabbuh\XApi\Model\Definition;
+use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\LanguageMap;
 
 /**
@@ -28,11 +29,12 @@ abstract class InteractionDefinition extends Definition
      * @param LanguageMap|null $description
      * @param string|null      $type
      * @param string|null      $moreInfo
+     * @param Extensions|null  $extensions
      * @param string[]|null    $correctResponsesPattern
      */
-    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null, array $correctResponsesPattern = null)
+    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null, Extensions $extensions = null, array $correctResponsesPattern = null)
     {
-        parent::__construct($name, $description, $type, $moreInfo);
+        parent::__construct($name, $description, $type, $moreInfo, $extensions);
 
         $this->correctResponsesPattern = $correctResponsesPattern;
     }

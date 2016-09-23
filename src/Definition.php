@@ -60,17 +60,26 @@ class Definition
     private $moreInfo;
 
     /**
+     * Extensions associated with the {@link Activity}.
+     *
+     * @var Extensions|null
+     */
+    private $extensions;
+
+    /**
      * @param LanguageMap|null $name
      * @param LanguageMap|null $description
      * @param string|null      $type
      * @param string|null      $moreInfo
+     * @param Extensions|null  $extensions
      */
-    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null)
+    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null, Extensions $extensions = null)
     {
         $this->name = $name;
         $this->description = $description;
         $this->type = $type;
         $this->moreInfo = $moreInfo;
+        $this->extensions = $extensions;
     }
 
     public function withName(LanguageMap $name = null)
@@ -115,6 +124,14 @@ class Definition
         return $definition;
     }
 
+    public function withExtensions(Extensions $extensions)
+    {
+        $definition = clone $this;
+        $definition->extensions = $extensions;
+
+        return $definition;
+    }
+
     /**
      * Returns the human readable names.
      *
@@ -155,6 +172,11 @@ class Definition
         return $this->moreInfo;
     }
 
+    public function getExtensions()
+    {
+        return $this->extensions;
+    }
+
     /**
      * Checks if another definition is equal.
      *
@@ -175,6 +197,10 @@ class Definition
         }
 
         if ($this->moreInfo !== $definition->moreInfo) {
+            return false;
+        }
+
+        if (null !== $this->extensions xor null !== $definition->extensions) {
             return false;
         }
 
@@ -216,6 +242,10 @@ class Definition
                     return false;
                 }
             }
+        }
+
+        if (null !== $this->extensions && null !== $definition->extensions && !$this->extensions->equals($definition->extensions)) {
+            return false;
         }
 
         return true;
