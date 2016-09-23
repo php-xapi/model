@@ -4,6 +4,24 @@ CHANGELOG
 0.5.0
 -----
 
+* Added new classes to model user interaction activity definitions (all extending
+  an abstract `InteractionDefinition` class which in turn is a child class
+  of the already existing `Definition` class):
+
+   * `ChoiceInteractionDefinition`
+   * `FillInInteractionDefinition`
+   * `LikertInteractionDefinition`
+   * `LongFillInInteractionDefinition`
+   * `MatchingInteractionDefinition`
+   * `NumericInteractionDefinition`
+   * `OtherInteractionDefinition`
+   * `PerformanceInteractionDefinition`
+   * `SequencingInteractionDefinition`
+   * `TrueFalseInteractionDefinition`
+
+  Interaction components which are part of some of the new definition classes
+  will be handled by `InteractionComponent` instances.
+
 * Added a `LanguageMap` value object class to model the `$display` property
   of `Verb` instances as well as the `$name` and `$description` properties
   of the `Definition` class (all these properties have been plain PHP arrays
