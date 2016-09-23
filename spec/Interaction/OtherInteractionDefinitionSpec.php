@@ -15,7 +15,7 @@ use Xabbuh\XApi\Model\Interaction\OtherInteractionDefinition;
 
 class OtherInteractionDefinitionSpec extends InteractionDefinitionSpec
 {
-    protected function createEmptyInteraction()
+    protected function createEmptyDefinition()
     {
         return new OtherInteractionDefinition();
     }

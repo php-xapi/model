@@ -15,7 +15,7 @@ use Xabbuh\XApi\Model\Interaction\NumericInteractionDefinition;
 
 class NumericInteractionDefinitionSpec extends InteractionDefinitionSpec
 {
-    protected function createEmptyInteraction()
+    protected function createEmptyDefinition()
     {
         return new NumericInteractionDefinition();
     }

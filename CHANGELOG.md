@@ -4,6 +4,10 @@ CHANGELOG
 0.5.0
 -----
 
+* Added `with*()` methods for the `$name`, `$description`, `$type`, and `$moreInfo`
+  properties of the `Definition` class and its subclasses to ease the creation
+  of new `Definition` objects based on existing instances.
+
 * Added new classes to model user interaction activity definitions (all extending
   an abstract `InteractionDefinition` class which in turn is a child class
   of the already existing `Definition` class):

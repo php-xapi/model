@@ -15,7 +15,7 @@ use Xabbuh\XApi\Model\Interaction\LongFillInInteractionDefinition;
 
 class LongFillInInteractionDefinitionSpec extends InteractionDefinitionSpec
 {
-    protected function createEmptyInteraction()
+    protected function createEmptyDefinition()
     {
         return new LongFillInInteractionDefinition();
     }

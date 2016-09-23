@@ -15,7 +15,7 @@ use Xabbuh\XApi\Model\Interaction\TrueFalseInteractionDefinition;
 
 class TrueFalseInteractionDefinitionSpec extends InteractionDefinitionSpec
 {
-    protected function createEmptyInteraction()
+    protected function createEmptyDefinition()
     {
         return new TrueFalseInteractionDefinition();
     }

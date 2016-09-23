@@ -30,7 +30,7 @@ class ChoiceInteractionDefinitionSpec extends InteractionDefinitionSpec
 
     function it_is_not_equal_if_only_other_interaction_has_choices()
     {
-        $interaction = $this->createEmptyInteraction();
+        $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withChoices(array(new InteractionComponent('test')));
 
         $this->equals($interaction)->shouldReturn(false);
@@ -40,14 +40,14 @@ class ChoiceInteractionDefinitionSpec extends InteractionDefinitionSpec
     {
         $this->beConstructedWith(null, null, null, null, null, array(new InteractionComponent('test')));
 
-        $this->equals($this->createEmptyInteraction())->shouldReturn(false);
+        $this->equals($this->createEmptyDefinition())->shouldReturn(false);
     }
 
     function it_is_not_equal_if_number_of_choices_differs()
     {
         $this->beConstructedWith(null, null, null, null, null, array(new InteractionComponent('test')));
 
-        $interaction = $this->createEmptyInteraction();
+        $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withChoices(array(new InteractionComponent('test'), new InteractionComponent('foo')));
 
         $this->equals($interaction)->shouldReturn(false);
@@ -57,7 +57,7 @@ class ChoiceInteractionDefinitionSpec extends InteractionDefinitionSpec
     {
         $this->beConstructedWith(null, null, null, null, null, array(new InteractionComponent('foo')));
 
-        $interaction = $this->createEmptyInteraction();
+        $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withChoices(array(new InteractionComponent('bar')));
 
         $this->equals($interaction)->shouldReturn(false);
@@ -67,13 +67,13 @@ class ChoiceInteractionDefinitionSpec extends InteractionDefinitionSpec
     {
         $this->beConstructedWith(null, null, null, null, null, array(new InteractionComponent('test')));
 
-        $interaction = $this->createEmptyInteraction();
+        $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withChoices(array(new InteractionComponent('test')));
 
         $this->equals($interaction)->shouldReturn(true);
     }
 
-    protected function createEmptyInteraction()
+    protected function createEmptyDefinition()
     {
         return new ChoiceInteractionDefinition();
     }

@@ -41,7 +41,53 @@ class DefinitionSpec extends ObjectBehavior
         $this->getType()->shouldReturn(null);
         $this->getMoreInfo()->shouldReturn(null);
 
-        $this->equals(new Definition())->shouldReturn(true);
+        $this->equals($this->createEmptyDefinition())->shouldReturn(true);
+    }
+
+    public function it_returns_a_new_instance_with_name()
+    {
+        $name = new LanguageMap();
+        $definition = $this->withName($name);
+
+        $this->getName()->shouldBeNull();
+
+        $definition->shouldNotBe($this);
+        $definition->shouldBeAnInstanceOf(get_class($this->getWrappedObject()));
+        $definition->getName()->shouldReturn($name);
+    }
+
+    public function it_returns_a_new_instance_with_description()
+    {
+        $description = new LanguageMap();
+        $definition = $this->withDescription($description);
+
+        $this->getDescription()->shouldBeNull();
+
+        $definition->shouldNotBe($this);
+        $definition->shouldBeAnInstanceOf(get_class($this->getWrappedObject()));
+        $definition->getDescription()->shouldReturn($description);
+    }
+
+    public function it_returns_a_new_instance_with_type()
+    {
+        $definition = $this->withType('http://id.tincanapi.com/activitytype/unit-test');
+
+        $this->getType()->shouldBeNull();
+
+        $definition->shouldNotBe($this);
+        $definition->shouldBeAnInstanceOf(get_class($this->getWrappedObject()));
+        $definition->getType()->shouldReturn('http://id.tincanapi.com/activitytype/unit-test');
+    }
+
+    public function it_returns_a_new_instance_with_more_info()
+    {
+        $definition = $this->withMoreInfo('https://github.com/adlnet/xAPI_LRS_Test');
+
+        $this->getMoreInfo()->shouldBeNull();
+
+        $definition->shouldNotBe($this);
+        $definition->shouldBeAnInstanceOf(get_class($this->getWrappedObject()));
+        $definition->getMoreInfo()->shouldReturn('https://github.com/adlnet/xAPI_LRS_Test');
     }
 
     function it_is_different_when_names_are_omitted_and_other_definition_contains_an_empty_list_of_names()
@@ -52,5 +98,10 @@ class DefinitionSpec extends ObjectBehavior
     function it_is_different_when_descriptions_are_omitted_and_other_definition_contains_an_empty_list_of_descriptions()
     {
         $this->equals(new Definition(null, new LanguageMap()))->shouldReturn(false);
+    }
+
+    protected function createEmptyDefinition()
+    {
+        return new Definition();
     }
 }

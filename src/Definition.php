@@ -73,6 +73,48 @@ class Definition
         $this->moreInfo = $moreInfo;
     }
 
+    public function withName(LanguageMap $name = null)
+    {
+        $definition = clone $this;
+        $definition->name = $name;
+
+        return $definition;
+    }
+
+    public function withDescription(LanguageMap $description = null)
+    {
+        $definition = clone $this;
+        $definition->description = $description;
+
+        return $definition;
+    }
+
+    /**
+     * @param string|null $type
+     *
+     * @return static
+     */
+    public function withType($type)
+    {
+        $definition = clone $this;
+        $definition->type = $type;
+
+        return $definition;
+    }
+
+    /**
+     * @param string|null $moreInfo
+     *
+     * @return static
+     */
+    public function withMoreInfo($moreInfo)
+    {
+        $definition = clone $this;
+        $definition->moreInfo = $moreInfo;
+
+        return $definition;
+    }
+
     /**
      * Returns the human readable names.
      *

@@ -11,11 +11,10 @@
 
 namespace spec\Xabbuh\XApi\Model\Interaction;
 
-use PhpSpec\ObjectBehavior;
+use spec\Xabbuh\XApi\Model\DefinitionSpec;
 use Xabbuh\XApi\Model\Definition;
-use Xabbuh\XApi\Model\Interaction\InteractionDefinition;
 
-abstract class InteractionDefinitionSpec extends ObjectBehavior
+abstract class InteractionDefinitionSpec extends DefinitionSpec
 {
     function it_is_a_definition()
     {
@@ -34,7 +33,7 @@ abstract class InteractionDefinitionSpec extends ObjectBehavior
 
     function it_is_not_equal_if_only_other_interaction_has_correct_responses_pattern()
     {
-        $interaction = $this->createEmptyInteraction();
+        $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withCorrectResponsesPattern(array('test'));
 
         $this->equals($interaction)->shouldReturn(false);
@@ -44,14 +43,14 @@ abstract class InteractionDefinitionSpec extends ObjectBehavior
     {
         $this->beConstructedWith(null, null, null, null, array('test'));
 
-        $this->equals($this->createEmptyInteraction())->shouldReturn(false);
+        $this->equals($this->createEmptyDefinition())->shouldReturn(false);
     }
 
     function it_is_not_equal_if_number_of_correct_responses_pattern_differs()
     {
         $this->beConstructedWith(null, null, null, null, array('test'));
 
-        $interaction = $this->createEmptyInteraction();
+        $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withCorrectResponsesPattern(array('test', 'foo'));
 
         $this->equals($interaction)->shouldReturn(false);
@@ -61,7 +60,7 @@ abstract class InteractionDefinitionSpec extends ObjectBehavior
     {
         $this->beConstructedWith(null, null, null, null, array('foo'));
 
-        $interaction = $this->createEmptyInteraction();
+        $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withCorrectResponsesPattern(array('bar'));
 
         $this->equals($interaction)->shouldReturn(false);
@@ -71,14 +70,9 @@ abstract class InteractionDefinitionSpec extends ObjectBehavior
     {
         $this->beConstructedWith(null, null, null, null, array('test'));
 
-        $interaction = $this->createEmptyInteraction();
+        $interaction = $this->createEmptyDefinition();
         $interaction = $interaction->withCorrectResponsesPattern(array('test'));
 
         $this->equals($interaction)->shouldReturn(true);
     }
-
-    /**
-     * @return InteractionDefinition
-     */
-    abstract protected function createEmptyInteraction();
 }
