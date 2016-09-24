@@ -4,6 +4,8 @@ CHANGELOG
 0.5.0
 -----
 
+* Added an `Attachment` class to store statement attachments.
+
 * Fixed some edge cases in `Context::equals()` where statement references,
   teams, and extensions would not have been compared properly.
 

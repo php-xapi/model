@@ -63,7 +63,21 @@ final class Statement
      */
     private $context;
 
-    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null)
+    private $attachments;
+
+    /**
+     * @param StatementId|null  $id
+     * @param Actor             $actor
+     * @param Verb              $verb
+     * @param Object            $object
+     * @param Result|null       $result
+     * @param Actor|null        $authority
+     * @param \DateTime|null    $created
+     * @param \DateTime|null    $stored
+     * @param Context|null      $context
+     * @param Attachment[]|null $attachments
+     */
+    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null)
     {
         $this->id = $id;
         $this->actor = $actor;
@@ -74,6 +88,7 @@ final class Statement
         $this->created = $created;
         $this->stored = $stored;
         $this->context = $context;
+        $this->attachments = $attachments;
     }
 
     public function withId(StatementId $id = null)
@@ -152,6 +167,19 @@ final class Statement
     {
         $statement = clone $this;
         $statement->context = $context;
+
+        return $statement;
+    }
+
+    /**
+     * @param Attachment[]|null $attachments
+     *
+     * @return self
+     */
+    public function withAttachments(array $attachments = null)
+    {
+        $statement = clone $this;
+        $statement->attachments = $attachments;
 
         return $statement;
     }
@@ -258,6 +286,11 @@ final class Statement
         return $this->context;
     }
 
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
     /**
      * Tests whether or not this Statement is a void Statement (i.e. it voids
      * another Statement).
@@ -355,6 +388,26 @@ final class Statement
 
         if ($this->created != $statement->created) {
             return false;
+        }
+
+        if (null !== $this->attachments xor null !== $statement->attachments) {
+            return false;
+        }
+
+        if (null !== $this->attachments && null !== $statement->attachments) {
+            if (count($this->attachments) !== $statement->attachments) {
+                return false;
+            }
+
+            foreach ($this->attachments as $key => $attachment) {
+                if (!isset($statement->attachments[$key])) {
+                    return false;
+                }
+
+                if (!$attachment->equals($statement->attachments[$key])) {
+                    return false;
+                }
+            }
         }
 
         return true;

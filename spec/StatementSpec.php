@@ -14,6 +14,7 @@ namespace spec\Xabbuh\XApi\Model;
 use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
+use Xabbuh\XApi\Model\Attachment;
 use Xabbuh\XApi\Model\Context;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
@@ -208,5 +209,23 @@ class StatementSpec extends ObjectBehavior
         $statement->shouldNotBe($this);
         $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
         $statement->getContext()->shouldReturn($context);
+    }
+
+    public function it_returns_a_new_instance_with_attachments()
+    {
+        $attachments = array(new Attachment(
+            'http://id.tincanapi.com/attachment/supporting_media',
+            'text/plain',
+            18,
+            'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
+            LanguageMap::create(array('en-US' => 'Text attachment')),
+            LanguageMap::create(array('en-US' => 'Text attachment description')),
+            'http://tincanapi.com/conformancetest/attachment/fileUrlOnly'
+        ));
+        $statement = $this->withAttachments($attachments);
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getAttachments()->shouldReturn($attachments);
     }
 }
