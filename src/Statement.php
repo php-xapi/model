@@ -342,11 +342,11 @@ final class Statement
      */
     public function equals(Statement $statement)
     {
-        if (null === $this->id && null !== $statement->id) {
+        if (null !== $this->id xor null !== $statement->id) {
             return false;
         }
 
-        if (null !== $this->id && !$this->id->equals($statement->id)) {
+        if (null !== $this->id && null !== $statement->id && !$this->id->equals($statement->id)) {
             return false;
         }
 

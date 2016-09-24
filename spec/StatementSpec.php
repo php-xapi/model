@@ -256,6 +256,26 @@ class StatementSpec extends ObjectBehavior
         $statement->getAttachments()->shouldHaveKeyWithValue(0, $textAttachment);
     }
 
+    function it_is_not_equal_with_other_statement_if_only_this_statement_has_an_id()
+    {
+        $this->equals($this->withId(null))->shouldReturn(false);
+    }
+
+    function it_is_not_equal_with_other_statement_if_only_the_other_statement_has_an_id()
+    {
+        $statement = $this->withId(null);
+        $otherStatement = $statement->withId(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'));
+
+        $statement->equals($otherStatement)->shouldReturn(false);
+    }
+
+    function it_is_not_equal_with_other_statement_if_ids_differ()
+    {
+        $statement = $this->withId(StatementId::fromString('12345678-1234-5678-8234-567812345678'));
+
+        $this->equals($statement)->shouldReturn(false);
+    }
+
     function it_is_not_equal_with_other_statement_if_only_this_statement_has_attachments()
     {
         $attachments = array(new Attachment(

@@ -4,6 +4,10 @@ CHANGELOG
 0.5.0
 -----
 
+* Fixed handling `null` values for statement ids inside `Statement::equals()`.
+  Previously, `StatementId::equals()` might have been called even if a statement's
+  identifier was not defined.
+
 * Added an `Attachment` class to store statement attachments.
 
 * Fixed some edge cases in `Context::equals()` where statement references,
