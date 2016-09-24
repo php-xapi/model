@@ -4,6 +4,9 @@ CHANGELOG
 0.5.0
 -----
 
+* Fixed how context attributes of statements are dealt with in `Statement::equals()`
+  (previously, they were completely ignored).
+
 * Fixed handling `null` values for statement ids inside `Statement::equals()`.
   Previously, `StatementId::equals()` might have been called even if a statement's
   identifier was not defined.

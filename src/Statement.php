@@ -123,7 +123,7 @@ final class Statement
         return $statement;
     }
 
-    public function withResult(Result $result)
+    public function withResult(Result $result = null)
     {
         $statement = clone $this;
         $statement->result = $result;
@@ -139,7 +139,7 @@ final class Statement
      *
      * @return Statement The new Statement
      */
-    public function withAuthority(Actor $authority)
+    public function withAuthority(Actor $authority = null)
     {
         $statement = clone $this;
         $statement->authority = $authority;
@@ -147,7 +147,7 @@ final class Statement
         return $statement;
     }
 
-    public function withTimestamp(\DateTime $timestamp)
+    public function withTimestamp(\DateTime $timestamp = null)
     {
         $statement = clone $this;
         $statement->created = $timestamp;
@@ -155,7 +155,7 @@ final class Statement
         return $statement;
     }
 
-    public function withStored(\DateTime $stored)
+    public function withStored(\DateTime $stored = null)
     {
         $statement = clone $this;
         $statement->stored = $stored;
@@ -163,7 +163,7 @@ final class Statement
         return $statement;
     }
 
-    public function withContext(Context $context)
+    public function withContext(Context $context = null)
     {
         $statement = clone $this;
         $statement->context = $context;
@@ -387,6 +387,14 @@ final class Statement
         }
 
         if ($this->created != $statement->created) {
+            return false;
+        }
+
+        if (null !== $this->context xor null !== $statement->context) {
+            return false;
+        }
+
+        if (null !== $this->context && null !== $statement->context && !$this->context->equals($statement->context)) {
             return false;
         }
 

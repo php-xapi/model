@@ -276,6 +276,30 @@ class StatementSpec extends ObjectBehavior
         $this->equals($statement)->shouldReturn(false);
     }
 
+    function it_is_not_equal_with_other_statement_if_only_this_statement_has_context()
+    {
+        $statement = $this->withContext(new Context());
+
+        $statement->equals($statement->withContext(null))->shouldReturn(false);
+    }
+
+    function it_is_not_equal_with_other_statement_if_only_the_other_statement_has_context()
+    {
+        $statement = $this->withContext(new Context());
+
+        $this->equals($statement)->shouldReturn(false);
+    }
+
+    function it_is_not_equal_with_other_statement_if_contexts_differ()
+    {
+        $context = new Context();
+        $revisionContext = $context->withRevision('test');
+        $platformContext = $context->withPlatform('test');
+        $statement = $this->withContext($revisionContext);
+
+        $this->withContext($platformContext)->equals($statement)->shouldReturn(false);
+    }
+
     function it_is_not_equal_with_other_statement_if_only_this_statement_has_attachments()
     {
         $attachments = array(new Attachment(
