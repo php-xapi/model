@@ -4,6 +4,9 @@ CHANGELOG
 0.5.0
 -----
 
+* Fixed some edge cases in `Context::equals()` where statement references,
+  teams, and extensions would not have been compared properly.
+
 * Added missing extensions to activity definitions.
 
 * Added `with*()` methods for the `$name`, `$description`, `$type`, and `$moreInfo`

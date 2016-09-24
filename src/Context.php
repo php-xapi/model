@@ -18,14 +18,47 @@ namespace Xabbuh\XApi\Model;
  */
 final class Context
 {
+    /**
+     * @var string|null
+     */
     private $registration;
+
+    /**
+     * @var Actor|null
+     */
     private $instructor;
+
+    /**
+     * @var Group|null
+     */
     private $team;
+
+    /**
+     * @var ContextActivities|null
+     */
     private $contextActivities;
+    /**
+     * @var string|null
+     */
     private $revision;
+    /**
+     * @var string|null
+     */
     private $platform;
+
+    /**
+     * @var string|null
+     */
     private $language;
+
+    /**
+     * @var StatementReference|null
+     */
     private $statement;
+
+    /**
+     * @var Extensions|null
+     */
     private $extensions;
 
     /**
@@ -202,7 +235,7 @@ final class Context
             return false;
         }
 
-        if (null !== $this->instructor && !$this->instructor->equals($context->instructor)) {
+        if (null !== $this->instructor && null !== $context->instructor && !$this->instructor->equals($context->instructor)) {
             return false;
         }
 
@@ -210,7 +243,7 @@ final class Context
             return false;
         }
 
-        if (null !== $this->team && !$this->team->equals($context->instructor)) {
+        if (null !== $this->team && null !== $context->team && !$this->team->equals($context->team)) {
             return false;
         }
 
@@ -234,7 +267,7 @@ final class Context
             return false;
         }
 
-        if (null !== $this->statement && !$this->statement->equals($context->instructor)) {
+        if (null !== $this->statement && null !== $context->statement && !$this->statement->equals($context->statement)) {
             return false;
         }
 
@@ -242,7 +275,7 @@ final class Context
             return false;
         }
 
-        if (null !== $this->extensions && !$this->extensions->equals($context->instructor)) {
+        if (null !== $this->extensions && null !== $context->extensions && !$this->extensions->equals($context->extensions)) {
             return false;
         }
 

@@ -4,6 +4,7 @@ namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Agent;
+use Xabbuh\XApi\Model\Context;
 use Xabbuh\XApi\Model\ContextActivities;
 use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\Group;
@@ -128,5 +129,77 @@ class ContextSpec extends ObjectBehavior
         $context->shouldNotBe($this);
         $context->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Context');
         $context->getExtensions()->shouldReturn($extensions);
+    }
+
+    function it_is_not_equal_to_other_context_if_only_this_context_has_a_team()
+    {
+        $context = $this->withTeam(new Group());
+
+        $context->equals(new Context())->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_context_if_only_the_other_context_has_a_team()
+    {
+        $otherContext = $this->withTeam(new Group());
+
+        $this->equals($otherContext)->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_context_if_teams_are_not_equal()
+    {
+        $context = $this->withTeam(new Group());
+
+        $otherContext = new Context();
+        $otherContext = $otherContext->withTeam(new Group(InverseFunctionalIdentifier::withMbox('mailto:conformancetest-group@tincanapi.com')));
+
+        $context->equals($otherContext)->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_context_if_only_this_context_has_a_statement_reference()
+    {
+        $context = $this->withStatement(new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da')));
+
+        $context->equals(new Context())->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_context_if_only_the_other_context_has_a_statement_reference()
+    {
+        $otherContext = $this->withStatement(new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da')));
+
+        $this->equals($otherContext)->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_context_if_statement_references_are_not_equal()
+    {
+        $context = $this->withStatement(new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da')));
+
+        $otherContext = new Context();
+        $otherContext = $otherContext->withStatement(new StatementReference(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af')));
+
+        $context->equals($otherContext)->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_context_if_only_this_context_has_extensions()
+    {
+        $context = $this->withExtensions(new Extensions(array()));
+
+        $context->equals(new Context())->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_context_if_only_the_other_context_has_extensions()
+    {
+        $otherContext = $this->withExtensions(new Extensions(array()));
+
+        $this->equals($otherContext)->shouldReturn(false);
+    }
+
+    function it_is_not_equal_to_other_context_if_extensions_are_not_equal()
+    {
+        $context = $this->withExtensions(new Extensions(array('http://id.tincanapi.com/extension/subject' => 'Conformance Testing')));
+
+        $otherContext = new Context();
+        $otherContext = $otherContext->withExtensions(new Extensions(array('http://id.tincanapi.com/extension/topic' => 'Conformance Testing')));
+
+        $context->equals($otherContext)->shouldReturn(false);
     }
 }
