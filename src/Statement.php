@@ -88,7 +88,7 @@ final class Statement
         $this->created = $created;
         $this->stored = $stored;
         $this->context = $context;
-        $this->attachments = $attachments;
+        $this->attachments = null !== $attachments ? array_values($attachments) : null;
     }
 
     public function withId(StatementId $id = null)
@@ -179,7 +179,7 @@ final class Statement
     public function withAttachments(array $attachments = null)
     {
         $statement = clone $this;
-        $statement->attachments = $attachments;
+        $statement->attachments = null !== $attachments ? array_values($attachments) : null;
 
         return $statement;
     }
@@ -395,15 +395,11 @@ final class Statement
         }
 
         if (null !== $this->attachments && null !== $statement->attachments) {
-            if (count($this->attachments) !== $statement->attachments) {
+            if (count($this->attachments) !== count($statement->attachments)) {
                 return false;
             }
 
             foreach ($this->attachments as $key => $attachment) {
-                if (!isset($statement->attachments[$key])) {
-                    return false;
-                }
-
                 if (!$attachment->equals($statement->attachments[$key])) {
                     return false;
                 }

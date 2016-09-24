@@ -228,4 +228,109 @@ class StatementSpec extends ObjectBehavior
         $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
         $statement->getAttachments()->shouldReturn($attachments);
     }
+
+    function it_ignores_array_keys_in_attachment_lists()
+    {
+        $textAttachment = new Attachment(
+            'http://id.tincanapi.com/attachment/supporting_media',
+            'text/plain',
+            18,
+            'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
+            LanguageMap::create(array('en-US' => 'Text attachment')),
+            LanguageMap::create(array('en-US' => 'Text attachment description')),
+            'http://tincanapi.com/conformancetest/attachment/fileUrlOnly'
+        );
+        $attachments = array(1 => $textAttachment);
+
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
+        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $this->beConstructedWith(null, $actor, $verb, $object, null, null, null, null, null, $attachments);
+
+        $this->getAttachments()->shouldBeArray();
+        $this->getAttachments()->shouldHaveKeyWithValue(0, $textAttachment);
+
+        $statement = $this->withAttachments($attachments);
+
+        $statement->getAttachments()->shouldBeArray();
+        $statement->getAttachments()->shouldHaveKeyWithValue(0, $textAttachment);
+    }
+
+    function it_is_not_equal_with_other_statement_if_only_this_statement_has_attachments()
+    {
+        $attachments = array(new Attachment(
+            'http://id.tincanapi.com/attachment/supporting_media',
+            'text/plain',
+            18,
+            'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
+            LanguageMap::create(array('en-US' => 'Text attachment')),
+            LanguageMap::create(array('en-US' => 'Text attachment description')),
+            'http://tincanapi.com/conformancetest/attachment/fileUrlOnly'
+        ));
+        $statement = $this->withAttachments($attachments);
+
+        $statement->equals($this->withAttachments(null))->shouldReturn(false);
+    }
+
+    function it_is_not_equal_with_other_statement_if_only_the_other_statement_has_attachments()
+    {
+        $attachments = array(new Attachment(
+            'http://id.tincanapi.com/attachment/supporting_media',
+            'text/plain',
+            18,
+            'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
+            LanguageMap::create(array('en-US' => 'Text attachment')),
+            LanguageMap::create(array('en-US' => 'Text attachment description')),
+            'http://tincanapi.com/conformancetest/attachment/fileUrlOnly'
+        ));
+        $statement = $this->withAttachments($attachments);
+
+        $this->equals($statement)->shouldReturn(false);
+    }
+
+    function it_is_not_equal_with_other_statement_if_number_of_attachments_differs()
+    {
+        $textAttachment = new Attachment(
+            'http://id.tincanapi.com/attachment/supporting_media',
+            'text/plain',
+            18,
+            'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
+            LanguageMap::create(array('en-US' => 'Text attachment')),
+            LanguageMap::create(array('en-US' => 'Text attachment description')),
+            'http://tincanapi.com/conformancetest/attachment/fileUrlOnly'
+        );
+        $jsonAttachment = new Attachment(
+            'http://id.tincanapi.com/attachment/supporting_media',
+            'application/json',
+            60,
+            'f4135c31e2710764604195dfe4e225884d8108467cc21670803e384b80df88ee',
+            LanguageMap::create(array('en-US' => 'JSON attachment'))
+        );
+        $statement = $this->withAttachments(array($textAttachment, $jsonAttachment));
+
+        $statement->equals($statement->withAttachments(array($textAttachment)))->shouldReturn(false);
+    }
+
+    function it_is_not_equal_with_other_statement_if_attachments_differ()
+    {
+        $textAttachment = new Attachment(
+            'http://id.tincanapi.com/attachment/supporting_media',
+            'text/plain',
+            18,
+            'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
+            LanguageMap::create(array('en-US' => 'Text attachment')),
+            LanguageMap::create(array('en-US' => 'Text attachment description')),
+            'http://tincanapi.com/conformancetest/attachment/fileUrlOnly'
+        );
+        $jsonAttachment = new Attachment(
+            'http://id.tincanapi.com/attachment/supporting_media',
+            'application/json',
+            60,
+            'f4135c31e2710764604195dfe4e225884d8108467cc21670803e384b80df88ee',
+            LanguageMap::create(array('en-US' => 'JSON attachment'))
+        );
+        $statement = $this->withAttachments(array($textAttachment));
+
+        $statement->equals($statement->withAttachments(array($jsonAttachment)))->shouldReturn(false);
+    }
 }
