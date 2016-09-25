@@ -47,15 +47,14 @@ class Definition
     private $description;
 
     /**
-     * The type of the {@link Activity}
-     * @var string|null
+     * @var IRI|null The type of the {@link Activity}
      */
     private $type;
 
     /**
      * An IRL where human-readable information describing the {@link Activity} can be found.
      *
-     * @var string|null
+     * @var IRL|null
      */
     private $moreInfo;
 
@@ -69,11 +68,11 @@ class Definition
     /**
      * @param LanguageMap|null $name
      * @param LanguageMap|null $description
-     * @param string|null      $type
-     * @param string|null      $moreInfo
+     * @param IRI|null         $type
+     * @param IRL|null         $moreInfo
      * @param Extensions|null  $extensions
      */
-    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null, Extensions $extensions = null)
+    public function __construct(LanguageMap $name = null, LanguageMap $description = null, IRI $type = null, IRL $moreInfo = null, Extensions $extensions = null)
     {
         $this->name = $name;
         $this->description = $description;
@@ -99,11 +98,11 @@ class Definition
     }
 
     /**
-     * @param string|null $type
+     * @param IRI|null $type
      *
      * @return static
      */
-    public function withType($type)
+    public function withType(IRI $type = null)
     {
         $definition = clone $this;
         $definition->type = $type;
@@ -112,11 +111,11 @@ class Definition
     }
 
     /**
-     * @param string|null $moreInfo
+     * @param IRL|null $moreInfo
      *
      * @return static
      */
-    public function withMoreInfo($moreInfo)
+    public function withMoreInfo(IRL $moreInfo = null)
     {
         $definition = clone $this;
         $definition->moreInfo = $moreInfo;
@@ -155,7 +154,7 @@ class Definition
     /**
      * Returns the {@link Activity} type.
      *
-     * @return string|null The type
+     * @return IRI|null The type
      */
     public function getType()
     {
@@ -165,7 +164,7 @@ class Definition
     /**
      * Returns an IRL where human-readable information about the activity can be found.
      *
-     * @return string|null
+     * @return IRL|null
      */
     public function getMoreInfo()
     {
@@ -192,11 +191,19 @@ class Definition
             return false;
         }
 
-        if ($this->type !== $definition->type) {
+        if (null !== $this->type xor null !== $definition->type) {
             return false;
         }
 
-        if ($this->moreInfo !== $definition->moreInfo) {
+        if (null !== $this->type && null !== $definition->type && !$this->type->equals($definition->type)) {
+            return false;
+        }
+
+        if (null !== $this->moreInfo xor null !== $definition->moreInfo) {
+            return false;
+        }
+
+        if (null !== $this->moreInfo && null !== $definition->moreInfo && !$this->moreInfo->equals($definition->moreInfo)) {
             return false;
         }
 

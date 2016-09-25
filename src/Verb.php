@@ -20,7 +20,7 @@ final class Verb
 {
     /**
      * Reference to the verb definition
-     * @var string
+     * @var IRI
      */
     private $id;
 
@@ -31,10 +31,10 @@ final class Verb
     private $display;
 
     /**
-     * @param string           $id
+     * @param IRI              $id
      * @param LanguageMap|null $display
      */
-    public function __construct($id, LanguageMap $display = null)
+    public function __construct(IRI $id, LanguageMap $display = null)
     {
         $this->id = $id;
         $this->display = $display;
@@ -43,7 +43,7 @@ final class Verb
     /**
      * Returns the verb definition reference.
      *
-     * @return string The reference
+     * @return IRI The reference
      */
     public function getId()
     {
@@ -71,7 +71,7 @@ final class Verb
      */
     public function equals(Verb $verb)
     {
-        if ($this->id !== $verb->getId()) {
+        if (!$this->id->equals($verb->id)) {
             return false;
         }
 
@@ -105,7 +105,7 @@ final class Verb
      */
     public function isVoidVerb()
     {
-        return 'http://adlnet.gov/expapi/verbs/voided' === $this->id;
+        return $this->id->equals(IRI::fromString('http://adlnet.gov/expapi/verbs/voided'));
     }
 
     /**
@@ -115,8 +115,6 @@ final class Verb
      */
     public static function createVoidVerb()
     {
-        $verb = new Verb('http://adlnet.gov/expapi/verbs/voided');
-
-        return $verb;
+        return new Verb(IRI::fromString('http://adlnet.gov/expapi/verbs/voided'));
     }
 }

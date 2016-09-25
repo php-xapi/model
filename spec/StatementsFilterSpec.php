@@ -15,6 +15,7 @@ use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
 use Xabbuh\XApi\Model\LanguageMap;
 use Xabbuh\XApi\Model\Verb;
 
@@ -28,7 +29,7 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_filter_by_actor()
     {
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
         $this->byActor($actor)->shouldReturn($this);
 
         $filter = $this->getFilter();
@@ -38,20 +39,22 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_filter_by_verb()
     {
-        $this->byVerb(new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test'))))->shouldReturn($this);
+        $iri = IRI::fromString('http://tincanapi.com/conformancetest/verbid');
+        $this->byVerb(new Verb($iri, LanguageMap::create(array('en-US' => 'test'))))->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('verb', 'http://tincanapi.com/conformancetest/verbid');
+        $filter->shouldHaveKeyWithValue('verb', $iri);
     }
 
     function it_can_filter_by_activity()
     {
-        $this->byActivity(new Activity('http://tincanapi.com/conformancetest/activityid'))->shouldReturn($this);
+        $iri = IRI::fromString('http://tincanapi.com/conformancetest/activityid');
+        $this->byActivity(new Activity($iri))->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('activity', 'http://tincanapi.com/conformancetest/activityid');
+        $filter->shouldHaveKeyWithValue('activity', $iri);
     }
 
     function it_can_filter_by_registration()

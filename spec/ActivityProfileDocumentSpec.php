@@ -15,12 +15,13 @@ use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\ActivityProfile;
 use Xabbuh\XApi\Model\DocumentData;
+use Xabbuh\XApi\Model\IRI;
 
 class ActivityProfileDocumentSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith(new ActivityProfile('id', new Activity('http://tincanapi.com/conformancetest/activityid')), new DocumentData(array(
+        $this->beConstructedWith(new ActivityProfile('id', new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'))), new DocumentData(array(
             'x' => 'foo',
             'y' => 'bar',
         )));

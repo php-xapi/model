@@ -22,9 +22,19 @@ final class Extensions implements \ArrayAccess
 {
     private $extensions;
 
-    public function __construct(array $extensions)
+    public function __construct(\SplObjectStorage $extensions = null)
     {
-        $this->extensions = $extensions;
+        $this->extensions = array();
+
+        if (null !== $extensions) {
+            foreach ($extensions as $iri) {
+                if (!$iri instanceof IRI) {
+                    throw new \InvalidArgumentException(sprintf('Expected an IRI instance as key (got %s).', is_object($iri) ? get_class($iri) : gettype($iri)));
+                }
+
+                $this->extensions[$iri->getValue()] = $extensions[$iri];
+            }
+        }
     }
 
     /**
@@ -32,7 +42,11 @@ final class Extensions implements \ArrayAccess
      */
     public function offsetExists($offset)
     {
-        return isset($this->extensions[$offset]);
+        if (!$offset instanceof IRI) {
+            throw new \InvalidArgumentException(sprintf('Expected an IRI instance as key (got %s).', is_object($offset) ? get_class($offset) : gettype($offset)));
+        }
+
+        return isset($this->extensions[$offset->getValue()]);
     }
 
     /**
@@ -40,11 +54,15 @@ final class Extensions implements \ArrayAccess
      */
     public function offsetGet($offset)
     {
-        if (!isset($this->extensions[$offset])) {
-            throw new \InvalidArgumentException(sprintf('No extension for key "%s" registered.', $offset));
+        if (!$offset instanceof IRI) {
+            throw new \InvalidArgumentException(sprintf('Expected an IRI instance as key (got %s).', is_object($offset) ? get_class($offset) : gettype($offset)));
         }
 
-        return $this->extensions[$offset];
+        if (!isset($this->extensions[$offset->getValue()])) {
+            throw new \InvalidArgumentException(sprintf('No extension for key "%s" registered.', $offset->getValue()));
+        }
+
+        return $this->extensions[$offset->getValue()];
     }
 
     /**
@@ -65,7 +83,13 @@ final class Extensions implements \ArrayAccess
 
     public function getExtensions()
     {
-        return $this->extensions;
+        $extensions = new \SplObjectStorage();
+
+        foreach ($this->extensions as $iri => $value) {
+            $extensions->attach(IRI::fromString($iri), $value);
+        }
+
+        return $extensions;
     }
 
     public function equals(Extensions $otherExtensions)
@@ -74,12 +98,12 @@ final class Extensions implements \ArrayAccess
             return false;
         }
 
-        foreach ($this->extensions as $key => $value) {
-            if (!array_key_exists($key, $otherExtensions->extensions)) {
+        foreach ($this->extensions as $iri => $value) {
+            if (!array_key_exists($iri, $otherExtensions->extensions)) {
                 return false;
             }
 
-            if ($this->extensions[$key] != $otherExtensions[$key]) {
+            if ($this->extensions[$iri] != $otherExtensions->extensions[$iri]) {
                 return false;
             }
         }

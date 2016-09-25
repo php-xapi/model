@@ -19,6 +19,7 @@ use Xabbuh\XApi\Model\ContextActivities;
 use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
 use Xabbuh\XApi\Model\LanguageMap;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\StatementId;
@@ -30,17 +31,17 @@ class SubStatementSpec extends ObjectBehavior
 {
     function let()
     {
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
-        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
+        $verb = new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'), LanguageMap::create(array('en-US' => 'test')));
+        $object = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $this->beConstructedWith($actor, $verb, $object);
     }
 
     function it_is_an_xapi_object()
     {
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
-        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
+        $verb = new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'), LanguageMap::create(array('en-US' => 'test')));
+        $object = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $this->beConstructedWith($actor, $verb, $object);
 
         $this->shouldHaveType('Xabbuh\XApi\Model\Object');
@@ -48,9 +49,9 @@ class SubStatementSpec extends ObjectBehavior
 
     function it_is_different_from_another_sub_statement_if_contexts_differ()
     {
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
-        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
+        $verb = new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'), LanguageMap::create(array('en-US' => 'test')));
+        $object = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $this->beConstructedWith($actor, $verb, $object, null, new Context());
 
         $subStatement = new SubStatement($actor, $verb, $object);
@@ -59,19 +60,19 @@ class SubStatementSpec extends ObjectBehavior
 
         $context = new Context();
         $context = $context->withRegistration('16fd2706-8baf-433b-82eb-8c7fada847da')
-            ->withInstructor(new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com')))
-            ->withTeam(new Group(InverseFunctionalIdentifier::withMbox('mailto:conformancetest-group@tincanapi.com')))
+            ->withInstructor(new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'))))
+            ->withTeam(new Group(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest-group@tincanapi.com'))))
             ->withContextActivities(new ContextActivities(
-                array(new Activity('http://tincanapi.com/conformancetest/activityid')),
-                array(new Activity('http://tincanapi.com/conformancetest/activityid')),
-                array(new Activity('http://tincanapi.com/conformancetest/activityid')),
-                array(new Activity('http://tincanapi.com/conformancetest/activityid'))
+                array(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'))),
+                array(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'))),
+                array(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'))),
+                array(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid')))
             ))
             ->withRevision('test')
             ->withPlatform('test')
             ->withLanguage('en-US')
             ->withStatement(new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da')))
-            ->withExtensions(new Extensions(array()))
+            ->withExtensions(new Extensions())
         ;
         $subStatement = new SubStatement($actor, $verb, $object, null, $context);
 
@@ -80,9 +81,9 @@ class SubStatementSpec extends ObjectBehavior
 
     function it_rejects_to_hold_another_sub_statement_as_object()
     {
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid', LanguageMap::create(array('en-US' => 'test')));
-        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
+        $verb = new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'), LanguageMap::create(array('en-US' => 'test')));
+        $object = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $subStatement = new SubStatement($actor, $verb, $object);
 
         $this->shouldThrow('\InvalidArgumentException')->during('__construct', array($actor, $verb, $subStatement));
@@ -100,7 +101,7 @@ class SubStatementSpec extends ObjectBehavior
 
     public function it_returns_a_new_instance_with_verb()
     {
-        $verb = new Verb('http://adlnet.gov/expapi/verbs/voided');
+        $verb = new Verb(IRI::fromString('http://adlnet.gov/expapi/verbs/voided'));
         $subStatement = $this->withVerb($verb);
 
         $subStatement->shouldNotBe($this);

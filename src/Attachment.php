@@ -27,15 +27,15 @@ final class Attachment
     private $fileUrl;
 
     /**
-     * @param string           $usageType   The type of usage of this attachment
+     * @param IRI              $usageType   The type of usage of this attachment
      * @param string           $contentType The content type of the attachment
      * @param int              $length      The length of the attachment data in octets
      * @param string           $sha2        The SHA-2 hash of the attachment data
      * @param LanguageMap      $display     Localized display name (title)
      * @param LanguageMap|null $description Localized description
-     * @param string|null      $fileUrl     An IRL at which the attachment data can be retrieved
+     * @param IRL|null         $fileUrl     An IRL at which the attachment data can be retrieved
      */
-    public function __construct($usageType, $contentType, $length, $sha2, LanguageMap $display, LanguageMap $description = null, $fileUrl = null)
+    public function __construct(IRI $usageType, $contentType, $length, $sha2, LanguageMap $display, LanguageMap $description = null, IRL $fileUrl = null)
     {
         $this->usageType = $usageType;
         $this->contentType = $contentType;
@@ -83,7 +83,7 @@ final class Attachment
 
     public function equals(Attachment $attachment)
     {
-        if ($this->usageType !== $attachment->usageType) {
+        if (!$this->usageType->equals($attachment->usageType)) {
             return false;
         }
 
@@ -111,7 +111,11 @@ final class Attachment
             return false;
         }
 
-        if ($this->fileUrl !== $attachment->fileUrl) {
+        if (null !== $this->fileUrl xor null !== $attachment->fileUrl) {
+            return false;
+        }
+
+        if (null !== $this->fileUrl && null !== $attachment->fileUrl && !$this->fileUrl->equals($attachment->fileUrl)) {
             return false;
         }
 

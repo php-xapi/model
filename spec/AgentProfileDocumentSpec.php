@@ -16,12 +16,13 @@ use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\AgentProfile;
 use Xabbuh\XApi\Model\DocumentData;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
 
 class AgentProfileDocumentSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith(new AgentProfile('id', new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'))), new DocumentData(array(
+        $this->beConstructedWith(new AgentProfile('id', new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')))), new DocumentData(array(
             'x' => 'foo',
             'y' => 'bar',
         )));

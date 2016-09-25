@@ -4,6 +4,27 @@ CHANGELOG
 0.5.0
 -----
 
+* The type of the following properties has been changed from `string` to
+  instances of the new `IRI` class:
+
+  * `Activity::$id`
+  * `Attachment::$usageType`
+  * `Definition::$type`
+  * `InverseFunctionalIdentifier::$mbox`
+  * `Verb::$id`
+
+  Type hints of respective methods have been updated accordingly.
+
+* The type of the following properties has been changed from `string` to
+  instances of the new `IRL` class:
+
+  * `Account::$homePage`
+  * `Attachment::$fileUrl`
+  * `Definition::$moreInfo`
+  * `StatementResult::$moreUrlPath`
+
+  Type hints of respective methods have been updated accordingly.
+
 * Fixed how context attributes of statements are dealt with in `Statement::equals()`
   (previously, they were completely ignored).
 

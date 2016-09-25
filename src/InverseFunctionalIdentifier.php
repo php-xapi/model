@@ -19,7 +19,7 @@ namespace Xabbuh\XApi\Model;
 final class InverseFunctionalIdentifier
 {
     /**
-     * @var string A mailto IRI
+     * @var IRI A mailto IRI
      */
     private $mbox;
 
@@ -46,7 +46,7 @@ final class InverseFunctionalIdentifier
     {
     }
 
-    public static function withMbox($mbox)
+    public static function withMbox(IRI $mbox)
     {
         $iri = new InverseFunctionalIdentifier();
         $iri->mbox = $mbox;
@@ -81,7 +81,7 @@ final class InverseFunctionalIdentifier
     /**
      * Returns the mailto IRI.
      *
-     * @return string The mailto IRI
+     * @return IRI The mailto IRI
      */
     public function getMbox()
     {
@@ -130,7 +130,7 @@ final class InverseFunctionalIdentifier
      */
     public function equals(InverseFunctionalIdentifier $iri)
     {
-        if ($this->mbox !== $iri->mbox) {
+        if (null !== $this->mbox && null !== $iri->mbox && !$this->mbox->equals($iri->mbox)) {
             return false;
         }
 

@@ -15,19 +15,20 @@ use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
 
 class AgentSpec extends ObjectBehavior
 {
     function it_is_an_actor()
     {
-        $iri = InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com');
+        $iri = InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'));
         $this->beConstructedWith($iri);
         $this->shouldHaveType('Xabbuh\XApi\Model\Actor');
     }
 
     function its_properties_can_be_read()
     {
-        $iri = InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com');
+        $iri = InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'));
         $this->beConstructedWith($iri, 'test');
 
         $this->getInverseFunctionalIdentifier()->shouldReturn($iri);
@@ -36,15 +37,15 @@ class AgentSpec extends ObjectBehavior
 
     function it_is_not_equal_to_a_group()
     {
-        $this->beConstructedWith(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $this->beConstructedWith(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
 
-        $this->equals(new Group(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com')))->shouldReturn(false);
+        $this->equals(new Group(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'))))->shouldReturn(false);
     }
 
     function it_is_not_equal_to_an_activity()
     {
-        $this->beConstructedWith(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $this->beConstructedWith(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
 
-        $this->equals(new Activity())->shouldReturn(false);
+        $this->equals(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid')))->shouldReturn(false);
     }
 }

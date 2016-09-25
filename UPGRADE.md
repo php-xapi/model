@@ -4,6 +4,27 @@ UPGRADE
 Upgrading from 0.4 to 0.5
 -------------------------
 
+* The type of the following properties has been changed from `string` to
+  instances of the new `IRI` class:
+
+  * `Activity::$id`
+  * `Attachment::$usageType`
+  * `Definition::$type`
+  * `InverseFunctionalIdentifier::$mbox`
+  * `Verb::$id`
+
+  Type hints of respective methods have been updated accordingly.
+
+* The type of the following properties has been changed from `string` to
+  instances of the new `IRL` class:
+
+  * `Account::$homePage`
+  * `Attachment::$fileUrl`
+  * `Definition::$moreInfo`
+  * `StatementResult::$moreUrlPath`
+
+  Type hints of respective methods have been updated accordingly.
+
 * The `$display` property of the `Verb` class as well as the `$name` and
   `$description` properties of the `Definition` class are no longer plain
   PHP arrays, but are now instances of `LanguageMap`.

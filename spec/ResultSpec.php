@@ -13,6 +13,7 @@ namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Extensions;
+use Xabbuh\XApi\Model\IRI;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\Score;
 
@@ -50,17 +51,23 @@ class ResultSpec extends ObjectBehavior
     {
         $this->beConstructedWith(new Score(1), true, true, 'test', 'PT2H');
 
+        $extensions = new \SplObjectStorage();
+        $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/topic'), 'Conformance Testing');
         $this
-            ->equals(new Result(new Score(1), true, true, 'test', 'PT2H', new Extensions(array('http://id.tincanapi.com/extension/subject' => 'Conformance Testing'))))
+            ->equals(new Result(new Score(1), true, true, 'test', 'PT2H', new Extensions($extensions)))
             ->shouldReturn(false);
     }
 
     function it_is_not_equal_to_other_result_if_extensions_are_not_equal()
     {
-        $this->beConstructedWith(new Score(1), true, true, 'test', 'PT2H', new Extensions(array('http://id.tincanapi.com/extension/topic' => 'Conformance Testing')));
+        $extensions = new \SplObjectStorage();
+        $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/topic'), 'Conformance Testing');
+        $this->beConstructedWith(new Score(1), true, true, 'test', 'PT2H', new Extensions($extensions));
 
+        $extensions = new \SplObjectStorage();
+        $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/subject'), 'Conformance Testing');
         $this
-            ->equals(new Result(new Score(1), true, true, 'test', 'PT2H', new Extensions(array('http://id.tincanapi.com/extension/subject' => 'Conformance Testing'))))
+            ->equals(new Result(new Score(1), true, true, 'test', 'PT2H', new Extensions($extensions)))
             ->shouldReturn(false);
     }
 
@@ -124,7 +131,7 @@ class ResultSpec extends ObjectBehavior
 
     public function it_returns_a_new_instance_with_extensions()
     {
-        $extensions = new Extensions(array());
+        $extensions = new Extensions();
         $result = $this->withExtensions($extensions);
 
         $this->getScore()->shouldBeNull();

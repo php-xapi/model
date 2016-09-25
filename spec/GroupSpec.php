@@ -14,6 +14,7 @@ namespace spec\Xabbuh\XApi\Model;
 use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
 
 class GroupSpec extends ObjectBehavior
 {
@@ -31,8 +32,8 @@ class GroupSpec extends ObjectBehavior
 
     function its_properties_can_be_read()
     {
-        $iri = InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com');
-        $members = array(new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com')));
+        $iri = InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'));
+        $members = array(new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'))));
         $this->beConstructedWith($iri, 'test', $members);
 
         $this->getInverseFunctionalIdentifier()->shouldReturn($iri);

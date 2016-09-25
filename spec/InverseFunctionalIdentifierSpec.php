@@ -13,17 +13,21 @@ namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Account;
+use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
+use Xabbuh\XApi\Model\IRL;
 
 class InverseFunctionalIdentifierSpec extends ObjectBehavior
 {
     function it_can_be_built_with_an_mbox()
     {
+        $iri = IRI::fromString('mailto:conformancetest@tincanapi.com');
         $this->beConstructedThrough(
             array('Xabbuh\XApi\Model\InverseFunctionalIdentifier', 'withMbox'),
-            array('mailto:conformancetest@tincanapi.com')
+            array($iri)
         );
 
-        $this->getMbox()->shouldReturn('mailto:conformancetest@tincanapi.com');
+        $this->getMbox()->shouldReturn($iri);
         $this->getMboxSha1Sum()->shouldReturn(null);
         $this->getOpenId()->shouldReturn(null);
         $this->getAccount()->shouldReturn(null);
@@ -57,7 +61,7 @@ class InverseFunctionalIdentifierSpec extends ObjectBehavior
 
     function it_can_be_built_with_an_account()
     {
-        $account = new Account('test', 'https://tincanapi.com');
+        $account = new Account('test', IRL::fromString('https://tincanapi.com'));
         $this->beConstructedThrough(
             array('Xabbuh\XApi\Model\InverseFunctionalIdentifier', 'withAccount'),
             array($account)
@@ -67,5 +71,33 @@ class InverseFunctionalIdentifierSpec extends ObjectBehavior
         $this->getMboxSha1Sum()->shouldReturn(null);
         $this->getOpenId()->shouldReturn(null);
         $this->getAccount()->shouldReturn($account);
+    }
+
+    function it_is_equal_when_mboxes_are_equal()
+    {
+        $this->beConstructedThrough('withMbox', array(IRI::fromString('mailto:conformancetest@tincanapi.com')));
+
+        $this->equals(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')))->shouldReturn(true);
+    }
+
+    function it_is_equal_when_mbox_sha1_sums_are_equal()
+    {
+        $this->beConstructedThrough('withMboxSha1Sum', array('db77b9104b531ecbb0b967f6942549d0ba80fda1'));
+
+        $this->equals(InverseFunctionalIdentifier::withMboxSha1Sum('db77b9104b531ecbb0b967f6942549d0ba80fda1'))->shouldReturn(true);
+    }
+
+    function it_is_equal_when_open_ids_are_equal()
+    {
+        $this->beConstructedThrough('withOpenId', array('http://openid.tincanapi.com'));
+
+        $this->equals(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'))->shouldReturn(true);
+    }
+
+    function it_is_equal_when_accounts_are_equal()
+    {
+        $this->beConstructedThrough('withAccount', array(new Account('test', IRL::fromString('https://tincanapi.com'))));
+
+        $this->equals(InverseFunctionalIdentifier::withAccount(new Account('test', IRL::fromString('https://tincanapi.com'))))->shouldReturn(true);
     }
 }

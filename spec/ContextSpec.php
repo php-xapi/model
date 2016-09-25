@@ -9,6 +9,7 @@ use Xabbuh\XApi\Model\ContextActivities;
 use Xabbuh\XApi\Model\Extensions;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
 use Xabbuh\XApi\Model\StatementId;
 use Xabbuh\XApi\Model\StatementReference;
 
@@ -40,7 +41,7 @@ class ContextSpec extends ObjectBehavior
 
     public function it_returns_a_new_instance_with_instructor()
     {
-        $instructor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $instructor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
         $context = $this->withInstructor($instructor);
 
         $this->getInstructor()->shouldBeNull();
@@ -52,7 +53,7 @@ class ContextSpec extends ObjectBehavior
 
     public function it_returns_a_new_instance_with_team()
     {
-        $team = new Group(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'), 'team');
+        $team = new Group(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')), 'team');
         $context = $this->withTeam($team);
 
         $this->getTeam()->shouldBeNull();
@@ -121,7 +122,9 @@ class ContextSpec extends ObjectBehavior
 
     public function it_returns_a_new_instance_with_extensions()
     {
-        $extensions = new Extensions(array('http://id.tincanapi.com/extension/topic' => 'Conformance Testing'));
+        $extensions = new \SplObjectStorage();
+        $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/topic'), 'Conformance Testing');
+        $extensions = new Extensions($extensions);
         $context = $this->withExtensions($extensions);
 
         $this->getExtensions()->shouldBeNull();
@@ -150,7 +153,7 @@ class ContextSpec extends ObjectBehavior
         $context = $this->withTeam(new Group());
 
         $otherContext = new Context();
-        $otherContext = $otherContext->withTeam(new Group(InverseFunctionalIdentifier::withMbox('mailto:conformancetest-group@tincanapi.com')));
+        $otherContext = $otherContext->withTeam(new Group(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest-group@tincanapi.com'))));
 
         $context->equals($otherContext)->shouldReturn(false);
     }
@@ -181,24 +184,28 @@ class ContextSpec extends ObjectBehavior
 
     function it_is_not_equal_to_other_context_if_only_this_context_has_extensions()
     {
-        $context = $this->withExtensions(new Extensions(array()));
+        $context = $this->withExtensions(new Extensions());
 
         $context->equals(new Context())->shouldReturn(false);
     }
 
     function it_is_not_equal_to_other_context_if_only_the_other_context_has_extensions()
     {
-        $otherContext = $this->withExtensions(new Extensions(array()));
+        $otherContext = $this->withExtensions(new Extensions());
 
         $this->equals($otherContext)->shouldReturn(false);
     }
 
     function it_is_not_equal_to_other_context_if_extensions_are_not_equal()
     {
-        $context = $this->withExtensions(new Extensions(array('http://id.tincanapi.com/extension/subject' => 'Conformance Testing')));
+        $extensions = new \SplObjectStorage();
+        $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/subject'), 'Conformance Testing');
+        $context = $this->withExtensions(new Extensions($extensions));
 
+        $extensions = new \SplObjectStorage();
+        $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/topic'), 'Conformance Testing');
         $otherContext = new Context();
-        $otherContext = $otherContext->withExtensions(new Extensions(array('http://id.tincanapi.com/extension/topic' => 'Conformance Testing')));
+        $otherContext = $otherContext->withExtensions(new Extensions($extensions));
 
         $context->equals($otherContext)->shouldReturn(false);
     }

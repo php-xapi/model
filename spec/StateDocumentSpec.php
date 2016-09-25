@@ -16,14 +16,15 @@ use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\DocumentData;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
 use Xabbuh\XApi\Model\State;
 
 class StateDocumentSpec extends ObjectBehavior
 {
     function let()
     {
-        $activity = new Activity('http://tincanapi.com/conformancetest/activityid');
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
+        $activity = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
         $this->beConstructedWith(new State($activity, $actor, 'state-id'), new DocumentData(array(
             'x' => 'foo',
             'y' => 'bar',

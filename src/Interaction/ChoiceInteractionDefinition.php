@@ -13,6 +13,8 @@ namespace Xabbuh\XApi\Model\Interaction;
 
 use Xabbuh\XApi\Model\Definition;
 use Xabbuh\XApi\Model\Extensions;
+use Xabbuh\XApi\Model\IRI;
+use Xabbuh\XApi\Model\IRL;
 use Xabbuh\XApi\Model\LanguageMap;
 
 /**
@@ -28,13 +30,13 @@ final class ChoiceInteractionDefinition extends InteractionDefinition
     /**
      * @param LanguageMap|null            $name
      * @param LanguageMap|null            $description
-     * @param string|null                 $type
-     * @param string|null                 $moreInfo
+     * @param IRI|null                    $type
+     * @param IRL|null                    $moreInfo
      * @param Extensions|null             $extensions
      * @param string[]|null               $correctResponsesPattern
      * @param InteractionComponent[]|null $choices
      */
-    public function __construct(LanguageMap $name = null, LanguageMap $description = null, $type = null, $moreInfo = null, Extensions $extensions = null, array $correctResponsesPattern = null, array $choices = null)
+    public function __construct(LanguageMap $name = null, LanguageMap $description = null, IRI $type = null, IRL $moreInfo = null, Extensions $extensions = null, array $correctResponsesPattern = null, array $choices = null)
     {
         parent::__construct($name, $description, $type, $moreInfo, $extensions, $correctResponsesPattern);
 

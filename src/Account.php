@@ -19,22 +19,20 @@ namespace Xabbuh\XApi\Model;
 final class Account
 {
     /**
-     * The unique id or name used to log in to this account
-     * @var string
+     * @var string The unique id or name used to log in to this account
      */
     private $name;
 
     /**
-     * Canonical home page for the system the account is on
-     * @var string
+     * @var IRL Canonical home page for the system the account is on
      */
     private $homePage;
 
     /**
      * @param string $name
-     * @param string $homePage
+     * @param IRL    $homePage
      */
-    public function __construct($name = '', $homePage = '')
+    public function __construct($name, IRL $homePage)
     {
         $this->name = $name;
         $this->homePage = $homePage;
@@ -53,7 +51,7 @@ final class Account
     /**
      * Returns the home page for the system the account is on.
      *
-     * @return string The home page
+     * @return IRL The home page
      */
     public function getHomePage()
     {
@@ -75,7 +73,7 @@ final class Account
             return false;
         }
 
-        if ($this->homePage !== $account->homePage) {
+        if (!$this->homePage->equals($account->homePage)) {
             return false;
         }
 

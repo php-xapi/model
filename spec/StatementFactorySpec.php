@@ -7,6 +7,7 @@ use Xabbuh\XApi\Model\Activity;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\Context;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
+use Xabbuh\XApi\Model\IRI;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\StatementId;
 use Xabbuh\XApi\Model\Verb;
@@ -15,9 +16,9 @@ class StatementFactorySpec extends ObjectBehavior
 {
     function it_creates_a_statement()
     {
-        $this->withActor(new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com')));
-        $this->withVerb(new Verb('http://tincanapi.com/conformancetest/verbid'));
-        $this->withObject(new Activity('http://tincanapi.com/conformancetest/activityid'));
+        $this->withActor(new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'))));
+        $this->withVerb(new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid')));
+        $this->withObject(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid')));
 
         $this->createStatement()->shouldBeAnInstanceOf('\Xabbuh\Xapi\Model\Statement');
     }
@@ -25,9 +26,9 @@ class StatementFactorySpec extends ObjectBehavior
     function it_configures_all_statement_properties()
     {
         $id = StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid');
-        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
+        $verb = new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'));
+        $object = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $result = new Result();
         $context = new Context();
         $created = new \DateTime('2014-07-23T12:34:02-05:00');
@@ -59,24 +60,24 @@ class StatementFactorySpec extends ObjectBehavior
 
     function it_throws_an_exception_when_a_statement_is_created_without_an_actor()
     {
-        $this->withVerb(new Verb('http://tincanapi.com/conformancetest/verbid'));
-        $this->withObject(new Activity('http://tincanapi.com/conformancetest/activityid'));
+        $this->withVerb(new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid')));
+        $this->withObject(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid')));
 
         $this->shouldThrow('\Xabbuh\XApi\Model\Exception\InvalidStateException')->during('createStatement');
     }
 
     function it_throws_an_exception_when_a_statement_is_created_without_a_verb()
     {
-        $this->withActor(new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com')));
-        $this->withObject(new Activity('http://tincanapi.com/conformancetest/activityid'));
+        $this->withActor(new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'))));
+        $this->withObject(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid')));
 
         $this->shouldThrow('\Xabbuh\XApi\Model\Exception\InvalidStateException')->during('createStatement');
     }
 
     function it_throws_an_exception_when_a_statement_is_created_without_an_object()
     {
-        $this->withActor(new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com')));
-        $this->withVerb(new Verb('http://tincanapi.com/conformancetest/verbid'));
+        $this->withActor(new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'))));
+        $this->withVerb(new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid')));
 
         $this->shouldThrow('\Xabbuh\XApi\Model\Exception\InvalidStateException')->during('createStatement');
     }
@@ -129,9 +130,9 @@ class StatementFactorySpec extends ObjectBehavior
     private function configureAllProperties()
     {
         $id = StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af');
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox('mailto:conformancetest@tincanapi.com'));
-        $verb = new Verb('http://tincanapi.com/conformancetest/verbid');
-        $object = new Activity('http://tincanapi.com/conformancetest/activityid');
+        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
+        $verb = new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'));
+        $object = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $result = new Result();
         $context = new Context();
         $created = new \DateTime('2014-07-23T12:34:02-05:00');

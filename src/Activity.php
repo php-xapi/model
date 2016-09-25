@@ -19,8 +19,7 @@ namespace Xabbuh\XApi\Model;
 final class Activity extends Object
 {
     /**
-     * The Activity's unique identifier
-     * @var string
+     * @var IRI The Activity's unique identifier
      */
     private $id;
 
@@ -30,10 +29,10 @@ final class Activity extends Object
     private $definition;
 
     /**
-     * @param string     $id
+     * @param IRI        $id
      * @param Definition $definition
      */
-    public function __construct($id = '', Definition $definition = null)
+    public function __construct(IRI $id, Definition $definition = null)
     {
         $this->id = $id;
         $this->definition = $definition;
@@ -42,7 +41,7 @@ final class Activity extends Object
     /**
      * Returns the Activity's unique identifier.
      *
-     * @return string The identifier
+     * @return IRI The identifier
      */
     public function getId()
     {
@@ -70,7 +69,7 @@ final class Activity extends Object
 
         /** @var Activity $object */
 
-        if ($this->id !== $object->id) {
+        if (!$this->id->equals($object->id)) {
             return false;
         }
 
