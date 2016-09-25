@@ -100,4 +100,32 @@ class InverseFunctionalIdentifierSpec extends ObjectBehavior
 
         $this->equals(InverseFunctionalIdentifier::withAccount(new Account('test', IRL::fromString('https://tincanapi.com'))))->shouldReturn(true);
     }
+
+    function its_mbox_value_can_be_retrieved_as_a_string()
+    {
+        $this->beConstructedWithMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'));
+
+        $this->__toString()->shouldReturn('mailto:conformancetest@tincanapi.com');
+    }
+
+    function its_mbox_sha1_sum_value_can_be_retrieved_as_a_string()
+    {
+        $this->beConstructedWithMboxSha1Sum('db77b9104b531ecbb0b967f6942549d0ba80fda1');
+
+        $this->__toString()->shouldReturn('db77b9104b531ecbb0b967f6942549d0ba80fda1');
+    }
+
+    function its_open_id_value_can_be_retrieved_as_a_string()
+    {
+        $this->beConstructedWithOpenId('http://openid.tincanapi.com');
+
+        $this->__toString()->shouldReturn('http://openid.tincanapi.com');
+    }
+
+    function its_account_value_can_be_retrieved_as_a_string()
+    {
+        $this->beConstructedWithAccount(new Account('test', IRL::fromString('https://tincanapi.com')));
+
+        $this->__toString()->shouldReturn('test (https://tincanapi.com)');
+    }
 }

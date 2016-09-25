@@ -160,7 +160,7 @@ final class InverseFunctionalIdentifier
     public function __toString()
     {
         if (null !== $this->mbox) {
-            return $this->mbox;
+            return $this->mbox->getValue();
         }
 
         if (null !== $this->mboxSha1Sum) {
@@ -171,6 +171,6 @@ final class InverseFunctionalIdentifier
             return $this->openId;
         }
 
-        return $this->account;
+        return sprintf('%s (%s)', $this->account->getName(), $this->account->getHomePage()->getValue());
     }
 }
