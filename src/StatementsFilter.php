@@ -46,7 +46,7 @@ class StatementsFilter
      */
     public function byVerb(Verb $verb)
     {
-        $this->filter['verb'] = $verb->getId();
+        $this->filter['verb'] = $verb->getId()->getValue();
 
         return $this;
     }
@@ -60,7 +60,7 @@ class StatementsFilter
      */
     public function byActivity(Activity $activity)
     {
-        $this->filter['activity'] = $activity->getId();
+        $this->filter['activity'] = $activity->getId()->getValue();
 
         return $this;
     }

@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+0.5.1
+-----
+
+* Fixed the handling of `IRI` instances (for `Verb::$id` and `Activity::$id`)
+  in `StatementsFilter` to only include the IRI's string value in the generated
+  filter.
+
 0.5.0
 -----
 

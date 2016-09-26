@@ -39,22 +39,21 @@ class StatementsFilterSpec extends ObjectBehavior
 
     function it_can_filter_by_verb()
     {
-        $iri = IRI::fromString('http://tincanapi.com/conformancetest/verbid');
-        $this->byVerb(new Verb($iri, LanguageMap::create(array('en-US' => 'test'))))->shouldReturn($this);
+        $this->byVerb(new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'), LanguageMap::create(array('en-US' => 'test'))))->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('verb', $iri);
+        $filter->shouldHaveKeyWithValue('verb', 'http://tincanapi.com/conformancetest/verbid');
     }
 
     function it_can_filter_by_activity()
     {
         $iri = IRI::fromString('http://tincanapi.com/conformancetest/activityid');
-        $this->byActivity(new Activity($iri))->shouldReturn($this);
+        $this->byActivity(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid')))->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('activity', $iri);
+        $filter->shouldHaveKeyWithValue('activity', 'http://tincanapi.com/conformancetest/activityid');
     }
 
     function it_can_filter_by_registration()
