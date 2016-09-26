@@ -17,7 +17,7 @@
         "ramsey/uuid": "~2.9"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0"
+        "phpspec/phpspec": "~2.3"
     },
     "conflict": {
         "xabbuh/xapi-model": "*"
