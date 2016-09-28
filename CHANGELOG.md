@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+1.0.0
+-----
+
+This is the first stable release of the 1.x series. All objects that are
+part of the 1.0.1 Experience API spec have been implemented and the current
+API is considered to be stable.
+
+In terms of existing classes and methods, there is no difference to the
+0.5 release series.
+
 0.5.1
 -----
 
