@@ -25,18 +25,18 @@ final class StatementResult
     private $statements;
 
     /**
-     * @var IRL
+     * @var IRL|null
      */
     private $moreUrlPath;
 
     /**
-     * @param Statement[] $statements The collection of Statements
-     * @param IRL         $urlPath    The URL path
+     * @param Statement[] $statements  The collection of Statements
+     * @param IRL|null    $moreUrlPath The URL path
      */
-    public function __construct(array $statements, IRL $urlPath = null)
+    public function __construct(array $statements, IRL $moreUrlPath = null)
     {
         $this->statements = $statements;
-        $this->moreUrlPath = $urlPath;
+        $this->moreUrlPath = $moreUrlPath;
     }
 
     /**
@@ -52,7 +52,7 @@ final class StatementResult
     /**
      * Relative IRL that can be used to retrieve the next results.
      *
-     * @return IRL The URL path
+     * @return IRL|null The URL path
      */
     public function getMoreUrlPath()
     {
