@@ -155,19 +155,35 @@ final class Score
      */
     public function equals(Score $score)
     {
-        if ($this->scaled !== $score->scaled) {
+        if (null !== $this->scaled xor null !== $score->scaled) {
             return false;
         }
 
-        if ($this->raw !== $score->raw) {
+        if ((float) $this->scaled !== (float) $score->scaled) {
             return false;
         }
 
-        if ($this->min !== $score->min) {
+        if (null !== $this->raw xor null !== $score->raw) {
             return false;
         }
 
-        if ($this->max !== $score->max) {
+        if ((float) $this->raw !== (float) $score->raw) {
+            return false;
+        }
+
+        if (null !== $this->min xor null !== $score->min) {
+            return false;
+        }
+
+        if ((float) $this->min !== (float) $score->min) {
+            return false;
+        }
+
+        if (null !== $this->max xor null !== $score->max) {
+            return false;
+        }
+
+        if ((float) $this->max !== (float) $score->max) {
             return false;
         }
 

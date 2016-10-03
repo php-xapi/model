@@ -12,6 +12,7 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
+use Xabbuh\XApi\Model\Score;
 
 class ScoreSpec extends ObjectBehavior
 {
@@ -107,5 +108,14 @@ class ScoreSpec extends ObjectBehavior
         $score->shouldNotBe($this);
         $score->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Score');
         $score->getMax()->shouldReturn(100);
+    }
+
+    function it_treats_integers_as_floats_when_comparing()
+    {
+        $this->beConstructedWith(1, 100, 0, 100);
+
+        $score = new Score(1.0, 100.0, 0.0, 100.0);
+
+        $this->equals($score)->shouldReturn(true);
     }
 }

@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
+* Fixed comparing scores where some values are integers instead of floats.
+
 1.0.0
 -----
 
