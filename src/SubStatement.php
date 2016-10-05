@@ -39,11 +39,18 @@ final class SubStatement extends Object
     private $result;
 
     /**
+     * @var \DateTime The timestamp of when the events described in this statement occurred
+     */
+    private $timestamp;
+
+    /**
      * @var Context The {@link Statement} {@link Context}
      */
     private $context;
 
-    public function __construct(Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null)
+    private $attachments;
+
+    public function __construct(Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null, \DateTime $timestamp = null, array $attachments = null)
     {
         if ($object instanceof SubStatement) {
             throw new \InvalidArgumentException('Nesting sub statements is forbidden by the xAPI spec.');
@@ -53,7 +60,9 @@ final class SubStatement extends Object
         $this->verb = $verb;
         $this->object = $object;
         $this->result = $result;
+        $this->timestamp = $timestamp;
         $this->context = $context;
+        $this->attachments = null !== $attachments ? array_values($attachments) : null;
     }
 
     public function withActor(Actor $actor)
@@ -88,12 +97,33 @@ final class SubStatement extends Object
         return $subStatement;
     }
 
+    public function withTimestamp(\DateTime $timestamp = null)
+    {
+        $statement = clone $this;
+        $statement->timestamp = $timestamp;
+
+        return $statement;
+    }
+
     public function withContext(Context $context)
     {
         $subStatement = clone $this;
         $subStatement->context = $context;
 
         return $subStatement;
+    }
+
+    /**
+     * @param Attachment[]|null $attachments
+     *
+     * @return self
+     */
+    public function withAttachments(array $attachments = null)
+    {
+        $statement = clone $this;
+        $statement->attachments = null !== $attachments ? array_values($attachments) : null;
+
+        return $statement;
     }
 
     /**
@@ -137,6 +167,15 @@ final class SubStatement extends Object
     }
 
     /**
+     * Returns the timestamp of when the events described in this statement
+     * occurred.
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
      * Returns the {@link Statement} {@link Context}.
      *
      * @return Context The Context
@@ -144,6 +183,11 @@ final class SubStatement extends Object
     public function getContext()
     {
         return $this->context;
+    }
+
+    public function getAttachments()
+    {
+        return $this->attachments;
     }
 
     /**
@@ -192,12 +236,32 @@ final class SubStatement extends Object
             return false;
         }
 
+        if ($this->timestamp != $statement->timestamp) {
+            return false;
+        }
+
         if (null !== $this->context xor null !== $statement->context) {
             return false;
         }
 
-        if (null !== $this->context && !$this->context->equals($statement->context)) {
+        if (null !== $this->context && null !== $statement->context && !$this->context->equals($statement->context)) {
             return false;
+        }
+
+        if (null !== $this->attachments xor null !== $statement->attachments) {
+            return false;
+        }
+
+        if (null !== $this->attachments && null !== $statement->attachments) {
+            if (count($this->attachments) !== count($statement->attachments)) {
+                return false;
+            }
+
+            foreach ($this->attachments as $key => $attachment) {
+                if (!$attachment->equals($statement->attachments[$key])) {
+                    return false;
+                }
+            }
         }
 
         return true;

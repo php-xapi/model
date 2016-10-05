@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+* Added missing `$timestamp` and `$attachments` properties to the `SubStatement`
+  class.
+
 * Fixed comparing scores where some values are integers instead of floats.
 
 1.0.0
