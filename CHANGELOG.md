@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+1.0.1
+-----
+
 * Added missing `$timestamp` and `$attachments` properties to the `SubStatement`
   class.
 
