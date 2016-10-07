@@ -350,7 +350,9 @@ class StatementSpec extends ObjectBehavior
             'application/json',
             60,
             'f4135c31e2710764604195dfe4e225884d8108467cc21670803e384b80df88ee',
-            LanguageMap::create(array('en-US' => 'JSON attachment'))
+            LanguageMap::create(array('en-US' => 'JSON attachment')),
+            null,
+            IRL::fromString('http://tincanapi.com/conformancetest/attachment/fileUrlOnly')
         );
         $statement = $this->withAttachments(array($textAttachment, $jsonAttachment));
 
@@ -373,7 +375,9 @@ class StatementSpec extends ObjectBehavior
             'application/json',
             60,
             'f4135c31e2710764604195dfe4e225884d8108467cc21670803e384b80df88ee',
-            LanguageMap::create(array('en-US' => 'JSON attachment'))
+            LanguageMap::create(array('en-US' => 'JSON attachment')),
+            null,
+            IRL::fromString('http://tincanapi.com/conformancetest/attachment/fileUrlOnly')
         );
         $statement = $this->withAttachments(array($textAttachment));
 

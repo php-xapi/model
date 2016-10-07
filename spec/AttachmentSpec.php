@@ -22,7 +22,8 @@ class AttachmentSpec extends ObjectBehavior
             'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
             $display,
             $description,
-            IRL::fromString('http://tincanapi.com/conformancetest/attachment/fileUrlOnly')
+            IRL::fromString('http://tincanapi.com/conformancetest/attachment/fileUrlOnly'),
+            'some text content'
         );
 
         $this->getUsageType()->equals(IRI::fromString('http://id.tincanapi.com/attachment/supporting_media'))->shouldReturn(true);
@@ -32,6 +33,20 @@ class AttachmentSpec extends ObjectBehavior
         $this->getDisplay()->shouldReturn($display);
         $this->getDescription()->shouldReturn($description);
         $this->getFileUrl()->equals(IRL::fromString('http://tincanapi.com/conformancetest/attachment/fileUrlOnly'))->shouldReturn(true);
+        $this->getContent()->shouldReturn('some text content');
+    }
+
+    function it_throws_an_exception_when_an_attachment_does_not_contain_a_file_url_or_raw_content()
+    {
+        $this->beConstructedWith(
+            IRI::fromString('http://id.tincanapi.com/attachment/supporting_media'),
+            'text/plain',
+            18,
+            'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
+            LanguageMap::create(array('en-US' => 'Text attachment'))
+        );
+
+        $this->shouldThrow('\InvalidArgumentException')->duringInstantiation();
     }
 
     function it_is_not_equal_to_other_attachment_if_usage_types_differ()
@@ -252,7 +267,9 @@ class AttachmentSpec extends ObjectBehavior
             18,
             'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
             LanguageMap::create(array('en-US' => 'Text attachment')),
-            LanguageMap::create(array('en-US' => 'Text attachment description'))
+            LanguageMap::create(array('en-US' => 'Text attachment description')),
+            null,
+            'some text content'
         );
 
         $this->equals($attachment)->shouldReturn(false);
@@ -266,7 +283,9 @@ class AttachmentSpec extends ObjectBehavior
             18,
             'bd1a58265d96a3d1981710dab8b1e1ed04a8d7557ea53ab0cf7b44c04fd01545',
             LanguageMap::create(array('en-US' => 'Text attachment')),
-            LanguageMap::create(array('en-US' => 'Text attachment description'))
+            LanguageMap::create(array('en-US' => 'Text attachment description')),
+            null,
+            'some text content'
         );
 
         $attachment = new Attachment(

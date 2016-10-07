@@ -1,6 +1,12 @@
 UPGRADE
 =======
 
+Upgrading from 1.0 to 1.1
+-------------------------
+
+* Constructing an `Attachment` instance with specifying neither a file URL
+  nor the raw attachment content throws an `\InvalidArgumentException`.
+
 Upgrading from 0.4 to 0.5
 -------------------------
 

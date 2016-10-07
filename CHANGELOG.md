@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+1.1.0
+-----
+
+* Added a `$content` attribute to the `Attachment` class to make it possible
+  to attach the raw content to an attachment.
+
 1.0.1
 -----
 
