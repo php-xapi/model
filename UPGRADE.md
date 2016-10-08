@@ -4,6 +4,10 @@ UPGRADE
 Upgrading from 1.0 to 1.1
 -------------------------
 
+* The `StatementsFilter::format()`, `StatementsFilter::includeAttachments()`,
+  and `StatementsFilter::excludeAttachments()` methods are deprecated and will
+  be removed in 2.0.
+
 * Constructing an `Attachment` instance with specifying neither a file URL
   nor the raw attachment content throws an `\InvalidArgumentException`.
 

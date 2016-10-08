@@ -199,6 +199,8 @@ class StatementsFilter
      */
     public function format($format)
     {
+        @trigger_error(sprintf('The "%s()" method is deprecated since 1.1 and will be removed in 2.0.', __METHOD__), E_USER_DEPRECATED);
+
         if (!in_array($format, array('ids', 'exact', 'canonical'))) {
             throw new \InvalidArgumentException('Unknown format '.$format.' given');
         }
@@ -215,6 +217,8 @@ class StatementsFilter
      */
     public function includeAttachments()
     {
+        @trigger_error(sprintf('The "%s()" method is deprecated since 1.1 and will be removed in 2.0.', __METHOD__), E_USER_DEPRECATED);
+
         $this->filter['attachments'] = 'true';
 
         return $this;
@@ -227,6 +231,8 @@ class StatementsFilter
      */
     public function excludeAttachments()
     {
+        @trigger_error(sprintf('The "%s()" method is deprecated since 1.1 and will be removed in 2.0.', __METHOD__), E_USER_DEPRECATED);
+
         $this->filter['attachments'] = 'false';
 
         return $this;

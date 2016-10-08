@@ -4,6 +4,10 @@ CHANGELOG
 1.1.0
 -----
 
+* The `StatementsFilter::format()`, `StatementsFilter::includeAttachments()`,
+  and `StatementsFilter::excludeAttachments()` methods are deprecated and will
+  be removed in 2.0.
+
 * Added a `$content` attribute to the `Attachment` class to make it possible
   to attach the raw content to an attachment.
 
