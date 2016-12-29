@@ -11,7 +11,7 @@
 
 namespace Xabbuh\XApi\Model;
 
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /**
  * An Experience API {@link https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md#statement Statement} identifier.
