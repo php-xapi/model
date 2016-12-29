@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+2.0.0
+-----
+
+* Introducing a new `Uuid` class to support both `ramsey/uuid` 2.x and 3.x.
+* The type of the property `StatemendId::$id` has been changed from instance
+  of `Rhumsaa\Uuid\Uuid` to instance of new `Uuid` class.
+
 1.1.0
 -----
 

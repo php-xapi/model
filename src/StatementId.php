@@ -11,8 +11,6 @@
 
 namespace Xabbuh\XApi\Model;
 
-use Rhumsaa\Uuid\Uuid;
-
 /**
  * An Experience API {@link https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md#statement Statement} identifier.
  *
@@ -53,7 +51,7 @@ final class StatementId
 
     public function getValue()
     {
-        return $this->uuid->toString();
+        return (string) $this->uuid;
     }
 
     public function equals(StatementId $id)

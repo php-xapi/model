@@ -12,8 +12,8 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
-use Rhumsaa\Uuid\Uuid;
 use Xabbuh\XApi\Model\StatementId;
+use Xabbuh\XApi\Model\Uuid;
 
 class StatementIdSpec extends ObjectBehavior
 {
