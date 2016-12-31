@@ -27,12 +27,8 @@ final class StatementId
     {
     }
 
-    public static function fromUuid($uuid)
+    public static function fromUuid(Uuid $uuid)
     {
-        if (!$uuid instanceof \Ramsey\Uuid\Uuid && !$uuid instanceof \Rhumsaa\Uuid\Uuid) {
-            throw new \InvalidArgumentException('Expected instance of "\Ramsey\Uuid\Uuid" or "\Rhumsaa\Uuid\Uuid".');
-        }
-
         $id = new self();
         $id->uuid = $uuid;
 

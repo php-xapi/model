@@ -11,25 +11,44 @@
 
 namespace Xabbuh\XApi\Model;
 
+use Ramsey\Uuid\Uuid as RamseyUuid;
+use Rhumsaa\Uuid\Uuid as RhumsaaUuid;
+
 /**
  * @author Jérôme Parmentier <jerome.parmentier@acensi.fr>
  */
 final class Uuid
 {
-    private function __construct()
+    /**
+     * @var RamseyUuid|RhumsaaUuid;
+     */
+    private $uuid;
+
+    private function __construct($uuid)
     {
+        $this->uuid = $uuid;
     }
 
     /**
      * @param string $uuid
-     * @return \Rhumsaa\Uuid\Uuid|\Ramsey\Uuid\Uuid
+     * @return Uuid
      */
     public static function fromString($uuid)
     {
         if (class_exists('Rhumsaa\Uuid\Uuid')) {
-            return \Rhumsaa\Uuid\Uuid::fromString($uuid);
+            return new self(RhumsaaUuid::fromString($uuid));
         }
 
-        return \Ramsey\Uuid\Uuid::fromString($uuid);
+        return new self(RamseyUuid::fromString($uuid));
+    }
+
+    public function toString()
+    {
+        return $this->uuid->toString();
+    }
+
+    public function equals(Uuid $uuid)
+    {
+        return $this->uuid->toString() === $uuid->toString();
     }
 }
