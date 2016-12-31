@@ -11,8 +11,6 @@
 
 namespace Xabbuh\XApi\Model;
 
-use Ramsey\Uuid\Uuid;
-
 /**
  * An Experience API {@link https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md#statement Statement} identifier.
  *
@@ -29,8 +27,12 @@ final class StatementId
     {
     }
 
-    public static function fromUuid(Uuid $uuid)
+    public static function fromUuid($uuid)
     {
+        if (!$uuid instanceof \Ramsey\Uuid\Uuid && !$uuid instanceof \Rhumsaa\Uuid\Uuid) {
+            throw new \InvalidArgumentException('Expected instance of "\Ramsey\Uuid\Uuid" or "\Rhumsaa\Uuid\Uuid".');
+        }
+
         $id = new self();
         $id->uuid = $uuid;
 

@@ -12,8 +12,9 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
-use Ramsey\Uuid\Uuid;
+use spec\Xabbuh\XApi\Model\Uuid\WrongUuid;
 use Xabbuh\XApi\Model\StatementId;
+use Xabbuh\XApi\Model\Uuid;
 
 class StatementIdSpec extends ObjectBehavior
 {
@@ -21,6 +22,12 @@ class StatementIdSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('fromUuid', array(Uuid::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af')));
         $this->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementId');
+    }
+
+    function it_should_reject_not_ramsey_uuids()
+    {
+        $this->beConstructedThrough('fromUuid', array(new WrongUuid()));
+        $this->shouldThrow('\InvalidArgumentException')->duringInstantiation();
     }
 
     function it_can_be_created_from_a_string()
