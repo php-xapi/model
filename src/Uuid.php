@@ -120,6 +120,6 @@ final class Uuid
 
     public function equals(Uuid $uuid)
     {
-        return (string) $this === (string) $uuid;
+        return $this->uuid->equals($uuid->uuid);
     }
 }
