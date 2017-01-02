@@ -51,7 +51,7 @@ final class StatementId
 
     public function getValue()
     {
-        return $this->uuid->toString();
+        return (string) $this->uuid;
     }
 
     public function equals(StatementId $id)

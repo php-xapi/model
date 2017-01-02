@@ -113,13 +113,13 @@ final class Uuid
         return new self(RamseyUuid::uuid5($ns, $name));
     }
 
-    public function toString()
+    public function __toString()
     {
         return $this->uuid->toString();
     }
 
     public function equals(Uuid $uuid)
     {
-        return $this->uuid->toString() === $uuid->toString();
+        return (string) $this === (string) $uuid;
     }
 }
