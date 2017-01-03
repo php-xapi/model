@@ -101,24 +101,6 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('related_agents', 'false');
     }
 
-    function it_can_include_attachments()
-    {
-        $this->includeAttachments()->shouldReturn($this);
-
-        $filter = $this->getFilter();
-        $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('attachments', 'true');
-    }
-
-    function it_can_exclude_attachments()
-    {
-        $this->excludeAttachments()->shouldReturn($this);
-
-        $filter = $this->getFilter();
-        $filter->shouldHaveCount(1);
-        $filter->shouldHaveKeyWithValue('attachments', 'false');
-    }
-
     function it_can_filter_by_timestamp()
     {
         $this->since(\DateTime::createFromFormat(\DateTime::ISO8601, '2013-05-18T05:32:34Z'))->shouldReturn($this);
@@ -158,22 +140,5 @@ class StatementsFilterSpec extends ObjectBehavior
     function it_rejects_choosing_a_negative_number_of_results()
     {
         $this->shouldThrow('\InvalidArgumentException')->duringLimit(-1);
-    }
-
-    function it_can_change_the_result_format()
-    {
-        $this->format('ids')->shouldReturn($this);
-        $this->getFilter()->shouldHaveKeyWithValue('format', 'ids');
-
-        $this->format('exact')->shouldReturn($this);
-        $this->getFilter()->shouldHaveKeyWithValue('format', 'exact');
-
-        $this->format('canonical')->shouldReturn($this);
-        $this->getFilter()->shouldHaveKeyWithValue('format', 'canonical');
-    }
-
-    function it_rejects_invalid_format_filter()
-    {
-        $this->shouldThrow('\InvalidArgumentException')->duringFormat('minimal');
     }
 }

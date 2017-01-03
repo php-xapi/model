@@ -1,6 +1,12 @@
 UPGRADE
 =======
 
+Upgrading from 1.x to 2.0
+-------------------------
+
+* The `StatementsFilter::format()`, `StatementsFilter::includeAttachments()`,
+  and `StatementsFilter::excludeAttachments()` methods have been removed.
+
 Upgrading from 1.0 to 1.1
 -------------------------
 
