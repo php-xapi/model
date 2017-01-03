@@ -196,6 +196,8 @@ class StatementsFilter
      * @return self The statements filter
      *
      * @throws \InvalidArgumentException if no valid format is given
+     *
+     * @deprecated since 1.1, to be removed in 2.0
      */
     public function format($format)
     {
@@ -214,6 +216,8 @@ class StatementsFilter
      * Query attachments for each Statement being returned.
      *
      * @return self The statements filter
+     *
+     * @deprecated since 1.1, to be removed in 2.0
      */
     public function includeAttachments()
     {
@@ -228,6 +232,8 @@ class StatementsFilter
      * Don't query for Statement attachments (the default behavior).
      *
      * @return self The statements filter
+     *
+     * @deprecated since 1.1, to be removed in 2.0
      */
     public function excludeAttachments()
     {

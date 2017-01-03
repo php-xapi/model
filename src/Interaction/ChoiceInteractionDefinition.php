@@ -25,6 +25,9 @@ use Xabbuh\XApi\Model\LanguageMap;
  */
 final class ChoiceInteractionDefinition extends InteractionDefinition
 {
+    /**
+     * @var InteractionComponent[]|null
+     */
     private $choices;
 
     /**

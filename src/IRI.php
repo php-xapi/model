@@ -39,6 +39,9 @@ final class IRI
         return $iri;
     }
 
+    /**
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
