@@ -4,9 +4,12 @@ CHANGELOG
 2.0.0
 -----
 
-* Introducing a new `Uuid` class to support both `ramsey/uuid` 2.x and 3.x.
-* The type of the property `StatemendId::$id` has been changed from instance
-  of `Rhumsaa\Uuid\Uuid` to instance of new `Uuid` class.
+* Introducing a new `Uuid` class that supports both `ramsey/uuid` 2.x and 3.x.
+  Applications and packages using this library should not longer refer to the
+  `Uuid` class from the `ramsey/uuid` package, but should always use the `Uuid`
+  class from the this package instead.
+* The type of the `StatemendId::$id` property has been changed from an instance
+  of `Rhumsaa\Uuid\Uuid` to an instance of the added `Uuid` class.
 
 1.1.0
 -----
