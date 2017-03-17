@@ -24,9 +24,9 @@ final class State
     private $activity;
 
     /**
-     * @var Actor The associated actor
+     * @var Agent The associated agent
      */
-    private $actor;
+    private $agent;
 
     /**
      * @var string An optional registration id
@@ -38,10 +38,10 @@ final class State
      */
     private $stateId;
 
-    public function __construct(Activity $activity, Actor $actor, $stateId, $registrationId = null)
+    public function __construct(Activity $activity, Agent $agent, $stateId, $registrationId = null)
     {
         $this->activity = $activity;
-        $this->actor = $actor;
+        $this->agent = $agent;
         $this->stateId = $stateId;
         $this->registrationId = $registrationId;
     }
@@ -57,13 +57,13 @@ final class State
     }
 
     /**
-     * Returns the actor.
+     * Returns the agent.
      *
-     * @return Actor The actor
+     * @return Agent The agent
      */
-    public function getActor()
+    public function getAgent()
     {
-        return $this->actor;
+        return $this->agent;
     }
 
     /**
