@@ -65,6 +65,8 @@ final class Statement
 
     private $attachments;
 
+    private $version;
+
     /**
      * @param StatementId|null  $id
      * @param Actor             $actor
@@ -76,8 +78,9 @@ final class Statement
      * @param \DateTime|null    $stored
      * @param Context|null      $context
      * @param Attachment[]|null $attachments
+     * @param string            $version
      */
-    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null)
+    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, $version = '1.0.0')
     {
         $this->id = $id;
         $this->actor = $actor;
@@ -89,6 +92,7 @@ final class Statement
         $this->stored = $stored;
         $this->context = $context;
         $this->attachments = null !== $attachments ? array_values($attachments) : null;
+        $this->version = $version;
     }
 
     public function withId(StatementId $id = null)
@@ -180,6 +184,19 @@ final class Statement
     {
         $statement = clone $this;
         $statement->attachments = null !== $attachments ? array_values($attachments) : null;
+
+        return $statement;
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return self
+     */
+    public function withVersion($version)
+    {
+        $statement = clone $this;
+        $statement->version = $version;
 
         return $statement;
     }
@@ -289,6 +306,11 @@ final class Statement
     public function getAttachments()
     {
         return $this->attachments;
+    }
+
+    public function getVersion()
+    {
+        return $this->version;
     }
 
     /**
