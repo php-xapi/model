@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+1.1.1
+-----
+
+* Added missing `$version` attribute to the `Statement` class which defaults to
+  `1.0.0`.
+
 1.1.0
 -----
 

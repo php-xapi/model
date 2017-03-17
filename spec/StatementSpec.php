@@ -38,6 +38,11 @@ class StatementSpec extends ObjectBehavior
         $this->beConstructedWith($id, $actor, $verb, $object);
     }
 
+    function its_default_version_is_1_0_0()
+    {
+        $this->getVersion()->shouldReturn('1.0.0');
+    }
+
     function it_creates_reference_to_itself()
     {
         $reference = $this->getStatementReference();
@@ -229,6 +234,15 @@ class StatementSpec extends ObjectBehavior
         $statement->shouldNotBe($this);
         $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
         $statement->getAttachments()->shouldReturn($attachments);
+    }
+
+    function it_returns_a_new_instance_with_version()
+    {
+        $statement = $this->withVersion('1.0.1');
+
+        $statement->shouldNotBe($this);
+        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
+        $statement->getVersion()->shouldReturn('1.0.1');
     }
 
     function it_ignores_array_keys_in_attachment_lists()
