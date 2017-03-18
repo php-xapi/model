@@ -14,7 +14,7 @@ CHANGELOG
   3.0. Use `SubStatement::withCreated()` instead.
 
 1.1.1
-=======
+------
 
 * `State::$actor` has been renamed to `State::$agent` and its type has been
   changed from `Actor` to `Agent`. Getter method has been renamed accordingly.
