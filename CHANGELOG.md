@@ -17,6 +17,12 @@ CHANGELOG
 * The type of the `StatemendId::$id` property has been changed from an instance
   of `Rhumsaa\Uuid\Uuid` to an instance of the added `Uuid` class.
 
+1.1.1
+-----
+
+* Added missing `$version` attribute to the `Statement` class which defaults to
+  `1.0.0`.
+
 1.1.0
 -----
 
