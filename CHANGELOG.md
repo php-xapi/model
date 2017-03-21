@@ -16,8 +16,11 @@ CHANGELOG
 1.1.1
 ------
 
-* `State::$actor` has been renamed to `State::$agent` and its type has been
-  changed from `Actor` to `Agent`. Getter method has been renamed accordingly.
+* Constructing a `State` object with an instance of any child class of `Actor`
+  other than `Agent` as 2nd argument is deprecated. Starting with `3.0`,
+  only instance of `Agent` will be accepted.
+* `State::getActor()` is deprecated in favor of `State::getAgent()`. It will be
+  removed in `3.0`.
 * Added missing `$version` attribute to the `Statement` class which defaults to
   `null`.
 

@@ -24,9 +24,9 @@ final class State
     private $activity;
 
     /**
-     * @var Agent The associated agent
+     * @var Actor The associated actor
      */
-    private $agent;
+    private $actor;
 
     /**
      * @var string An optional registration id
@@ -38,10 +38,14 @@ final class State
      */
     private $stateId;
 
-    public function __construct(Activity $activity, Agent $agent, $stateId, $registrationId = null)
+    public function __construct(Activity $activity, Actor $actor, $stateId, $registrationId = null)
     {
+        if (!$actor instanceof Agent) {
+            @trigger_error(sprintf('Passing a "%s" instance as the 2nd argument is deprecated since 1.1.1 and 2.0.1. In 3.0, only instance of "Xabbuh\XApi\Model\Agent" will be accepted.', get_class($actor)), E_USER_DEPRECATED);
+        }
+
         $this->activity = $activity;
-        $this->agent = $agent;
+        $this->actor = $actor;
         $this->stateId = $stateId;
         $this->registrationId = $registrationId;
     }
@@ -57,13 +61,27 @@ final class State
     }
 
     /**
+     * Returns the actor.
+     *
+     * @return Actor The actor
+     *
+     * @deprecated since 1.1.1 and 2.0.1, to be removed in 3.0
+     */
+    public function getActor()
+    {
+        @trigger_error(sprintf('The "%s()" method is deprecated since 1.1.1 and 2.0.1, and will be removed in 3.0. Use "%s::getAgent()" method instead.', __METHOD__, __CLASS__), E_USER_DEPRECATED);
+
+        return $this->getAgent();
+    }
+
+    /**
      * Returns the agent.
      *
-     * @return Agent The agent
+     * @return Actor The agent
      */
     public function getAgent()
     {
-        return $this->agent;
+        return $this->actor;
     }
 
     /**
