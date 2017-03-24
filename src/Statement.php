@@ -151,10 +151,23 @@ final class Statement
         return $statement;
     }
 
+    /**
+     * @deprecated since 1.2, to be removed in 3.0
+     */
     public function withTimestamp(\DateTime $timestamp = null)
     {
+        @trigger_error(sprintf('The "%s()" method is deprecated since 1.2 and will be removed in 3.0. Use "%s::withCreated()" method instead.', __METHOD__, __CLASS__), E_USER_DEPRECATED);
+
         $statement = clone $this;
         $statement->created = $timestamp;
+
+        return $statement;
+    }
+
+    public function withCreated(\DateTime $created = null)
+    {
+        $statement = clone $this;
+        $statement->created = $created;
 
         return $statement;
     }
