@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+1.2.0
+-----
+
+* The `Statement::getTimestamp()` method is deprecated and will be removed in
+  3.0. Use `Statement::getCreated()` instead.
+* The `Statement::withTimestamp()` method is deprecated and will be removed in
+  3.0. Use `Statement::withCreated()` instead.
+
 1.1.1
 -----
 
