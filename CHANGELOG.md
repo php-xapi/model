@@ -12,15 +12,15 @@ CHANGELOG
   3.0. Use `SubStatement::getCreated()` instead.
 * The `SubStatement::withTimestamp()` method is deprecated and will be removed in
   3.0. Use `SubStatement::withCreated()` instead.
-
-1.1.1
-------
-
 * Constructing a `State` object with an instance of any child class of `Actor`
   other than `Agent` as 2nd argument is deprecated. Starting with `3.0`,
   only instance of `Agent` will be accepted.
-* `State::getActor()` is deprecated in favor of `State::getAgent()`. It will be
-  removed in `3.0`.
+* The `State::getActor()` method is deprecated and will be removed in `3.0`.
+  Use `State::getAgent()` instead.
+
+1.1.1
+-----
+
 * Added missing `$version` attribute to the `Statement` class which defaults to
   `null`.
 
