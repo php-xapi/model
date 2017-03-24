@@ -267,13 +267,13 @@ final class Statement
      *
      * @return \DateTime The timestamp
      *
-     * @deprecated since 1.1.1, to be removed in 3.0
+     * @deprecated since 1.2, to be removed in 3.0
      */
     public function getTimestamp()
     {
         @trigger_error(sprintf('The "%s()" method is deprecated since 1.1.1 and will be removed in 3.0. Use "%s::getCreated()" method instead.', __METHOD__, __CLASS__), E_USER_DEPRECATED);
 
-        return $this->getCreated();
+        return $this->created;
     }
 
     /**

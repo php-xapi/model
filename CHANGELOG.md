@@ -1,13 +1,17 @@
 CHANGELOG
 =========
 
+1.2.0
+-----
+
+* The `Statement::getTimestamp()` method is deprecated and will be removed in
+  3.0. Use `Statement::getCreated()` instead.
+
 1.1.1
 -----
 
 * Added missing `$version` attribute to the `Statement` class which defaults to
   `1.0.0`.
-* The `Statement::getTimestamp()` method is deprecated and will be removed in
-  3.0. Use `Statement::getCreated()` instead.
 
 1.1.0
 -----
