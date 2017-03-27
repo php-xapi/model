@@ -41,7 +41,7 @@ final class SubStatement extends Object
     /**
      * @var \DateTime The timestamp of when the events described in this statement occurred
      */
-    private $timestamp;
+    private $created;
 
     /**
      * @var Context The {@link Statement} {@link Context}
@@ -50,7 +50,7 @@ final class SubStatement extends Object
 
     private $attachments;
 
-    public function __construct(Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null, \DateTime $timestamp = null, array $attachments = null)
+    public function __construct(Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null, \DateTime $created = null, array $attachments = null)
     {
         if ($object instanceof SubStatement) {
             throw new \InvalidArgumentException('Nesting sub statements is forbidden by the xAPI spec.');
@@ -60,7 +60,7 @@ final class SubStatement extends Object
         $this->verb = $verb;
         $this->object = $object;
         $this->result = $result;
-        $this->timestamp = $timestamp;
+        $this->created = $created;
         $this->context = $context;
         $this->attachments = null !== $attachments ? array_values($attachments) : null;
     }
@@ -97,10 +97,23 @@ final class SubStatement extends Object
         return $subStatement;
     }
 
+    /**
+     * @deprecated since 1.2, to be removed in 3.0
+     */
     public function withTimestamp(\DateTime $timestamp = null)
     {
+        @trigger_error(sprintf('The "%s()" method is deprecated since 1.2 and will be removed in 3.0. Use "%s::withCreated()" instead.', __METHOD__, __CLASS__), E_USER_DEPRECATED);
+
         $statement = clone $this;
-        $statement->timestamp = $timestamp;
+        $statement->created = $timestamp;
+
+        return $statement;
+    }
+
+    public function withCreated(\DateTime $created = null)
+    {
+        $statement = clone $this;
+        $statement->created = $created;
 
         return $statement;
     }
@@ -169,10 +182,27 @@ final class SubStatement extends Object
     /**
      * Returns the timestamp of when the events described in this statement
      * occurred.
+     *
+     * @return \DateTime The timestamp
+     *
+     * @deprecated since 1.2, to be removed in 3.0
      */
     public function getTimestamp()
     {
-        return $this->timestamp;
+        @trigger_error(sprintf('The "%s()" method is deprecated since 1.2 and will be removed in 3.0. Use "%s::getCreated()" instead.', __METHOD__, __CLASS__), E_USER_DEPRECATED);
+
+        return $this->created;
+    }
+
+    /**
+     * Returns the timestamp of when the events described in this statement
+     * occurred.
+     *
+     * @return \DateTime The timestamp
+     */
+    public function getCreated()
+    {
+        return $this->created;
     }
 
     /**
@@ -236,7 +266,7 @@ final class SubStatement extends Object
             return false;
         }
 
-        if ($this->timestamp != $statement->timestamp) {
+        if ($this->created != $statement->created) {
             return false;
         }
 
