@@ -4,7 +4,6 @@ CHANGELOG
 1.2.0
 -----
 
-* The `SubStatement::$timestamp` property has been renamed to `$created`.
 * The `SubStatement::getTimestamp()` method is deprecated and will be removed in
   3.0. Use `SubStatement::getCreated()` instead.
 * The `SubStatement::withTimestamp()` method is deprecated and will be removed in
