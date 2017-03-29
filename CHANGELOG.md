@@ -17,7 +17,7 @@ CHANGELOG
 -----
 
 * Added missing `$version` attribute to the `Statement` class which defaults to
-  `1.0.0`.
+  `null`.
 
 1.1.0
 -----
