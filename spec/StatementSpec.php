@@ -38,9 +38,9 @@ class StatementSpec extends ObjectBehavior
         $this->beConstructedWith($id, $actor, $verb, $object);
     }
 
-    function its_default_version_is_1_0_0()
+    function its_default_version_is_null()
     {
-        $this->getVersion()->shouldReturn('1.0.0');
+        $this->getVersion()->shouldReturn(null);
     }
 
     function it_creates_reference_to_itself()

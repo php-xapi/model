@@ -78,9 +78,9 @@ final class Statement
      * @param \DateTime|null    $stored
      * @param Context|null      $context
      * @param Attachment[]|null $attachments
-     * @param string            $version
+     * @param string|null       $version
      */
-    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, $version = '1.0.0')
+    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, $version = null)
     {
         $this->id = $id;
         $this->actor = $actor;
