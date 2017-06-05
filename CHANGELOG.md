@@ -18,6 +18,8 @@ CHANGELOG
   only instances of `Agent` will be accepted.
 * The `State::getActor()` method is deprecated and will be removed in `3.0`.
   Use `State::getAgent()` instead.
+* Added a `StateDocumentsFilter` class that allows to draft filters for
+  `StateDocument` objects.
 
 1.1.1
 -----
