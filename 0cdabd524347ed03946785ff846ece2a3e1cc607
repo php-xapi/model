@@ -1,0 +1,35 @@
+---------------------------------------------------------------------------
+
+by xabbuh at 2017-03-17T16:35:24Z
+
+Can you also add an entry to the changelog?
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2017-03-21T07:32:53Z
+
+After thinking about this again I think we should do the following:
+
+* trigger a deprecation in the constructor when an `Actor` that is no `Agent` is passed
+* deprecate the `getActor()` method
+* add the `getAgent()` method
+
+We can then merge this into the `1.x` branch. What do you think?
+
+---------------------------------------------------------------------------
+
+by Lctrs at 2017-03-21T14:59:06Z
+
+@xabbuh Done. Any feedback on this ?
+
+---------------------------------------------------------------------------
+
+by Lctrs at 2017-03-24T14:52:42Z
+
+@xabbuh Should I also change the version from `1.1.1` to `1.2` as in #55 here ?
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2017-03-24T15:06:40Z
+
+@Lctrs Oh, yes indeed please.
