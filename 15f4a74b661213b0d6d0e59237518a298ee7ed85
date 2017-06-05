@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------
+
+by Lctrs at 2017-03-08T10:31:29Z
+
+Re reading this part of the specification, I'm uncertain on what model we should handle. Is it just State or the StateDocument ?
+
+WDYT @xabbuh ?
+
+---------------------------------------------------------------------------
+
+by Lctrs at 2017-03-09T10:32:36Z
+
+I'm almost certain it's StateDocument. It doesn't have any sense otherwise.
