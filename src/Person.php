@@ -83,41 +83,26 @@ final class Person
         return $person;
     }
 
-    /**
-     * @return string[]
-     */
     public function getNames()
     {
         return $this->names;
     }
 
-    /**
-     * @return IRI[]
-     */
     public function getMboxes()
     {
         return $this->mboxes;
     }
 
-    /**
-     * @return \string[]
-     */
     public function getMboxSha1Sums()
     {
         return $this->mboxSha1Sums;
     }
 
-    /**
-     * @return string[]
-     */
     public function getOpenIds()
     {
         return $this->openIds;
     }
 
-    /**
-     * @return Account[]
-     */
     public function getAccounts()
     {
         return $this->accounts;
