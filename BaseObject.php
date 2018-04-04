@@ -16,7 +16,7 @@ namespace Xabbuh\XApi\Model;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-abstract class Object
+abstract class BaseObject
 {
     /**
      * Checks if another object is equal.
@@ -27,7 +27,7 @@ abstract class Object
      *
      * @return bool True if the objects are equal, false otherwise
      */
-    public function equals(Object $object)
+    public function equals(BaseObject $object)
     {
         return get_class($this) === get_class($object);
     }
