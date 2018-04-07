@@ -10,7 +10,6 @@
  */
 
 namespace Xabbuh\XApi\Model;
-
 /**
  * The object of a {@link Statement}.
  *
