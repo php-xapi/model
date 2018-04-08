@@ -16,7 +16,7 @@ namespace Xabbuh\XApi\Model;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-final class SubStatement extends Object
+final class SubStatement extends StatementObject
 {
     /**
      * @var Verb $verb The {@link Verb}
@@ -50,7 +50,7 @@ final class SubStatement extends Object
 
     private $attachments;
 
-    public function __construct(Actor $actor, Verb $verb, Object $object, Result $result = null, Context $context = null, \DateTime $created = null, array $attachments = null)
+    public function __construct(Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Context $context = null, \DateTime $created = null, array $attachments = null)
     {
         if ($object instanceof SubStatement) {
             throw new \InvalidArgumentException('Nesting sub statements is forbidden by the xAPI spec.');
@@ -81,7 +81,7 @@ final class SubStatement extends Object
         return $subStatement;
     }
 
-    public function withObject(Object $object)
+    public function withObject(StatementObject $object)
     {
         $subStatement = clone $this;
         $subStatement->object = $object;
@@ -234,7 +234,7 @@ final class SubStatement extends Object
     /**
      * {@inheritdoc}
      */
-    public function equals(Object $statement)
+    public function equals(StatementObject $statement)
     {
         if ('Xabbuh\XApi\Model\SubStatement' !== get_class($statement)) {
             return false;

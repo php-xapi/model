@@ -45,7 +45,7 @@ final class StatementFactory
         $this->verb = $verb;
     }
 
-    public function withObject(Object $object)
+    public function withObject(StatementObject $object)
     {
         $this->object = $object;
     }
