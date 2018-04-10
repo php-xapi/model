@@ -13,6 +13,7 @@ namespace Xabbuh\XApi\Model;
 
 use Xabbuh\XApi\Common\Exception\UnsupportedOperationException;
 
+
 /**
  * An xAPI document's data.
  *

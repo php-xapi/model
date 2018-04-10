@@ -71,7 +71,7 @@ final class Statement
      * @param StatementId|null  $id
      * @param Actor             $actor
      * @param Verb              $verb
-     * @param Object            $object
+     * @param StatementObject   $object
      * @param Result|null       $result
      * @param Actor|null        $authority
      * @param \DateTime|null    $created
@@ -80,7 +80,7 @@ final class Statement
      * @param Attachment[]|null $attachments
      * @param string|null       $version
      */
-    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, Object $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, $version = null)
+    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, $version = null)
     {
         $this->id = $id;
         $this->actor = $actor;
@@ -119,7 +119,7 @@ final class Statement
         return $statement;
     }
 
-    public function withObject(Object $object)
+    public function withObject(StatementObject $object)
     {
         $statement = clone $this;
         $statement->object = $object;

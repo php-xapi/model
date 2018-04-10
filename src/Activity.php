@@ -16,7 +16,7 @@ namespace Xabbuh\XApi\Model;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-final class Activity extends Object
+final class Activity extends StatementObject
 {
     /**
      * @var IRI The Activity's unique identifier
@@ -61,7 +61,7 @@ final class Activity extends Object
     /**
      * {@inheritdoc}
      */
-    public function equals(Object $object)
+    public function equals(StatementObject $object)
     {
         if ('Xabbuh\XApi\Model\Activity' !== get_class($object)) {
             return false;

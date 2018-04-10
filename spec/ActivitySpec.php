@@ -20,7 +20,7 @@ class ActivitySpec extends ObjectBehavior
     function it_is_an_xapi_object()
     {
         $this->beConstructedWith(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
-        $this->shouldHaveType('Xabbuh\XApi\Model\Object');
+        $this->shouldHaveType('Xabbuh\XApi\Model\StatementObject');
     }
 
     function it_is_equal_with_other_activity_if_ids_are_equal_and_definitions_are_missing()

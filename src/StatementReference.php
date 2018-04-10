@@ -16,7 +16,7 @@ namespace Xabbuh\XApi\Model;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-final class StatementReference extends Object
+final class StatementReference extends StatementObject
 {
     private $statementId;
 
@@ -36,7 +36,7 @@ final class StatementReference extends Object
     /**
      * {@inheritdoc}
      */
-    public function equals(Object $object)
+    public function equals(StatementObject $object)
     {
         if ('Xabbuh\XApi\Model\StatementReference' !== get_class($object)) {
             return false;

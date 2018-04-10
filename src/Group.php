@@ -48,7 +48,7 @@ final class Group extends Actor
     /**
      * {@inheritdoc}
      */
-    public function equals(Object $actor)
+    public function equals(StatementObject $actor)
     {
         if (!parent::equals($actor)) {
             return false;
