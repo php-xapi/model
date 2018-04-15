@@ -211,12 +211,16 @@ class Definition
             return false;
         }
 
-        if (count($this->name) !== count($definition->name)) {
-            return false;
-        }
-
+        if ((is_object($this->name)) && (is_object($definition->name))) {
+       
+            if (count($this->name) !== count($definition->name)) {
+                return false;
+            }
+       }
+        if ((is_object($this->description)) && (is_object($definition->description))) {
         if (count($this->description) !== count($definition->description)) {
             return false;
+        }
         }
 
         if (null !== $this->name xor null !== $definition->name) {
