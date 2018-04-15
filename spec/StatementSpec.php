@@ -100,7 +100,7 @@ class StatementSpec extends ObjectBehavior
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
         $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object);
 
-        $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementObject');
+        $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\Object');
         $this->getObject()->shouldBe($object);
     }
 
