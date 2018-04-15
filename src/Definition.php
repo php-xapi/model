@@ -211,14 +211,6 @@ class Definition
             return false;
         }
 
-        if (count($this->name) !== count($definition->name)) {
-            return false;
-        }
-
-        if (count($this->description) !== count($definition->description)) {
-            return false;
-        }
-
         if (null !== $this->name xor null !== $definition->name) {
             return false;
         }
@@ -228,6 +220,10 @@ class Definition
         }
 
         if (null !== $this->name) {
+            if (count($this->name) !== count($definition->name)) {
+                return false;
+            }
+
             foreach ($this->name as $language => $value) {
                 if (!isset($definition->name[$language])) {
                     return false;
@@ -240,6 +236,10 @@ class Definition
         }
 
         if (null !== $this->description) {
+            if (count($this->description) !== count($definition->description)) {
+                return false;
+            }
+
             foreach ($this->description as $language => $value) {
                 if (!isset($definition->description[$language])) {
                     return false;
