@@ -188,16 +188,6 @@ class StatementSpec extends ObjectBehavior
         $statement->getAuthority()->shouldReturn($authority);
     }
 
-    public function it_returns_a_new_instance_with_timestamp()
-    {
-        $timestamp = new \DateTime('2014-07-23T12:34:02-05:00');
-        $statement = $this->withTimestamp($timestamp);
-
-        $statement->shouldNotBe($this);
-        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\Statement');
-        $statement->getTimestamp()->shouldReturn($timestamp);
-    }
-
     public function it_returns_a_new_instance_with_stored()
     {
         $stored = new \DateTime('2014-07-23T12:34:02-05:00');

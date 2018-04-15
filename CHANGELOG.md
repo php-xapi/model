@@ -4,6 +4,14 @@ CHANGELOG
 3.0.0
 -----
 
+* The `Statement::getTimestamp()` method has been removed. Use
+  `Statement::getCreated()` instead.
+* The `Statement::withTimestamp()` method has been removed. Use
+  `Statement::withCreated()` instead.
+* The `SubStatement::getTimestamp()` method has been removed. Use
+  `SubStatement::getCreated()` instead.
+* The `SubStatement::withTimestamp()` method has been removed. Use
+  `SubStatement::withCreated()` instead.
 * Dropped support for PHP < 7.1 as well as HHVM.
 * The `Object` class was renamed to `StatementObject` for compatibility with PHP
   7.2.
