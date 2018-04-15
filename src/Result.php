@@ -20,27 +20,27 @@ namespace Xabbuh\XApi\Model;
 final class Result
 {
     /**
-     * @var Score The score
+     * @var Score|null The score
      */
     private $score;
 
     /**
-     * @var bool Indicates whether or not the attempt was successful
+     * @var bool|null Indicates whether or not the attempt was successful
      */
     private $success;
 
     /**
-     * @var bool Indicates whether or not the Activity was completed
+     * @var bool|null Indicates whether or not the Activity was completed
      */
     private $completion;
 
     /**
-     * @var string A response for the given Activity
+     * @var string|null A response for the given Activity
      */
     private $response;
 
     /**
-     * @var string Period of time over which the Activity was performed
+     * @var string|null Period of time over which the Activity was performed
      */
     private $duration;
 
@@ -57,7 +57,7 @@ final class Result
      * @param string|null     $duration
      * @param Extensions|null $extensions
      */
-    public function __construct(Score $score = null, $success = null, $completion = null, $response = null, $duration = null, Extensions $extensions = null)
+    public function __construct(Score $score = null, bool $success = null, bool $completion = null, string $response = null, string $duration = null, Extensions $extensions = null)
     {
         $this->score = $score;
         $this->success = $success;
@@ -67,7 +67,7 @@ final class Result
         $this->extensions = $extensions;
     }
 
-    public function withScore(Score $score = null)
+    public function withScore(Score $score = null): self
     {
         $result = clone $this;
         $result->score = $score;
@@ -80,7 +80,7 @@ final class Result
      *
      * @return Result
      */
-    public function withSuccess($success)
+    public function withSuccess(bool $success): self
     {
         $result = clone $this;
         $result->success = $success;
@@ -93,7 +93,7 @@ final class Result
      *
      * @return Result
      */
-    public function withCompletion($completion)
+    public function withCompletion(bool $completion): self
     {
         $result = clone $this;
         $result->completion = $completion;
@@ -106,7 +106,7 @@ final class Result
      *
      * @return Result
      */
-    public function withResponse($response)
+    public function withResponse(string $response): self
     {
         $result = clone $this;
         $result->response = $response;
@@ -119,7 +119,7 @@ final class Result
      *
      * @return Result
      */
-    public function withDuration($duration)
+    public function withDuration(string $duration): self
     {
         $result = clone $this;
         $result->duration = $duration;
@@ -127,7 +127,7 @@ final class Result
         return $result;
     }
 
-    public function withExtensions(Extensions $extensions = null)
+    public function withExtensions(Extensions $extensions = null): self
     {
         $result = clone $this;
         $result->extensions = $extensions;
@@ -138,9 +138,9 @@ final class Result
     /**
      * Returns the user's score.
      *
-     * @return Score The score
+     * @return Score|null The score
      */
-    public function getScore()
+    public function getScore(): ?Score
     {
         return $this->score;
     }
@@ -148,10 +148,10 @@ final class Result
     /**
      * Returns whether or not the user finished a task successfully.
      *
-     * @return bool True if the user finished an exercise successfully, false
-     *              otherwise
+     * @return bool|null True if the user finished an exercise successfully, false
+     *                   otherwise
      */
-    public function getSuccess()
+    public function getSuccess(): ?bool
     {
         return $this->success;
     }
@@ -159,10 +159,10 @@ final class Result
     /**
      * Returns the completion status.
      *
-     * @return bool $completion True, if the Activity was completed, false
-     *                          otherwise
+     * @return bool|null $completion True, if the Activity was completed, false
+     *                               otherwise
      */
-    public function getCompletion()
+    public function getCompletion(): ?bool
     {
         return $this->completion;
     }
@@ -170,9 +170,9 @@ final class Result
     /**
      * Returns the response.
      *
-     * @return string The response
+     * @return string|null The response
      */
-    public function getResponse()
+    public function getResponse(): ?string
     {
         return $this->response;
     }
@@ -180,9 +180,9 @@ final class Result
     /**
      * Returns the period of time over which the Activity was performed.
      *
-     * @return string The duration
+     * @return string|null The duration
      */
-    public function getDuration()
+    public function getDuration(): ?string
     {
         return $this->duration;
     }
@@ -192,7 +192,7 @@ final class Result
      *
      * @return Extensions|null The extensions
      */
-    public function getExtensions()
+    public function getExtensions(): ?Extensions
     {
         return $this->extensions;
     }
@@ -206,7 +206,7 @@ final class Result
      *
      * @return bool True if the results are equal, false otherwise
      */
-    public function equals(Result $result)
+    public function equals(Result $result): bool
     {
         if (null !== $this->score xor null !== $result->score) {
             return false;

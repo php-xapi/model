@@ -35,7 +35,7 @@ final class ActivityProfileDocument extends Document
      *
      * @return ActivityProfile The activity profile
      */
-    public function getActivityProfile()
+    public function getActivityProfile(): ActivityProfile
     {
         return $this->profile;
     }

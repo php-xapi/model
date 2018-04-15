@@ -34,7 +34,7 @@ final class Uuid
      *
      * @return Uuid
      */
-    public static function fromString($uuid)
+    public static function fromString(string $uuid): self
     {
         if (class_exists('Rhumsaa\Uuid\Uuid')) {
             return new self(RhumsaaUuid::fromString($uuid));
@@ -54,7 +54,7 @@ final class Uuid
      *
      * @return self
      */
-    public static function uuid1($node = null, $clockSeq = null)
+    public static function uuid1($node = null, int $clockSeq = null): self
     {
         if (class_exists('Rhumsaa\Uuid\Uuid')) {
             return new self(RhumsaaUuid::uuid1($node, $clockSeq));
@@ -72,7 +72,7 @@ final class Uuid
      *
      * @return self
      */
-    public static function uuid3($ns, $name)
+    public static function uuid3(string $ns, string $name): self
     {
         if (class_exists('Rhumsaa\Uuid\Uuid')) {
             return new self(RhumsaaUuid::uuid3($ns, $name));
@@ -86,7 +86,7 @@ final class Uuid
      *
      * @return self
      */
-    public static function uuid4()
+    public static function uuid4(): self
     {
         if (class_exists('Rhumsaa\Uuid\Uuid')) {
             return new self(RhumsaaUuid::uuid4());
@@ -104,7 +104,7 @@ final class Uuid
      *
      * @return self
      */
-    public static function uuid5($ns, $name)
+    public static function uuid5(string $ns, string $name): self
     {
         if (class_exists('Rhumsaa\Uuid\Uuid')) {
             return new self(RhumsaaUuid::uuid5($ns, $name));
@@ -113,12 +113,12 @@ final class Uuid
         return new self(RamseyUuid::uuid5($ns, $name));
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->uuid->toString();
     }
 
-    public function equals(Uuid $uuid)
+    public function equals(Uuid $uuid): bool
     {
         return $this->uuid->equals($uuid->uuid);
     }

@@ -29,7 +29,7 @@ final class State
     private $actor;
 
     /**
-     * @var string An optional registration id
+     * @var string|null An optional registration id
      */
     private $registrationId;
 
@@ -38,7 +38,7 @@ final class State
      */
     private $stateId;
 
-    public function __construct(Activity $activity, Actor $actor, $stateId, $registrationId = null)
+    public function __construct(Activity $activity, Actor $actor, string $stateId, string $registrationId = null)
     {
         $this->activity = $activity;
         $this->actor = $actor;
@@ -51,7 +51,7 @@ final class State
      *
      * @return Activity The activity
      */
-    public function getActivity()
+    public function getActivity(): Activity
     {
         return $this->activity;
     }
@@ -61,7 +61,7 @@ final class State
      *
      * @return Actor The actor
      */
-    public function getActor()
+    public function getActor(): Actor
     {
         return $this->actor;
     }
@@ -69,9 +69,9 @@ final class State
     /**
      * Returns the registration id.
      *
-     * @return string The registration id
+     * @return string|null The registration id
      */
-    public function getRegistrationId()
+    public function getRegistrationId(): ?string
     {
         return $this->registrationId;
     }
@@ -81,7 +81,7 @@ final class State
      *
      * @return string The id
      */
-    public function getStateId()
+    public function getStateId(): string
     {
         return $this->stateId;
     }

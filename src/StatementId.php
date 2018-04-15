@@ -27,7 +27,7 @@ final class StatementId
     {
     }
 
-    public static function fromUuid(Uuid $uuid)
+    public static function fromUuid(Uuid $uuid): self
     {
         $id = new self();
         $id->uuid = $uuid;
@@ -44,17 +44,17 @@ final class StatementId
      *
      * @throws \InvalidArgumentException when the given id is not a well-formed UUID
      */
-    public static function fromString($id)
+    public static function fromString(string $id): self
     {
         return self::fromUuid(Uuid::fromString($id));
     }
 
-    public function getValue()
+    public function getValue(): string
     {
         return (string) $this->uuid;
     }
 
-    public function equals(StatementId $id)
+    public function equals(StatementId $id): bool
     {
         return $this->uuid->equals($id->uuid);
     }

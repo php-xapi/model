@@ -27,7 +27,7 @@ abstract class StatementObject
      *
      * @return bool True if the objects are equal, false otherwise
      */
-    public function equals(StatementObject $object)
+    public function equals(StatementObject $object): bool
     {
         return get_class($this) === get_class($object);
     }

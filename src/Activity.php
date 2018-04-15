@@ -24,13 +24,13 @@ final class Activity extends StatementObject
     private $id;
 
     /**
-     * @var Definition The Activity's {@link Definition}
+     * @var Definition|null The Activity's {@link Definition}
      */
     private $definition;
 
     /**
-     * @param IRI        $id
-     * @param Definition $definition
+     * @param IRI             $id
+     * @param Definition|null $definition
      */
     public function __construct(IRI $id, Definition $definition = null)
     {
@@ -43,7 +43,7 @@ final class Activity extends StatementObject
      *
      * @return IRI The identifier
      */
-    public function getId()
+    public function getId(): IRI
     {
         return $this->id;
     }
@@ -51,9 +51,9 @@ final class Activity extends StatementObject
     /**
      * Returns the Activity's {@link Definition}.
      *
-     * @return Definition The Definition
+     * @return Definition|null The Definition
      */
-    public function getDefinition()
+    public function getDefinition(): ?Definition
     {
         return $this->definition;
     }
@@ -61,7 +61,7 @@ final class Activity extends StatementObject
     /**
      * {@inheritdoc}
      */
-    public function equals(StatementObject $object)
+    public function equals(StatementObject $object): bool
     {
         if ('Xabbuh\XApi\Model\Activity' !== get_class($object)) {
             return false;

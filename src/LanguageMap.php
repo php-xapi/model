@@ -30,7 +30,7 @@ final class LanguageMap implements \ArrayAccess, \Countable
      *
      * @return self
      */
-    public static function create(array $map)
+    public static function create(array $map): self
     {
         $languageMap = new self();
         $languageMap->map = $map;
@@ -49,7 +49,7 @@ final class LanguageMap implements \ArrayAccess, \Countable
      *
      * @return self
      */
-    public function withEntry($languageTag, $value)
+    public function withEntry(string $languageTag, string $value): self
     {
         $languageMap = clone $this;
         $languageMap->map[$languageTag] = $value;
@@ -63,7 +63,7 @@ final class LanguageMap implements \ArrayAccess, \Countable
      *
      * @return string[]
      */
-    public function languageTags()
+    public function languageTags(): array
     {
         return array_keys($this->map);
     }
@@ -71,7 +71,7 @@ final class LanguageMap implements \ArrayAccess, \Countable
     /**
      * {@inheritdoc}
      */
-    public function offsetExists($languageTag)
+    public function offsetExists($languageTag): bool
     {
         return isset($this->map[$languageTag]);
     }
@@ -79,7 +79,7 @@ final class LanguageMap implements \ArrayAccess, \Countable
     /**
      * {@inheritdoc}
      */
-    public function offsetGet($languageTag)
+    public function offsetGet($languageTag): string
     {
         if (!isset($this->map[$languageTag])) {
             throw new \InvalidArgumentException(sprintf('The requested language tag "%s" does not exist in this language map.', $languageTag));
@@ -91,7 +91,7 @@ final class LanguageMap implements \ArrayAccess, \Countable
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($languageTag, $value)
+    public function offsetSet($languageTag, $value): void
     {
         throw new \LogicException('The values of a language map cannot be modified. Use withEntry() instead to retrieve a new language map with the added or modified value.');
     }
@@ -99,17 +99,17 @@ final class LanguageMap implements \ArrayAccess, \Countable
     /**
      * {@inheritdoc}
      */
-    public function offsetUnset($languageTag)
+    public function offsetUnset($languageTag): void
     {
         throw new \LogicException('Entries of a language map cannot be removed.');
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->map);
     }
 
-    public function equals(LanguageMap $languageMap)
+    public function equals(LanguageMap $languageMap): bool
     {
         if (count($this->map) !== count($languageMap->map)) {
             return false;

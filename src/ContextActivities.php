@@ -37,7 +37,7 @@ final class ContextActivities
         $this->otherActivities = $otherActivities;
     }
 
-    public function withAddedParentActivity(Activity $parentActivity)
+    public function withAddedParentActivity(Activity $parentActivity): self
     {
         $contextActivities = clone $this;
 
@@ -50,7 +50,7 @@ final class ContextActivities
         return $contextActivities;
     }
 
-    public function withoutParentActivities()
+    public function withoutParentActivities(): self
     {
         $contextActivities = clone $this;
         $contextActivities->parentActivities = null;
@@ -58,7 +58,7 @@ final class ContextActivities
         return $contextActivities;
     }
 
-    public function withAddedGroupingActivity(Activity $groupingActivity)
+    public function withAddedGroupingActivity(Activity $groupingActivity): self
     {
         $contextActivities = clone $this;
 
@@ -71,7 +71,7 @@ final class ContextActivities
         return $contextActivities;
     }
 
-    public function withoutGroupingActivities()
+    public function withoutGroupingActivities(): self
     {
         $contextActivities = clone $this;
         $contextActivities->groupingActivities = null;
@@ -79,7 +79,7 @@ final class ContextActivities
         return $contextActivities;
     }
 
-    public function withAddedCategoryActivity(Activity $categoryActivity)
+    public function withAddedCategoryActivity(Activity $categoryActivity): self
     {
         $contextActivities = clone $this;
 
@@ -92,7 +92,7 @@ final class ContextActivities
         return $contextActivities;
     }
 
-    public function withoutCategoryActivities()
+    public function withoutCategoryActivities(): self
     {
         $contextActivities = clone $this;
         $contextActivities->categoryActivities = null;
@@ -100,7 +100,7 @@ final class ContextActivities
         return $contextActivities;
     }
 
-    public function withAddedOtherActivity(Activity $otherActivity)
+    public function withAddedOtherActivity(Activity $otherActivity): self
     {
         $contextActivities = clone $this;
 
@@ -113,7 +113,7 @@ final class ContextActivities
         return $contextActivities;
     }
 
-    public function withoutOtherActivities()
+    public function withoutOtherActivities(): self
     {
         $contextActivities = clone $this;
         $contextActivities->otherActivities = null;
@@ -121,22 +121,22 @@ final class ContextActivities
         return $contextActivities;
     }
 
-    public function getParentActivities()
+    public function getParentActivities(): ?array
     {
         return $this->parentActivities;
     }
 
-    public function getGroupingActivities()
+    public function getGroupingActivities(): ?array
     {
         return $this->groupingActivities;
     }
 
-    public function getCategoryActivities()
+    public function getCategoryActivities(): ?array
     {
         return $this->categoryActivities;
     }
 
-    public function getOtherActivities()
+    public function getOtherActivities(): ?array
     {
         return $this->otherActivities;
     }
