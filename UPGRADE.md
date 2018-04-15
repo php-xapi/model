@@ -1,6 +1,11 @@
 UPGRADE
 =======
 
+Upgrading from 2.x to 3.0
+-------------------------
+
+* The `Object` class has been renamed to `StatementObject`.
+
 Upgrading from 1.x to 2.0
 -------------------------
 

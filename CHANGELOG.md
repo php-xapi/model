@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+3.0.0
+-----
+
+* The `Object` class was renamed to `StatementObject` for compatibility with PHP
+  7.2.
+
 2.1.0
 -----
 
