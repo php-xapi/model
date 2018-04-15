@@ -219,15 +219,15 @@ class Definition
             return false;
         }
 
-        if (!is_array($this->name) xor !is_array($definition->name)) {
+        if (null !== $this->name xor null !== $definition->name) {
             return false;
         }
 
-        if (!is_array($this->description) xor !is_array($definition->description)) {
+        if (null !== $this->description xor null !== $definition->description) {
             return false;
         }
 
-        if (is_array($this->name)) {
+        if (null !== $this->name) {
             foreach ($this->name as $language => $value) {
                 if (!isset($definition->name[$language])) {
                     return false;
@@ -239,7 +239,7 @@ class Definition
             }
         }
 
-        if (is_array($this->description)) {
+        if (null !== $this->description) {
             foreach ($this->description as $language => $value) {
                 if (!isset($definition->description[$language])) {
                     return false;
