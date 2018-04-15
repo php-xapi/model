@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+
+by djoudi at 2018-04-13T17:05:31Z
+
+@xabbuh i don't why tell me
+
+expected an instance of Xabbuh\XApi\Model\Object, but got [obj:Xabbuh\XApi\Model\Agent].
+
+expected an instance of Xabbuh\XApi\Model\Object, but got [obj:Xabbuh\XApi\Model\SubStatement].
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2018-04-15T09:19:18Z
+
+@djoudi see 23371f665cf4fe569ea6b90f7ca687972105435a :)
