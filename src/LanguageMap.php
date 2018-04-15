@@ -16,7 +16,7 @@ namespace Xabbuh\XApi\Model;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-final class LanguageMap implements \ArrayAccess
+final class LanguageMap implements \ArrayAccess, \Countable
 {
     private $map;
 
@@ -102,6 +102,11 @@ final class LanguageMap implements \ArrayAccess
     public function offsetUnset($languageTag)
     {
         throw new \LogicException('Entries of a language map cannot be removed.');
+    }
+
+    public function count()
+    {
+        return count($this->map);
     }
 
     public function equals(LanguageMap $languageMap)
