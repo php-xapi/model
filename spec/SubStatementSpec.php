@@ -165,16 +165,6 @@ class SubStatementSpec extends ObjectBehavior
         $subStatement->getResult()->shouldReturn($result);
     }
 
-    public function it_returns_a_new_instance_with_timestamp()
-    {
-        $timestamp = new \DateTime('2014-07-23T12:34:02-05:00');
-        $statement = $this->withTimestamp($timestamp);
-
-        $statement->shouldNotBe($this);
-        $statement->shouldBeAnInstanceOf('\Xabbuh\XApi\Model\SubStatement');
-        $statement->getTimestamp()->shouldReturn($timestamp);
-    }
-
     public function it_returns_a_new_instance_with_context()
     {
         $context = new Context();
