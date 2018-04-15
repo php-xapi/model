@@ -16,7 +16,7 @@ namespace Xabbuh\XApi\Model;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-abstract class Actor extends Object
+abstract class Actor extends StatementObject
 {
     /**
      * The actor's {@link InverseFunctionalIdentifier inverse functional identifier}
@@ -70,7 +70,7 @@ abstract class Actor extends Object
      *
      * @return bool True if the actors are equal, false otherwise
      */
-    public function equals(Object $actor)
+    public function equals(StatementObject $actor)
     {
         if (!parent::equals($actor)) {
             return false;

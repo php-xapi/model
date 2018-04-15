@@ -16,18 +16,18 @@ namespace Xabbuh\XApi\Model;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-abstract class Object
+abstract class StatementObject
 {
     /**
      * Checks if another object is equal.
      *
      * Two objects are equal if and only if all of their properties are equal.
      *
-     * @param Object $object The object to compare with
+     * @param StatementObject $object The object to compare with
      *
      * @return bool True if the objects are equal, false otherwise
      */
-    public function equals(Object $object)
+    public function equals(StatementObject $object)
     {
         return get_class($this) === get_class($object);
     }

@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the xAPI package.
  *
@@ -46,7 +45,7 @@ class SubStatementSpec extends ObjectBehavior
         $object = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $this->beConstructedWith($actor, $verb, $object);
 
-        $this->shouldHaveType('Xabbuh\XApi\Model\Object');
+        $this->shouldHaveType('Xabbuh\XApi\Model\StatementObject');
     }
 
     function its_object_can_be_an_agent()
@@ -56,7 +55,7 @@ class SubStatementSpec extends ObjectBehavior
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
         $this->beConstructedWith($actor, $verb, $object);
 
-        $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\Object');
+        $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementObject');
         $this->getObject()->shouldBe($object);
     }
 
