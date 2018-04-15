@@ -4,6 +4,7 @@ CHANGELOG
 3.0.0
 -----
 
+* Dropped support for PHP < 7.1 as well as HHVM.
 * The `Object` class was renamed to `StatementObject` for compatibility with PHP
   7.2.
 
