@@ -217,8 +217,10 @@ class Definition
                 return false;
             }
        }
+        if ((is_object($this->description)) && (is_object($definition->description))) {
         if (count($this->description) !== count($definition->description)) {
             return false;
+        }
         }
 
         if (!is_array($this->name) xor !is_array($definition->name)) {
