@@ -66,7 +66,7 @@ final class Context
      *
      * @return self
      */
-    public function withRegistration($registration)
+    public function withRegistration(string $registration): self
     {
         $context = clone $this;
         $context->registration = $registration;
@@ -74,7 +74,7 @@ final class Context
         return $context;
     }
 
-    public function withInstructor(Actor $instructor)
+    public function withInstructor(Actor $instructor): self
     {
         $context = clone $this;
         $context->instructor = $instructor;
@@ -82,7 +82,7 @@ final class Context
         return $context;
     }
 
-    public function withTeam(Group $team)
+    public function withTeam(Group $team): self
     {
         $context = clone $this;
         $context->team = $team;
@@ -90,7 +90,7 @@ final class Context
         return $context;
     }
 
-    public function withContextActivities(ContextActivities $contextActivities)
+    public function withContextActivities(ContextActivities $contextActivities): self
     {
         $context = clone $this;
         $context->contextActivities = $contextActivities;
@@ -103,7 +103,7 @@ final class Context
      *
      * @return self
      */
-    public function withRevision($revision)
+    public function withRevision(string $revision): self
     {
         $context = clone $this;
         $context->revision = $revision;
@@ -116,7 +116,7 @@ final class Context
      *
      * @return self
      */
-    public function withPlatform($platform)
+    public function withPlatform(string $platform): self
     {
         $context = clone $this;
         $context->platform = $platform;
@@ -129,7 +129,7 @@ final class Context
      *
      * @return self
      */
-    public function withLanguage($language)
+    public function withLanguage(string $language): self
     {
         $context = clone $this;
         $context->language = $language;
@@ -137,7 +137,7 @@ final class Context
         return $context;
     }
 
-    public function withStatement(StatementReference $statement)
+    public function withStatement(StatementReference $statement): self
     {
         $context = clone $this;
         $context->statement = $statement;
@@ -145,7 +145,7 @@ final class Context
         return $context;
     }
 
-    public function withExtensions(Extensions $extensions)
+    public function withExtensions(Extensions $extensions): self
     {
         $context = clone $this;
         $context->extensions = $extensions;
@@ -156,7 +156,7 @@ final class Context
     /**
      * @return string|null
      */
-    public function getRegistration()
+    public function getRegistration(): ?string
     {
         return $this->registration;
     }
@@ -164,7 +164,7 @@ final class Context
     /**
      * @return Actor|null
      */
-    public function getInstructor()
+    public function getInstructor(): ?Actor
     {
         return $this->instructor;
     }
@@ -172,7 +172,7 @@ final class Context
     /**
      * @return Group|null
      */
-    public function getTeam()
+    public function getTeam(): ?Group
     {
         return $this->team;
     }
@@ -180,7 +180,7 @@ final class Context
     /**
      * @return ContextActivities|null
      */
-    public function getContextActivities()
+    public function getContextActivities(): ?ContextActivities
     {
         return $this->contextActivities;
     }
@@ -188,7 +188,7 @@ final class Context
     /**
      * @return string|null
      */
-    public function getRevision()
+    public function getRevision(): ?string
     {
         return $this->revision;
     }
@@ -196,7 +196,7 @@ final class Context
     /**
      * @return string|null
      */
-    public function getPlatform()
+    public function getPlatform(): ?string
     {
         return $this->platform;
     }
@@ -204,7 +204,7 @@ final class Context
     /**
      * @return string|null
      */
-    public function getLanguage()
+    public function getLanguage(): ?string
     {
         return $this->language;
     }
@@ -212,7 +212,7 @@ final class Context
     /**
      * @return StatementReference|null
      */
-    public function getStatement()
+    public function getStatement(): ?StatementReference
     {
         return $this->statement;
     }
@@ -220,12 +220,12 @@ final class Context
     /**
      * @return Extensions|null
      */
-    public function getExtensions()
+    public function getExtensions(): ?Extensions
     {
         return $this->extensions;
     }
 
-    public function equals(Context $context)
+    public function equals(Context $context): bool
     {
         if ($this->registration !== $context->registration) {
             return false;

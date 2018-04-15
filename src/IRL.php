@@ -31,7 +31,7 @@ final class IRL
      *
      * @throws \InvalidArgumentException if the given value is no valid IRL
      */
-    public static function fromString($value)
+    public static function fromString(string $value): self
     {
         $iri = new self();
         $iri->value = $value;
@@ -39,12 +39,12 @@ final class IRL
         return $iri;
     }
 
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
 
-    public function equals(IRL $irl)
+    public function equals(IRL $irl): bool
     {
         return $this->value === $irl->value;
     }

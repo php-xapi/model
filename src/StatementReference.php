@@ -28,7 +28,7 @@ final class StatementReference extends StatementObject
     /**
      * Returns the id of the referenced Statement.
      */
-    public function getStatementId()
+    public function getStatementId(): StatementId
     {
         return $this->statementId;
     }
@@ -36,7 +36,7 @@ final class StatementReference extends StatementObject
     /**
      * {@inheritdoc}
      */
-    public function equals(StatementObject $object)
+    public function equals(StatementObject $object): bool
     {
         if ('Xabbuh\XApi\Model\StatementReference' !== get_class($object)) {
             return false;

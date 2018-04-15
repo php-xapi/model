@@ -35,7 +35,7 @@ abstract class Document implements \ArrayAccess
     /**
      * {@inheritDoc}
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->data[$offset]);
     }
@@ -51,7 +51,7 @@ abstract class Document implements \ArrayAccess
     /**
      * {@inheritDoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->data[$offset] = $value;
     }
@@ -59,7 +59,7 @@ abstract class Document implements \ArrayAccess
     /**
      * {@inheritDoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->data[$offset]);
     }
@@ -69,7 +69,7 @@ abstract class Document implements \ArrayAccess
      *
      * @return DocumentData The data
      */
-    public function getData()
+    public function getData(): DocumentData
     {
         return $this->data;
     }

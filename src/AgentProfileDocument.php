@@ -35,7 +35,7 @@ final class AgentProfileDocument extends Document
      *
      * @return AgentProfile The agent profile
      */
-    public function getAgentProfile()
+    public function getAgentProfile(): AgentProfile
     {
         return $this->profile;
     }

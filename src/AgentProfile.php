@@ -23,7 +23,7 @@ final class AgentProfile extends Profile
      */
     private $agent;
 
-    public function __construct($profileId, Agent $agent)
+    public function __construct(string $profileId, Agent $agent)
     {
         parent::__construct($profileId);
 
@@ -35,7 +35,7 @@ final class AgentProfile extends Profile
      *
      * @return Agent The agent
      */
-    public function getAgent()
+    public function getAgent(): Agent
     {
         return $this->agent;
     }

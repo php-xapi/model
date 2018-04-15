@@ -46,7 +46,7 @@ abstract class InteractionDefinition extends Definition
      *
      * @return static
      */
-    public function withCorrectResponsesPattern(array $correctResponsesPattern = null)
+    public function withCorrectResponsesPattern(array $correctResponsesPattern = null): self
     {
         $interaction = clone $this;
         $interaction->correctResponsesPattern = $correctResponsesPattern;
@@ -54,12 +54,12 @@ abstract class InteractionDefinition extends Definition
         return $interaction;
     }
 
-    public function getCorrectResponsesPattern()
+    public function getCorrectResponsesPattern(): ?array
     {
         return $this->correctResponsesPattern;
     }
 
-    public function equals(Definition $definition)
+    public function equals(Definition $definition): bool
     {
         if (!parent::equals($definition)) {
             return false;
