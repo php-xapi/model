@@ -13,17 +13,18 @@ namespace spec\Xabbuh\XApi\Model\Interaction;
 
 use spec\Xabbuh\XApi\Model\DefinitionSpec;
 use Xabbuh\XApi\Model\Definition;
+use Xabbuh\XApi\Model\Interaction\InteractionDefinition;
 
 abstract class InteractionDefinitionSpec extends DefinitionSpec
 {
     function it_is_a_definition()
     {
-        $this->shouldHaveType('Xabbuh\XApi\Model\Definition');
+        $this->shouldHaveType(Definition::class);
     }
 
     function it_is_an_interaction()
     {
-        $this->shouldHaveType('Xabbuh\XApi\Model\Interaction\InteractionDefinition');
+        $this->shouldHaveType(InteractionDefinition::class);
     }
 
     function it_is_not_equal_to_generic_definition()

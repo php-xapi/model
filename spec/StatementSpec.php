@@ -24,6 +24,7 @@ use Xabbuh\XApi\Model\LanguageMap;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\Statement;
 use Xabbuh\XApi\Model\StatementId;
+use Xabbuh\XApi\Model\StatementObject;
 use Xabbuh\XApi\Model\StatementReference;
 use Xabbuh\XApi\Model\Verb;
 
@@ -46,7 +47,7 @@ class StatementSpec extends ObjectBehavior
     function it_creates_reference_to_itself()
     {
         $reference = $this->getStatementReference();
-        $reference->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementReference');
+        $reference->shouldBeAnInstanceOf(StatementReference::class);
         $reference->getStatementId()->equals(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'))->shouldReturn(true);
     }
 
@@ -58,7 +59,7 @@ class StatementSpec extends ObjectBehavior
         $voidingStatement->getVerb()->isVoidVerb()->shouldReturn(true);
 
         $voidedStatement = $voidingStatement->getObject();
-        $voidedStatement->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementReference');
+        $voidedStatement->shouldBeAnInstanceOf(StatementReference::class);
         $voidedStatement->getStatementId()->equals(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'))->shouldReturn(true);
     }
 
@@ -68,7 +69,7 @@ class StatementSpec extends ObjectBehavior
         $authorizedStatement = $this->withAuthority($authority);
         $authorizedStatement->getAuthority()->shouldReturn($authority);
 
-        $authorizedStatement->shouldBeAnInstanceOf('Xabbuh\XApi\Model\Statement');
+        $authorizedStatement->shouldBeAnInstanceOf(Statement::class);
         $authorizedStatement->getActor()->equals($this->getActor())->shouldBe(true);
         $authorizedStatement->getVerb()->equals($this->getVerb())->shouldBe(true);
         $authorizedStatement->getObject()->equals($this->getObject())->shouldBe(true);
@@ -86,7 +87,7 @@ class StatementSpec extends ObjectBehavior
         $authorizedStatement = $this->withAuthority($authority);
         $authorizedStatement->getAuthority()->shouldReturn($authority);
 
-        $authorizedStatement->shouldBeAnInstanceOf('Xabbuh\XApi\Model\Statement');
+        $authorizedStatement->shouldBeAnInstanceOf(Statement::class);
         $authorizedStatement->getActor()->equals($this->getActor())->shouldBe(true);
         $authorizedStatement->getVerb()->equals($this->getVerb())->shouldBe(true);
         $authorizedStatement->getObject()->equals($this->getObject())->shouldBe(true);
@@ -100,7 +101,7 @@ class StatementSpec extends ObjectBehavior
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
         $this->beConstructedWith(StatementId::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'), $actor, $verb, $object);
 
-        $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementObject');
+        $this->getObject()->shouldBeAnInstanceOf(StatementObject::class);
         $this->getObject()->shouldBe($object);
     }
 

@@ -14,6 +14,7 @@ namespace spec\Xabbuh\XApi\Model;
 use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Agent;
 use Xabbuh\XApi\Model\AgentProfile;
+use Xabbuh\XApi\Model\Document;
 use Xabbuh\XApi\Model\DocumentData;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 use Xabbuh\XApi\Model\IRI;
@@ -30,7 +31,7 @@ class AgentProfileDocumentSpec extends ObjectBehavior
 
     function it_is_a_document()
     {
-        $this->shouldHaveType('Xabbuh\XApi\Model\Document');
+        $this->shouldHaveType(Document::class);
     }
 
     function its_data_can_be_read()

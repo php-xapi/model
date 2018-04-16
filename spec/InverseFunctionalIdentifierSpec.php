@@ -23,7 +23,7 @@ class InverseFunctionalIdentifierSpec extends ObjectBehavior
     {
         $iri = IRI::fromString('mailto:conformancetest@tincanapi.com');
         $this->beConstructedThrough(
-            array('Xabbuh\XApi\Model\InverseFunctionalIdentifier', 'withMbox'),
+            array(InverseFunctionalIdentifier::class, 'withMbox'),
             array($iri)
         );
 
@@ -36,7 +36,7 @@ class InverseFunctionalIdentifierSpec extends ObjectBehavior
     function it_can_be_built_with_an_mbox_sha1_sum()
     {
         $this->beConstructedThrough(
-            array('Xabbuh\XApi\Model\InverseFunctionalIdentifier', 'withMboxSha1Sum'),
+            array(InverseFunctionalIdentifier::class, 'withMboxSha1Sum'),
             array('db77b9104b531ecbb0b967f6942549d0ba80fda1')
         );
 
@@ -49,7 +49,7 @@ class InverseFunctionalIdentifierSpec extends ObjectBehavior
     function it_can_be_built_with_an_openid()
     {
         $this->beConstructedThrough(
-            array('Xabbuh\XApi\Model\InverseFunctionalIdentifier', 'withOpenId'),
+            array(InverseFunctionalIdentifier::class, 'withOpenId'),
             array('http://openid.tincanapi.com')
         );
 
@@ -63,7 +63,7 @@ class InverseFunctionalIdentifierSpec extends ObjectBehavior
     {
         $account = new Account('test', IRL::fromString('https://tincanapi.com'));
         $this->beConstructedThrough(
-            array('Xabbuh\XApi\Model\InverseFunctionalIdentifier', 'withAccount'),
+            array(InverseFunctionalIdentifier::class, 'withAccount'),
             array($account)
         );
 

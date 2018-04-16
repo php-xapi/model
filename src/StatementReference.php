@@ -38,7 +38,7 @@ final class StatementReference extends StatementObject
      */
     public function equals(StatementObject $object)
     {
-        if ('Xabbuh\XApi\Model\StatementReference' !== get_class($object)) {
+        if (!$object instanceof StatementReference) {
             return false;
         }
 

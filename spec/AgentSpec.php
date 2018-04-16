@@ -13,6 +13,7 @@ namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
 use Xabbuh\XApi\Model\Activity;
+use Xabbuh\XApi\Model\Actor;
 use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 use Xabbuh\XApi\Model\IRI;
@@ -23,7 +24,7 @@ class AgentSpec extends ObjectBehavior
     {
         $iri = InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'));
         $this->beConstructedWith($iri);
-        $this->shouldHaveType('Xabbuh\XApi\Model\Actor');
+        $this->shouldHaveType(Actor::class);
     }
 
     function its_properties_can_be_read()

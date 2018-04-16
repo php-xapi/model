@@ -17,7 +17,7 @@ class LanguageMapSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Xabbuh\XApi\Model\LanguageMap');
+        $this->shouldHaveType(LanguageMap::class);
     }
 
     function it_can_be_created_with_an_existing_array_map()
