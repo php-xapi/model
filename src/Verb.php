@@ -45,7 +45,7 @@ final class Verb
      *
      * @return IRI The reference
      */
-    public function getId()
+    public function getId(): IRI
     {
         return $this->id;
     }
@@ -55,7 +55,7 @@ final class Verb
      *
      * @return LanguageMap|null The language map
      */
-    public function getDisplay()
+    public function getDisplay(): ?LanguageMap
     {
         return $this->display;
     }
@@ -69,7 +69,7 @@ final class Verb
      *
      * @return bool True if the verbs are equal, false otherwise
      */
-    public function equals(Verb $verb)
+    public function equals(Verb $verb): bool
     {
         if (!$this->id->equals($verb->id)) {
             return false;
@@ -105,7 +105,7 @@ final class Verb
      *
      * @return bool True, if the Verb is a void Verb, false otherwise
      */
-    public function isVoidVerb()
+    public function isVoidVerb(): bool
     {
         return $this->id->equals(IRI::fromString('http://adlnet.gov/expapi/verbs/voided'));
     }
@@ -115,7 +115,7 @@ final class Verb
      *
      * @return Verb
      */
-    public static function createVoidVerb()
+    public static function createVoidVerb(): self
     {
         return new Verb(IRI::fromString('http://adlnet.gov/expapi/verbs/voided'));
     }

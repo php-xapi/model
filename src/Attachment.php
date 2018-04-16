@@ -38,7 +38,7 @@ final class Attachment
      * @param string|null      $content     The raw attachment content, please note that the content is not validated against
      *                                      the given SHA-2 hash
      */
-    public function __construct(IRI $usageType, $contentType, $length, $sha2, LanguageMap $display, LanguageMap $description = null, IRL $fileUrl = null, $content = null)
+    public function __construct(IRI $usageType, string $contentType, int $length, string $sha2, LanguageMap $display, LanguageMap $description = null, IRL $fileUrl = null, string $content = null)
     {
         if (null === $fileUrl && null === $content) {
             throw new \InvalidArgumentException('An attachment cannot be created without a file URL or raw content data.');
@@ -54,47 +54,47 @@ final class Attachment
         $this->content = $content;
     }
 
-    public function getUsageType()
+    public function getUsageType(): IRI
     {
         return $this->usageType;
     }
 
-    public function getContentType()
+    public function getContentType(): string
     {
         return $this->contentType;
     }
 
-    public function getLength()
+    public function getLength(): int
     {
         return $this->length;
     }
 
-    public function getSha2()
+    public function getSha2(): string
     {
         return $this->sha2;
     }
 
-    public function getDisplay()
+    public function getDisplay(): LanguageMap
     {
         return $this->display;
     }
 
-    public function getDescription()
+    public function getDescription(): ?LanguageMap
     {
         return $this->description;
     }
 
-    public function getFileUrl()
+    public function getFileUrl(): ?IRL
     {
         return $this->fileUrl;
     }
 
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    public function equals(Attachment $attachment)
+    public function equals(Attachment $attachment): bool
     {
         if (!$this->usageType->equals($attachment->usageType)) {
             return false;

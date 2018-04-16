@@ -47,7 +47,7 @@ final class SequencingInteractionDefinition extends InteractionDefinition
      *
      * @return static
      */
-    public function withChoices(array $choices = null)
+    public function withChoices(array $choices = null): self
     {
         $interaction = clone $this;
         $interaction->choices = $choices;
@@ -55,12 +55,12 @@ final class SequencingInteractionDefinition extends InteractionDefinition
         return $interaction;
     }
 
-    public function getChoices()
+    public function getChoices(): ?array
     {
         return $this->choices;
     }
 
-    public function equals(Definition $definition)
+    public function equals(Definition $definition): bool
     {
         if (!parent::equals($definition)) {
             return false;

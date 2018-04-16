@@ -30,7 +30,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function byActor(Actor $actor)
+    public function byActor(Actor $actor): self
     {
         $this->filter['agent'] = $actor;
 
@@ -44,7 +44,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function byVerb(Verb $verb)
+    public function byVerb(Verb $verb): self
     {
         $this->filter['verb'] = $verb->getId()->getValue();
 
@@ -58,7 +58,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function byActivity(Activity $activity)
+    public function byActivity(Activity $activity): self
     {
         $this->filter['activity'] = $activity->getId()->getValue();
 
@@ -72,7 +72,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function byRegistration($registration)
+    public function byRegistration(string $registration): self
     {
         $this->filter['registration'] = $registration;
 
@@ -84,7 +84,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function enableRelatedActivityFilter()
+    public function enableRelatedActivityFilter(): self
     {
         $this->filter['related_activities'] = 'true';
 
@@ -96,7 +96,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function disableRelatedActivityFilter()
+    public function disableRelatedActivityFilter(): self
     {
         $this->filter['related_activities'] = 'false';
 
@@ -108,7 +108,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function enableRelatedAgentFilter()
+    public function enableRelatedAgentFilter(): self
     {
         $this->filter['related_agents'] = 'true';
 
@@ -120,7 +120,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function disableRelatedAgentFilter()
+    public function disableRelatedAgentFilter(): self
     {
         $this->filter['related_agents'] = 'false';
 
@@ -134,7 +134,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function since(\DateTime $timestamp)
+    public function since(\DateTime $timestamp): self
     {
         $this->filter['since'] = $timestamp->format('c');
 
@@ -148,7 +148,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function until(\DateTime $timestamp)
+    public function until(\DateTime $timestamp): self
     {
         $this->filter['until'] = $timestamp->format('c');
 
@@ -166,7 +166,7 @@ class StatementsFilter
      * @throws \InvalidArgumentException if the limit is not a non-negative
      *                                   integer
      */
-    public function limit($limit)
+    public function limit(int $limit): self
     {
         if ($limit < 0) {
             throw new \InvalidArgumentException('Limit must be a non-negative integer');
@@ -182,7 +182,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function ascending()
+    public function ascending(): self
     {
         $this->filter['ascending'] = 'true';
 
@@ -194,7 +194,7 @@ class StatementsFilter
      *
      * @return self The statements filter
      */
-    public function descending()
+    public function descending(): self
     {
         $this->filter['ascending'] = 'false';
 
@@ -206,7 +206,7 @@ class StatementsFilter
      *
      * @return array The filter
      */
-    public function getFilter()
+    public function getFilter(): array
     {
         return $this->filter;
     }

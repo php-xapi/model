@@ -23,27 +23,23 @@ final class InteractionComponent
     private $id;
     private $description;
 
-    /**
-     * @param string           $id
-     * @param LanguageMap|null $description
-     */
-    public function __construct($id, LanguageMap $description = null)
+    public function __construct(string $id, LanguageMap $description = null)
     {
         $this->id = $id;
         $this->description = $description;
     }
 
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function getDescription()
+    public function getDescription(): LanguageMap
     {
         return $this->description;
     }
 
-    public function equals(InteractionComponent $interactionComponent)
+    public function equals(InteractionComponent $interactionComponent): bool
     {
         if ($this->id !== $interactionComponent->id) {
             return false;

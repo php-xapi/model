@@ -23,11 +23,7 @@ final class ActivityProfile extends Profile
      */
     private $activity;
 
-    /**
-     * @param string   $profileId
-     * @param Activity $activity
-     */
-    public function __construct($profileId, Activity $activity)
+    public function __construct(string $profileId, Activity $activity)
     {
         parent::__construct($profileId);
 
@@ -39,7 +35,7 @@ final class ActivityProfile extends Profile
      *
      * @return Activity The activity
      */
-    public function getActivity()
+    public function getActivity(): Activity
     {
         return $this->activity;
     }

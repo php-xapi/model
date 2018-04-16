@@ -44,7 +44,7 @@ final class StatementResult
      *
      * @return Statement[] The Statements
      */
-    public function getStatements()
+    public function getStatements(): array
     {
         return $this->statements;
     }
@@ -54,7 +54,7 @@ final class StatementResult
      *
      * @return IRL|null The URL path
      */
-    public function getMoreUrlPath()
+    public function getMoreUrlPath(): ?IRL
     {
         return $this->moreUrlPath;
     }

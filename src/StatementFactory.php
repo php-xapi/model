@@ -30,47 +30,47 @@ final class StatementFactory
     private $stored;
     private $authority;
 
-    public function withId(StatementId $id)
+    public function withId(StatementId $id): void
     {
         $this->id = $id;
     }
 
-    public function withActor(Actor $actor)
+    public function withActor(Actor $actor): void
     {
         $this->actor = $actor;
     }
 
-    public function withVerb(Verb $verb)
+    public function withVerb(Verb $verb): void
     {
         $this->verb = $verb;
     }
 
-    public function withObject(StatementObject $object)
+    public function withObject(StatementObject $object): void
     {
         $this->object = $object;
     }
 
-    public function withResult(Result $result = null)
+    public function withResult(Result $result = null): void
     {
         $this->result = $result;
     }
 
-    public function withContext(Context $context = null)
+    public function withContext(Context $context = null): void
     {
         $this->context = $context;
     }
 
-    public function withCreated(\DateTime $created = null)
+    public function withCreated(\DateTime $created = null): void
     {
         $this->created = $created;
     }
 
-    public function withStored(\DateTime $stored = null)
+    public function withStored(\DateTime $stored = null): void
     {
         $this->stored = $stored;
     }
 
-    public function withAuthority(Actor $authority = null)
+    public function withAuthority(Actor $authority = null): void
     {
         $this->authority = $authority;
     }
@@ -84,7 +84,7 @@ final class StatementFactory
      *
      * @throws InvalidStateException
      */
-    public function createStatement()
+    public function createStatement(): Statement
     {
         if (null === $this->actor) {
             throw new InvalidStateException('A statement actor is missing.');

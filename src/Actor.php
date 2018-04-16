@@ -31,11 +31,7 @@ abstract class Actor extends StatementObject
      */
     private $name;
 
-    /**
-     * @param InverseFunctionalIdentifier|null $iri
-     * @param string|null                      $name
-     */
-    public function __construct(InverseFunctionalIdentifier $iri = null, $name = null)
+    public function __construct(InverseFunctionalIdentifier $iri = null, string $name = null)
     {
         $this->iri = $iri;
         $this->name = $name;
@@ -46,7 +42,7 @@ abstract class Actor extends StatementObject
      *
      * @return InverseFunctionalIdentifier|null The inverse functional identifier
      */
-    public function getInverseFunctionalIdentifier()
+    public function getInverseFunctionalIdentifier(): ?InverseFunctionalIdentifier
     {
         return $this->iri;
     }
@@ -56,7 +52,7 @@ abstract class Actor extends StatementObject
      *
      * @return string|null The name
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -70,7 +66,7 @@ abstract class Actor extends StatementObject
      *
      * @return bool True if the actors are equal, false otherwise
      */
-    public function equals(StatementObject $actor)
+    public function equals(StatementObject $actor): bool
     {
         if (!parent::equals($actor)) {
             return false;

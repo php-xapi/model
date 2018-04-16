@@ -37,7 +37,7 @@ final class DocumentData implements \ArrayAccess
     /**
      * {@inheritDoc}
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->data[$offset]);
     }
@@ -57,7 +57,7 @@ final class DocumentData implements \ArrayAccess
     /**
      * {@inheritDoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         throw new UnsupportedOperationException('A document is immutable.');
     }
@@ -65,7 +65,7 @@ final class DocumentData implements \ArrayAccess
     /**
      * {@inheritDoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         throw new UnsupportedOperationException('A document is immutable.');
     }
@@ -75,7 +75,7 @@ final class DocumentData implements \ArrayAccess
      *
      * @return array The data
      */
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
