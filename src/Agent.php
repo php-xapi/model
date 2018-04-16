@@ -18,7 +18,7 @@ namespace Xabbuh\XApi\Model;
  */
 final class Agent extends Actor
 {
-    public function __construct(InverseFunctionalIdentifier $iri, $name = null)
+    public function __construct(InverseFunctionalIdentifier $iri, string $name = null)
     {
         parent::__construct($iri, $name);
     }
@@ -26,7 +26,7 @@ final class Agent extends Actor
     /**
      * {@inheritdoc}
      */
-    public function equals(StatementObject $actor)
+    public function equals(StatementObject $actor): bool
     {
         if (!parent::equals($actor)) {
             return false;

@@ -48,7 +48,7 @@ final class LikertInteractionDefinition extends InteractionDefinition
      *
      * @return static
      */
-    public function withScale(array $scale = null)
+    public function withScale(array $scale = null): self
     {
         $interaction = clone $this;
         $interaction->scale = $scale;
@@ -56,12 +56,12 @@ final class LikertInteractionDefinition extends InteractionDefinition
         return $interaction;
     }
 
-    public function getScale()
+    public function getScale(): ?array
     {
         return $this->scale;
     }
 
-    public function equals(Definition $definition)
+    public function equals(Definition $definition): bool
     {
         if (!parent::equals($definition)) {
             return false;

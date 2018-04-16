@@ -26,7 +26,7 @@ abstract class Profile
     /**
      * @param string $profileId The id
      */
-    public function __construct($profileId)
+    public function __construct(string $profileId)
     {
         $this->profileId = $profileId;
     }
@@ -36,7 +36,7 @@ abstract class Profile
      *
      * @return string The id
      */
-    public function getProfileId()
+    public function getProfileId(): string
     {
         return $this->profileId;
     }

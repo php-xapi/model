@@ -35,7 +35,7 @@ final class StateDocument extends Document
      *
      * @return State The state
      */
-    public function getState()
+    public function getState(): State
     {
         return $this->state;
     }

@@ -34,27 +34,27 @@ final class Statement
     private $actor;
 
     /**
-     * @var Object The {@link StatementObject}
+     * @var StatementObject The {@link StatementObject}
      */
     private $object;
 
     /**
-     * @var Result The {@link Activity} {@link Result}
+     * @var Result|null The {@link Activity} {@link Result}
      */
     private $result;
 
     /**
-     * @var Actor The Authority that asserted the Statement true
+     * @var Actor|null The Authority that asserted the Statement true
      */
     private $authority;
 
     /**
-     * @var \DateTime The timestamp of when the events described in this statement occurred
+     * @var \DateTime|null The timestamp of when the events described in this statement occurred
      */
     private $created;
 
     /**
-     * @var \DateTime The timestamp of when this statement was recorded by the LRS
+     * @var \DateTime|null The timestamp of when this statement was recorded by the LRS
      */
     private $stored;
 
@@ -80,7 +80,7 @@ final class Statement
      * @param Attachment[]|null $attachments
      * @param string|null       $version
      */
-    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, $version = null)
+    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, string $version = null)
     {
         $this->id = $id;
         $this->actor = $actor;
@@ -95,7 +95,7 @@ final class Statement
         $this->version = $version;
     }
 
-    public function withId(StatementId $id = null)
+    public function withId(StatementId $id = null): self
     {
         $statement = clone $this;
         $statement->id = $id;
@@ -103,7 +103,7 @@ final class Statement
         return $statement;
     }
 
-    public function withActor(Actor $actor)
+    public function withActor(Actor $actor): self
     {
         $statement = clone $this;
         $statement->actor = $actor;
@@ -111,7 +111,7 @@ final class Statement
         return $statement;
     }
 
-    public function withVerb(Verb $verb)
+    public function withVerb(Verb $verb): self
     {
         $statement = clone $this;
         $statement->verb = $verb;
@@ -119,7 +119,7 @@ final class Statement
         return $statement;
     }
 
-    public function withObject(StatementObject $object)
+    public function withObject(StatementObject $object): self
     {
         $statement = clone $this;
         $statement->object = $object;
@@ -127,7 +127,7 @@ final class Statement
         return $statement;
     }
 
-    public function withResult(Result $result = null)
+    public function withResult(Result $result = null): self
     {
         $statement = clone $this;
         $statement->result = $result;
@@ -143,7 +143,7 @@ final class Statement
      *
      * @return Statement The new Statement
      */
-    public function withAuthority(Actor $authority = null)
+    public function withAuthority(Actor $authority = null): self
     {
         $statement = clone $this;
         $statement->authority = $authority;
@@ -151,7 +151,7 @@ final class Statement
         return $statement;
     }
 
-    public function withCreated(\DateTime $created = null)
+    public function withCreated(\DateTime $created = null): self
     {
         $statement = clone $this;
         $statement->created = $created;
@@ -159,7 +159,7 @@ final class Statement
         return $statement;
     }
 
-    public function withStored(\DateTime $stored = null)
+    public function withStored(\DateTime $stored = null): self
     {
         $statement = clone $this;
         $statement->stored = $stored;
@@ -167,7 +167,7 @@ final class Statement
         return $statement;
     }
 
-    public function withContext(Context $context = null)
+    public function withContext(Context $context = null): self
     {
         $statement = clone $this;
         $statement->context = $context;
@@ -180,7 +180,7 @@ final class Statement
      *
      * @return self
      */
-    public function withAttachments(array $attachments = null)
+    public function withAttachments(array $attachments = null): self
     {
         $statement = clone $this;
         $statement->attachments = null !== $attachments ? array_values($attachments) : null;
@@ -193,7 +193,7 @@ final class Statement
      *
      * @return self
      */
-    public function withVersion($version)
+    public function withVersion(string $version): self
     {
         $statement = clone $this;
         $statement->version = $version;
@@ -206,7 +206,7 @@ final class Statement
      *
      * @return StatementId|null The identifier
      */
-    public function getId()
+    public function getId(): ?StatementId
     {
         return $this->id;
     }
@@ -216,7 +216,7 @@ final class Statement
      *
      * @return Verb The Verb
      */
-    public function getVerb()
+    public function getVerb(): Verb
     {
         return $this->verb;
     }
@@ -226,7 +226,7 @@ final class Statement
      *
      * @return Actor The Actor
      */
-    public function getActor()
+    public function getActor(): Actor
     {
         return $this->actor;
     }
@@ -234,9 +234,9 @@ final class Statement
     /**
      * Returns the Statement's {@link StatementObject}.
      *
-     * @return \Xabbuh\XApi\Model\Object The Object
+     * @return StatementObject The Object
      */
-    public function getObject()
+    public function getObject(): StatementObject
     {
         return $this->object;
     }
@@ -244,9 +244,9 @@ final class Statement
     /**
      * Returns the {@link Activity} {@link Result}.
      *
-     * @return Result The Result
+     * @return Result|null The Result
      */
-    public function getResult()
+    public function getResult(): ?Result
     {
         return $this->result;
     }
@@ -254,9 +254,9 @@ final class Statement
     /**
      * Returns the Authority that asserted the Statement true.
      *
-     * @return Actor The Authority
+     * @return Actor|null The Authority
      */
-    public function getAuthority()
+    public function getAuthority(): ?Actor
     {
         return $this->authority;
     }
@@ -265,9 +265,9 @@ final class Statement
      * Returns the timestamp of when the events described in this statement
      * occurred.
      *
-     * @return \DateTime The timestamp
+     * @return \DateTime|null The timestamp
      */
-    public function getCreated()
+    public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
@@ -275,9 +275,9 @@ final class Statement
     /**
      * Returns the timestamp of when this statement was recorded by the LRS.
      *
-     * @return \DateTime The timestamp
+     * @return \DateTime|null The timestamp
      */
-    public function getStored()
+    public function getStored(): ?\DateTime
     {
         return $this->stored;
     }
@@ -287,17 +287,17 @@ final class Statement
      *
      * @return Context|null
      */
-    public function getContext()
+    public function getContext(): ?Context
     {
         return $this->context;
     }
 
-    public function getAttachments()
+    public function getAttachments(): ?array
     {
         return $this->attachments;
     }
 
-    public function getVersion()
+    public function getVersion(): ?string
     {
         return $this->version;
     }

@@ -81,7 +81,7 @@ class Definition
         $this->extensions = $extensions;
     }
 
-    public function withName(LanguageMap $name = null)
+    public function withName(LanguageMap $name = null): self
     {
         $definition = clone $this;
         $definition->name = $name;
@@ -89,7 +89,7 @@ class Definition
         return $definition;
     }
 
-    public function withDescription(LanguageMap $description = null)
+    public function withDescription(LanguageMap $description = null): self
     {
         $definition = clone $this;
         $definition->description = $description;
@@ -102,7 +102,7 @@ class Definition
      *
      * @return static
      */
-    public function withType(IRI $type = null)
+    public function withType(IRI $type = null): self
     {
         $definition = clone $this;
         $definition->type = $type;
@@ -115,7 +115,7 @@ class Definition
      *
      * @return static
      */
-    public function withMoreInfo(IRL $moreInfo = null)
+    public function withMoreInfo(IRL $moreInfo = null): self
     {
         $definition = clone $this;
         $definition->moreInfo = $moreInfo;
@@ -123,7 +123,7 @@ class Definition
         return $definition;
     }
 
-    public function withExtensions(Extensions $extensions)
+    public function withExtensions(Extensions $extensions): self
     {
         $definition = clone $this;
         $definition->extensions = $extensions;
@@ -136,7 +136,7 @@ class Definition
      *
      * @return LanguageMap|null The name language map
      */
-    public function getName()
+    public function getName(): ?LanguageMap
     {
         return $this->name;
     }
@@ -146,7 +146,7 @@ class Definition
      *
      * @return LanguageMap|null The description language map
      */
-    public function getDescription()
+    public function getDescription(): ?LanguageMap
     {
         return $this->description;
     }
@@ -156,7 +156,7 @@ class Definition
      *
      * @return IRI|null The type
      */
-    public function getType()
+    public function getType(): ?IRI
     {
         return $this->type;
     }
@@ -166,12 +166,12 @@ class Definition
      *
      * @return IRL|null
      */
-    public function getMoreInfo()
+    public function getMoreInfo(): ?IRL
     {
         return $this->moreInfo;
     }
 
-    public function getExtensions()
+    public function getExtensions(): ?Extensions
     {
         return $this->extensions;
     }
@@ -185,7 +185,7 @@ class Definition
      *
      * @return bool True if the definitions are equal, false otherwise
      */
-    public function equals(Definition $definition)
+    public function equals(Definition $definition): bool
     {
         if (get_class($this) !== get_class($definition)) {
             return false;

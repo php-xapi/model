@@ -48,7 +48,7 @@ final class PerformanceInteractionDefinition extends InteractionDefinition
      *
      * @return static
      */
-    public function withSteps(array $steps = null)
+    public function withSteps(array $steps = null): self
     {
         $interaction = clone $this;
         $interaction->steps = $steps;
@@ -56,12 +56,12 @@ final class PerformanceInteractionDefinition extends InteractionDefinition
         return $interaction;
     }
 
-    public function getSteps()
+    public function getSteps(): ?array
     {
         return $this->steps;
     }
 
-    public function equals(Definition $definition)
+    public function equals(Definition $definition): bool
     {
         if (!parent::equals($definition)) {
             return false;

@@ -29,22 +29,22 @@ final class SubStatement extends StatementObject
     private $actor;
 
     /**
-     * @var Object The {@link StatementObject}
+     * @var StatementObject The {@link StatementObject}
      */
     private $object;
 
     /**
-     * @var Result The {@link Activity} {@link Result}
+     * @var Result|null The {@link Activity} {@link Result}
      */
     private $result;
 
     /**
-     * @var \DateTime The timestamp of when the events described in this statement occurred
+     * @var \DateTime|null The timestamp of when the events described in this statement occurred
      */
     private $created;
 
     /**
-     * @var Context The {@link Statement} {@link Context}
+     * @var Context|null The {@link Statement} {@link Context}
      */
     private $context;
 
@@ -65,7 +65,7 @@ final class SubStatement extends StatementObject
         $this->attachments = null !== $attachments ? array_values($attachments) : null;
     }
 
-    public function withActor(Actor $actor)
+    public function withActor(Actor $actor): self
     {
         $subStatement = clone $this;
         $subStatement->actor = $actor;
@@ -73,7 +73,7 @@ final class SubStatement extends StatementObject
         return $subStatement;
     }
 
-    public function withVerb(Verb $verb)
+    public function withVerb(Verb $verb): self
     {
         $subStatement = clone $this;
         $subStatement->verb = $verb;
@@ -81,7 +81,7 @@ final class SubStatement extends StatementObject
         return $subStatement;
     }
 
-    public function withObject(StatementObject $object)
+    public function withObject(StatementObject $object): self
     {
         $subStatement = clone $this;
         $subStatement->object = $object;
@@ -89,7 +89,7 @@ final class SubStatement extends StatementObject
         return $subStatement;
     }
 
-    public function withResult(Result $result)
+    public function withResult(Result $result): self
     {
         $subStatement = clone $this;
         $subStatement->result = $result;
@@ -97,7 +97,7 @@ final class SubStatement extends StatementObject
         return $subStatement;
     }
 
-    public function withCreated(\DateTime $created = null)
+    public function withCreated(\DateTime $created = null): self
     {
         $statement = clone $this;
         $statement->created = $created;
@@ -105,7 +105,7 @@ final class SubStatement extends StatementObject
         return $statement;
     }
 
-    public function withContext(Context $context)
+    public function withContext(Context $context): self
     {
         $subStatement = clone $this;
         $subStatement->context = $context;
@@ -118,7 +118,7 @@ final class SubStatement extends StatementObject
      *
      * @return self
      */
-    public function withAttachments(array $attachments = null)
+    public function withAttachments(array $attachments = null): self
     {
         $statement = clone $this;
         $statement->attachments = null !== $attachments ? array_values($attachments) : null;
@@ -131,7 +131,7 @@ final class SubStatement extends StatementObject
      *
      * @return Verb The Verb
      */
-    public function getVerb()
+    public function getVerb(): Verb
     {
         return $this->verb;
     }
@@ -141,7 +141,7 @@ final class SubStatement extends StatementObject
      *
      * @return Actor The Actor
      */
-    public function getActor()
+    public function getActor(): Actor
     {
         return $this->actor;
     }
@@ -151,7 +151,7 @@ final class SubStatement extends StatementObject
      *
      * @return \Xabbuh\XApi\Model\StatementObject The Object
      */
-    public function getObject()
+    public function getObject(): StatementObject
     {
         return $this->object;
     }
@@ -161,7 +161,7 @@ final class SubStatement extends StatementObject
      *
      * @return Result The Result
      */
-    public function getResult()
+    public function getResult(): Result
     {
         return $this->result;
     }
@@ -172,7 +172,7 @@ final class SubStatement extends StatementObject
      *
      * @return \DateTime The timestamp
      */
-    public function getCreated()
+    public function getCreated(): \DateTime
     {
         return $this->created;
     }
@@ -182,12 +182,12 @@ final class SubStatement extends StatementObject
      *
      * @return Context The Context
      */
-    public function getContext()
+    public function getContext(): Context
     {
         return $this->context;
     }
 
-    public function getAttachments()
+    public function getAttachments(): ?array
     {
         return $this->attachments;
     }
@@ -198,7 +198,7 @@ final class SubStatement extends StatementObject
      *
      * @return bool True if the Statement voids another Statement, false otherwise
      */
-    public function isVoidStatement()
+    public function isVoidStatement(): bool
     {
         return $this->verb->isVoidVerb();
     }
@@ -206,7 +206,7 @@ final class SubStatement extends StatementObject
     /**
      * {@inheritdoc}
      */
-    public function equals(StatementObject $statement)
+    public function equals(StatementObject $statement): bool
     {
         if ('Xabbuh\XApi\Model\SubStatement' !== get_class($statement)) {
             return false;

@@ -28,11 +28,7 @@ final class Account
      */
     private $homePage;
 
-    /**
-     * @param string $name
-     * @param IRL    $homePage
-     */
-    public function __construct($name, IRL $homePage)
+    public function __construct(string $name, IRL $homePage)
     {
         $this->name = $name;
         $this->homePage = $homePage;
@@ -43,7 +39,7 @@ final class Account
      *
      * @return string The user name
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -53,7 +49,7 @@ final class Account
      *
      * @return IRL The home page
      */
-    public function getHomePage()
+    public function getHomePage(): IRL
     {
         return $this->homePage;
     }
@@ -67,7 +63,7 @@ final class Account
      *
      * @return bool True if the accounts are equal, false otherwise
      */
-    public function equals(Account $account)
+    public function equals(Account $account): bool
     {
         if ($this->name !== $account->name) {
             return false;

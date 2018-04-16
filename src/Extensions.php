@@ -40,7 +40,7 @@ final class Extensions implements \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         if (!$offset instanceof IRI) {
             throw new \InvalidArgumentException(sprintf('Expected an IRI instance as key (got %s).', is_object($offset) ? get_class($offset) : gettype($offset)));
@@ -68,7 +68,7 @@ final class Extensions implements \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         throw new UnsupportedOperationException('xAPI statement extensions are immutable.');
     }
@@ -76,12 +76,12 @@ final class Extensions implements \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         throw new UnsupportedOperationException('xAPI statement extensions are immutable.');
     }
 
-    public function getExtensions()
+    public function getExtensions(): \SplObjectStorage
     {
         $extensions = new \SplObjectStorage();
 
@@ -92,7 +92,7 @@ final class Extensions implements \ArrayAccess
         return $extensions;
     }
 
-    public function equals(Extensions $otherExtensions)
+    public function equals(Extensions $otherExtensions): bool
     {
         if (count($this->extensions) !== count($otherExtensions->extensions)) {
             return false;

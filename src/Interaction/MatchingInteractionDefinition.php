@@ -51,7 +51,7 @@ final class MatchingInteractionDefinition extends InteractionDefinition
      *
      * @return static
      */
-    public function withSource(array $source = null)
+    public function withSource(array $source = null): self
     {
         $interaction = clone $this;
         $interaction->source = $source;
@@ -64,7 +64,7 @@ final class MatchingInteractionDefinition extends InteractionDefinition
      *
      * @return static
      */
-    public function withTarget(array $target = null)
+    public function withTarget(array $target = null): self
     {
         $interaction = clone $this;
         $interaction->target = $target;
@@ -72,17 +72,17 @@ final class MatchingInteractionDefinition extends InteractionDefinition
         return $interaction;
     }
 
-    public function getSource()
+    public function getSource(): ?array
     {
         return $this->source;
     }
 
-    public function getTarget()
+    public function getTarget(): ?array
     {
         return $this->target;
     }
 
-    public function equals(Definition $definition)
+    public function equals(Definition $definition): bool
     {
         if (!parent::equals($definition)) {
             return false;

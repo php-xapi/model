@@ -46,7 +46,7 @@ final class InverseFunctionalIdentifier
     {
     }
 
-    public static function withMbox(IRI $mbox)
+    public static function withMbox(IRI $mbox): self
     {
         $iri = new InverseFunctionalIdentifier();
         $iri->mbox = $mbox;
@@ -54,7 +54,7 @@ final class InverseFunctionalIdentifier
         return $iri;
     }
 
-    public static function withMboxSha1Sum($mboxSha1Sum)
+    public static function withMboxSha1Sum(string $mboxSha1Sum): self
     {
         $iri = new InverseFunctionalIdentifier();
         $iri->mboxSha1Sum = $mboxSha1Sum;
@@ -62,7 +62,7 @@ final class InverseFunctionalIdentifier
         return $iri;
     }
 
-    public static function withOpenId($openId)
+    public static function withOpenId(string $openId): self
     {
         $iri = new InverseFunctionalIdentifier();
         $iri->openId = $openId;
@@ -70,7 +70,7 @@ final class InverseFunctionalIdentifier
         return $iri;
     }
 
-    public static function withAccount(Account $account)
+    public static function withAccount(Account $account): self
     {
         $iri = new InverseFunctionalIdentifier();
         $iri->account = $account;
@@ -81,9 +81,9 @@ final class InverseFunctionalIdentifier
     /**
      * Returns the mailto IRI.
      *
-     * @return IRI The mailto IRI
+     * @return IRI|null The mailto IRI
      */
-    public function getMbox()
+    public function getMbox(): ?IRI
     {
         return $this->mbox;
     }
@@ -91,9 +91,9 @@ final class InverseFunctionalIdentifier
     /**
      * Returns the SHA1 hash of a mailto IRI.
      *
-     * @return string The SHA1 hash of a mailto IRI
+     * @return string|null The SHA1 hash of a mailto IRI
      */
-    public function getMboxSha1Sum()
+    public function getMboxSha1Sum(): ?string
     {
         return $this->mboxSha1Sum;
     }
@@ -101,9 +101,9 @@ final class InverseFunctionalIdentifier
     /**
      * Returns the openID.
      *
-     * @return string The openID
+     * @return string|null The openID
      */
-    public function getOpenId()
+    public function getOpenId(): ?string
     {
         return $this->openId;
     }
@@ -111,9 +111,9 @@ final class InverseFunctionalIdentifier
     /**
      * Returns the user account of an existing system.
      *
-     * @return Account The user account of an existing system
+     * @return Account|null The user account of an existing system
      */
-    public function getAccount()
+    public function getAccount(): ?Account
     {
         return $this->account;
     }
@@ -128,7 +128,7 @@ final class InverseFunctionalIdentifier
      *
      * @return bool True if the IRIs are equal, false otherwise
      */
-    public function equals(InverseFunctionalIdentifier $iri)
+    public function equals(InverseFunctionalIdentifier $iri): bool
     {
         if (null !== $this->mbox && null !== $iri->mbox && !$this->mbox->equals($iri->mbox)) {
             return false;

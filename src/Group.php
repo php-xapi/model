@@ -24,11 +24,11 @@ final class Group extends Actor
     private $members = array();
 
     /**
-     * @param InverseFunctionalIdentifier $iri
-     * @param string                      $name
-     * @param Agent[]                     $members
+     * @param InverseFunctionalIdentifier|null $iri
+     * @param string|null                      $name
+     * @param Agent[]                          $members
      */
-    public function __construct(InverseFunctionalIdentifier $iri = null, $name = null, array $members = array())
+    public function __construct(InverseFunctionalIdentifier $iri = null, string $name = null, array $members = array())
     {
         parent::__construct($iri, $name);
 
@@ -40,7 +40,7 @@ final class Group extends Actor
      *
      * @return Agent[] The members
      */
-    public function getMembers()
+    public function getMembers(): array
     {
         return $this->members;
     }
@@ -48,7 +48,7 @@ final class Group extends Actor
     /**
      * {@inheritdoc}
      */
-    public function equals(StatementObject $actor)
+    public function equals(StatementObject $actor): bool
     {
         if (!parent::equals($actor)) {
             return false;
