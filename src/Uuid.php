@@ -36,7 +36,7 @@ final class Uuid
      */
     public static function fromString(string $uuid): self
     {
-        if (class_exists('Rhumsaa\Uuid\Uuid')) {
+        if (class_exists(RhumsaaUuid::class)) {
             return new self(RhumsaaUuid::fromString($uuid));
         }
 
@@ -56,7 +56,7 @@ final class Uuid
      */
     public static function uuid1($node = null, int $clockSeq = null): self
     {
-        if (class_exists('Rhumsaa\Uuid\Uuid')) {
+        if (class_exists(RhumsaaUuid::class)) {
             return new self(RhumsaaUuid::uuid1($node, $clockSeq));
         }
 
@@ -74,7 +74,7 @@ final class Uuid
      */
     public static function uuid3(string $ns, string $name): self
     {
-        if (class_exists('Rhumsaa\Uuid\Uuid')) {
+        if (class_exists(RhumsaaUuid::class)) {
             return new self(RhumsaaUuid::uuid3($ns, $name));
         }
 
@@ -88,7 +88,7 @@ final class Uuid
      */
     public static function uuid4(): self
     {
-        if (class_exists('Rhumsaa\Uuid\Uuid')) {
+        if (class_exists(RhumsaaUuid::class)) {
             return new self(RhumsaaUuid::uuid4());
         }
 
@@ -106,7 +106,7 @@ final class Uuid
      */
     public static function uuid5(string $ns, string $name): self
     {
-        if (class_exists('Rhumsaa\Uuid\Uuid')) {
+        if (class_exists(RhumsaaUuid::class)) {
             return new self(RhumsaaUuid::uuid5($ns, $name));
         }
 

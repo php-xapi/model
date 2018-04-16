@@ -24,6 +24,7 @@ use Xabbuh\XApi\Model\IRL;
 use Xabbuh\XApi\Model\LanguageMap;
 use Xabbuh\XApi\Model\Result;
 use Xabbuh\XApi\Model\StatementId;
+use Xabbuh\XApi\Model\StatementObject;
 use Xabbuh\XApi\Model\StatementReference;
 use Xabbuh\XApi\Model\SubStatement;
 use Xabbuh\XApi\Model\Verb;
@@ -45,7 +46,7 @@ class SubStatementSpec extends ObjectBehavior
         $object = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $this->beConstructedWith($actor, $verb, $object);
 
-        $this->shouldHaveType('Xabbuh\XApi\Model\StatementObject');
+        $this->shouldHaveType(StatementObject::class);
     }
 
     function its_object_can_be_an_agent()
@@ -55,7 +56,7 @@ class SubStatementSpec extends ObjectBehavior
         $object = new Agent(InverseFunctionalIdentifier::withOpenId('http://openid.tincanapi.com'));
         $this->beConstructedWith($actor, $verb, $object);
 
-        $this->getObject()->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementObject');
+        $this->getObject()->shouldBeAnInstanceOf(StatementObject::class);
         $this->getObject()->shouldBe($object);
     }
 

@@ -208,7 +208,7 @@ final class SubStatement extends StatementObject
      */
     public function equals(StatementObject $statement): bool
     {
-        if ('Xabbuh\XApi\Model\SubStatement' !== get_class($statement)) {
+        if (!$statement instanceof SubStatement) {
             return false;
         }
 

@@ -20,13 +20,13 @@ class StatementIdSpec extends ObjectBehavior
     function it_can_be_created_from_a_uuid()
     {
         $this->beConstructedThrough('fromUuid', array(Uuid::fromString('39e24cc4-69af-4b01-a824-1fdc6ea8a3af')));
-        $this->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementId');
+        $this->shouldBeAnInstanceOf(StatementId::class);
     }
 
     function it_can_be_created_from_a_string()
     {
         $this->beConstructedThrough('fromString', array('39e24cc4-69af-4b01-a824-1fdc6ea8a3af'));
-        $this->shouldBeAnInstanceOf('Xabbuh\XApi\Model\StatementId');
+        $this->shouldBeAnInstanceOf(StatementId::class);
     }
 
     function it_should_reject_malformed_uuids()

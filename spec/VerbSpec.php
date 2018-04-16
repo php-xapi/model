@@ -45,9 +45,9 @@ class VerbSpec extends ObjectBehavior
 
     function it_creates_voiding_verb_through_factory_method()
     {
-        $this->beConstructedThrough(array('Xabbuh\XApi\Model\Verb', 'createVoidVerb'));
+        $this->beConstructedThrough(array(Verb::class, 'createVoidVerb'));
 
-        $this->shouldHaveType('Xabbuh\XApi\Model\Verb');
+        $this->shouldHaveType(Verb::class);
         $this->isVoidVerb()->shouldReturn(true);
     }
 

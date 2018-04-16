@@ -63,7 +63,7 @@ final class Activity extends StatementObject
      */
     public function equals(StatementObject $object): bool
     {
-        if ('Xabbuh\XApi\Model\Activity' !== get_class($object)) {
+        if (!$object instanceof Activity) {
             return false;
         }
 

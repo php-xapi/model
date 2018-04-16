@@ -12,7 +12,9 @@
 namespace spec\Xabbuh\XApi\Model;
 
 use PhpSpec\ObjectBehavior;
+use Xabbuh\XApi\Model\Actor;
 use Xabbuh\XApi\Model\Agent;
+use Xabbuh\XApi\Model\Group;
 use Xabbuh\XApi\Model\InverseFunctionalIdentifier;
 use Xabbuh\XApi\Model\IRI;
 
@@ -21,13 +23,13 @@ class GroupSpec extends ObjectBehavior
     function it_can_be_initialized_without_an_inverse_functional_identifier()
     {
         $this->beConstructedWith(null, 'anonymous group');
-        $this->shouldBeAnInstanceOf('Xabbuh\XApi\Model\Group');
+        $this->shouldBeAnInstanceOf(Group::class);
     }
 
     function it_is_an_actor()
     {
         $this->beConstructedWith(null, 'test');
-        $this->shouldHaveType('Xabbuh\XApi\Model\Actor');
+        $this->shouldHaveType(Actor::class);
     }
 
     function its_properties_can_be_read()
