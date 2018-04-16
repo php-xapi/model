@@ -18,24 +18,9 @@ namespace Xabbuh\XApi\Model;
  */
 final class InverseFunctionalIdentifier
 {
-    /**
-     * @var IRI A mailto IRI
-     */
     private $mbox;
-
-    /**
-     * @var string The SHA1 hash of a mailto IRI
-     */
     private $mboxSha1Sum;
-
-    /**
-     * @var string An openID uniquely identifying an Agent
-     */
     private $openId;
-
-    /**
-     * @var Account A user account on an existing system
-     */
     private $account;
 
     /**
@@ -80,8 +65,6 @@ final class InverseFunctionalIdentifier
 
     /**
      * Returns the mailto IRI.
-     *
-     * @return IRI|null The mailto IRI
      */
     public function getMbox(): ?IRI
     {
@@ -90,8 +73,6 @@ final class InverseFunctionalIdentifier
 
     /**
      * Returns the SHA1 hash of a mailto IRI.
-     *
-     * @return string|null The SHA1 hash of a mailto IRI
      */
     public function getMboxSha1Sum(): ?string
     {
@@ -100,8 +81,6 @@ final class InverseFunctionalIdentifier
 
     /**
      * Returns the openID.
-     *
-     * @return string|null The openID
      */
     public function getOpenId(): ?string
     {
@@ -110,8 +89,6 @@ final class InverseFunctionalIdentifier
 
     /**
      * Returns the user account of an existing system.
-     *
-     * @return Account|null The user account of an existing system
      */
     public function getAccount(): ?Account
     {
@@ -123,10 +100,6 @@ final class InverseFunctionalIdentifier
      *
      * Two inverse functional identifiers are equal if and only if all of their
      * properties are equal.
-     *
-     * @param InverseFunctionalIdentifier $iri The iri to compare with
-     *
-     * @return bool True if the IRIs are equal, false otherwise
      */
     public function equals(InverseFunctionalIdentifier $iri): bool
     {
@@ -157,7 +130,7 @@ final class InverseFunctionalIdentifier
         return true;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         if (null !== $this->mbox) {
             return $this->mbox->getValue();

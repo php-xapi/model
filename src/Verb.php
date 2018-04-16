@@ -18,22 +18,9 @@ namespace Xabbuh\XApi\Model;
  */
 final class Verb
 {
-    /**
-     * Reference to the verb definition
-     * @var IRI
-     */
     private $id;
-
-    /**
-     * Human readable representation of the verb in one or more languages
-     * @var LanguageMap|null
-     */
     private $display;
 
-    /**
-     * @param IRI              $id
-     * @param LanguageMap|null $display
-     */
     public function __construct(IRI $id, LanguageMap $display = null)
     {
         $this->id = $id;
@@ -42,8 +29,6 @@ final class Verb
 
     /**
      * Returns the verb definition reference.
-     *
-     * @return IRI The reference
      */
     public function getId(): IRI
     {
@@ -52,8 +37,6 @@ final class Verb
 
     /**
      * Returns the human readable representation of the Verb in one or more languages.
-     *
-     * @return LanguageMap|null The language map
      */
     public function getDisplay(): ?LanguageMap
     {
@@ -64,10 +47,6 @@ final class Verb
      * Checks if another verb is equal.
      *
      * Two verbs are equal if and only if all of their properties are equal.
-     *
-     * @param Verb $verb The verb to compare with
-     *
-     * @return bool True if the verbs are equal, false otherwise
      */
     public function equals(Verb $verb): bool
     {
@@ -102,8 +81,6 @@ final class Verb
 
     /**
      * Tests if the Verb can be used to void a Statement.
-     *
-     * @return bool True, if the Verb is a void Verb, false otherwise
      */
     public function isVoidVerb(): bool
     {
@@ -112,8 +89,6 @@ final class Verb
 
     /**
      * Creates a Verb that can be used to void a {@link Statement}.
-     *
-     * @return Verb
      */
     public static function createVoidVerb(): self
     {

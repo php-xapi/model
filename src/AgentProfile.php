@@ -18,9 +18,6 @@ namespace Xabbuh\XApi\Model;
  */
 final class AgentProfile extends Profile
 {
-    /**
-     * @var Agent The agent
-     */
     private $agent;
 
     public function __construct(string $profileId, Agent $agent)
@@ -30,11 +27,6 @@ final class AgentProfile extends Profile
         $this->agent = $agent;
     }
 
-    /**
-     * Returns the agent.
-     *
-     * @return Agent The agent
-     */
     public function getAgent(): Agent
     {
         return $this->agent;

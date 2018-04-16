@@ -19,44 +19,13 @@ namespace Xabbuh\XApi\Model;
  */
 final class Result
 {
-    /**
-     * @var Score|null The score
-     */
     private $score;
-
-    /**
-     * @var bool|null Indicates whether or not the attempt was successful
-     */
     private $success;
-
-    /**
-     * @var bool|null Indicates whether or not the Activity was completed
-     */
     private $completion;
-
-    /**
-     * @var string|null A response for the given Activity
-     */
     private $response;
-
-    /**
-     * @var string|null Period of time over which the Activity was performed
-     */
     private $duration;
-
-    /**
-     * @var Extensions|null Extensions associated with this result
-     */
     private $extensions;
 
-    /**
-     * @param Score|null      $score
-     * @param bool|null       $success
-     * @param bool|null       $completion
-     * @param string|null     $response
-     * @param string|null     $duration
-     * @param Extensions|null $extensions
-     */
     public function __construct(Score $score = null, bool $success = null, bool $completion = null, string $response = null, string $duration = null, Extensions $extensions = null)
     {
         $this->score = $score;
@@ -75,12 +44,7 @@ final class Result
         return $result;
     }
 
-    /**
-     * @param bool|null $success
-     *
-     * @return Result
-     */
-    public function withSuccess(bool $success): self
+    public function withSuccess(bool $success = null): self
     {
         $result = clone $this;
         $result->success = $success;
@@ -88,12 +52,7 @@ final class Result
         return $result;
     }
 
-    /**
-     * @param bool|null $completion
-     *
-     * @return Result
-     */
-    public function withCompletion(bool $completion): self
+    public function withCompletion(bool $completion = null): self
     {
         $result = clone $this;
         $result->completion = $completion;
@@ -101,12 +60,7 @@ final class Result
         return $result;
     }
 
-    /**
-     * @param string|null $response
-     *
-     * @return Result
-     */
-    public function withResponse(string $response): self
+    public function withResponse(string $response = null): self
     {
         $result = clone $this;
         $result->response = $response;
@@ -114,12 +68,7 @@ final class Result
         return $result;
     }
 
-    /**
-     * @param string|null $duration
-     *
-     * @return Result
-     */
-    public function withDuration(string $duration): self
+    public function withDuration(string $duration = null): self
     {
         $result = clone $this;
         $result->duration = $duration;
@@ -137,8 +86,6 @@ final class Result
 
     /**
      * Returns the user's score.
-     *
-     * @return Score|null The score
      */
     public function getScore(): ?Score
     {
@@ -147,9 +94,6 @@ final class Result
 
     /**
      * Returns whether or not the user finished a task successfully.
-     *
-     * @return bool|null True if the user finished an exercise successfully, false
-     *                   otherwise
      */
     public function getSuccess(): ?bool
     {
@@ -158,9 +102,6 @@ final class Result
 
     /**
      * Returns the completion status.
-     *
-     * @return bool|null $completion True, if the Activity was completed, false
-     *                               otherwise
      */
     public function getCompletion(): ?bool
     {
@@ -169,8 +110,6 @@ final class Result
 
     /**
      * Returns the response.
-     *
-     * @return string|null The response
      */
     public function getResponse(): ?string
     {
@@ -179,8 +118,6 @@ final class Result
 
     /**
      * Returns the period of time over which the Activity was performed.
-     *
-     * @return string|null The duration
      */
     public function getDuration(): ?string
     {
@@ -189,8 +126,6 @@ final class Result
 
     /**
      * Returns the extensions associated with the result.
-     *
-     * @return Extensions|null The extensions
      */
     public function getExtensions(): ?Extensions
     {
@@ -201,10 +136,6 @@ final class Result
      * Checks if another result is equal.
      *
      * Two results are equal if and only if all of their properties are equal.
-     *
-     * @param Result $result The result to compare with
-     *
-     * @return bool True if the results are equal, false otherwise
      */
     public function equals(Result $result): bool
     {

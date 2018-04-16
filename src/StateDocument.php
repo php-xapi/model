@@ -18,9 +18,6 @@ namespace Xabbuh\XApi\Model;
  */
 final class StateDocument extends Document
 {
-    /**
-     * @var State The state the document is associated to
-     */
     private $state;
 
     public function __construct(State $state, DocumentData $data)
@@ -32,8 +29,6 @@ final class StateDocument extends Document
 
     /**
      * Returns the document's {@link State}.
-     *
-     * @return State The state
      */
     public function getState(): State
     {

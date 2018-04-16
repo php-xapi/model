@@ -25,10 +25,6 @@ final class LanguageMap implements \ArrayAccess, \Countable
      *
      * Keys are RFC 5646 language tags and each value is a string in the
      * language specified by the key.
-     *
-     * @param array $map
-     *
-     * @return self
      */
     public static function create(array $map): self
     {
@@ -43,11 +39,6 @@ final class LanguageMap implements \ArrayAccess, \Countable
      *
      * An existing entry will be overridden if the given language tag is already
      * present in this language map.
-     *
-     * @param string $languageTag
-     * @param string $value
-     *
-     * @return self
      */
     public function withEntry(string $languageTag, string $value): self
     {

@@ -121,21 +121,33 @@ final class ContextActivities
         return $contextActivities;
     }
 
+    /**
+     * @return Activity[]|null
+     */
     public function getParentActivities(): ?array
     {
         return $this->parentActivities;
     }
 
+    /**
+     * @return Activity[]|null
+     */
     public function getGroupingActivities(): ?array
     {
         return $this->groupingActivities;
     }
 
+    /**
+     * @return Activity[]|null
+     */
     public function getCategoryActivities(): ?array
     {
         return $this->categoryActivities;
     }
 
+    /**
+     * @return Activity[]|null
+     */
     public function getOtherActivities(): ?array
     {
         return $this->otherActivities;

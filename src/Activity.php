@@ -18,20 +18,9 @@ namespace Xabbuh\XApi\Model;
  */
 final class Activity extends StatementObject
 {
-    /**
-     * @var IRI The Activity's unique identifier
-     */
     private $id;
-
-    /**
-     * @var Definition|null The Activity's {@link Definition}
-     */
     private $definition;
 
-    /**
-     * @param IRI             $id
-     * @param Definition|null $definition
-     */
     public function __construct(IRI $id, Definition $definition = null)
     {
         $this->id = $id;
@@ -40,8 +29,6 @@ final class Activity extends StatementObject
 
     /**
      * Returns the Activity's unique identifier.
-     *
-     * @return IRI The identifier
      */
     public function getId(): IRI
     {
@@ -50,8 +37,6 @@ final class Activity extends StatementObject
 
     /**
      * Returns the Activity's {@link Definition}.
-     *
-     * @return Definition|null The Definition
      */
     public function getDefinition(): ?Definition
     {
@@ -66,8 +51,6 @@ final class Activity extends StatementObject
         if (!$object instanceof Activity) {
             return false;
         }
-
-        /** @var Activity $object */
 
         if (!$this->id->equals($object->id)) {
             return false;

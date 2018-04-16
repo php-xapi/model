@@ -34,7 +34,7 @@ final class InteractionComponent
         return $this->id;
     }
 
-    public function getDescription(): LanguageMap
+    public function getDescription(): ?LanguageMap
     {
         return $this->description;
     }

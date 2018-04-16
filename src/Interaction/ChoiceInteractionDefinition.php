@@ -25,17 +25,9 @@ use Xabbuh\XApi\Model\LanguageMap;
  */
 final class ChoiceInteractionDefinition extends InteractionDefinition
 {
-    /**
-     * @var InteractionComponent[]|null
-     */
     private $choices;
 
     /**
-     * @param LanguageMap|null            $name
-     * @param LanguageMap|null            $description
-     * @param IRI|null                    $type
-     * @param IRL|null                    $moreInfo
-     * @param Extensions|null             $extensions
      * @param string[]|null               $correctResponsesPattern
      * @param InteractionComponent[]|null $choices
      */
@@ -48,8 +40,6 @@ final class ChoiceInteractionDefinition extends InteractionDefinition
 
     /**
      * @param InteractionComponent[]|null $choices
-     *
-     * @return static
      */
     public function withChoices(array $choices = null): self
     {
@@ -59,6 +49,9 @@ final class ChoiceInteractionDefinition extends InteractionDefinition
         return $interaction;
     }
 
+    /**
+     * @return InteractionComponent[]|null
+     */
     public function getChoices(): ?array
     {
         return $this->choices;

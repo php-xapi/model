@@ -18,24 +18,13 @@ namespace Xabbuh\XApi\Model;
  */
 abstract class Profile
 {
-    /**
-     * @var string The profile id
-     */
     private $profileId;
 
-    /**
-     * @param string $profileId The id
-     */
     public function __construct(string $profileId)
     {
         $this->profileId = $profileId;
     }
 
-    /**
-     * Returns the profile id.
-     *
-     * @return string The id
-     */
     public function getProfileId(): string
     {
         return $this->profileId;

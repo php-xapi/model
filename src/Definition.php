@@ -34,44 +34,12 @@ namespace Xabbuh\XApi\Model;
  */
 class Definition
 {
-    /**
-     * The human readable activity name
-     * @var LanguageMap|null
-     */
     private $name;
-
-    /**
-     * The human readable activity description
-     * @var LanguageMap|null
-     */
     private $description;
-
-    /**
-     * @var IRI|null The type of the {@link Activity}
-     */
     private $type;
-
-    /**
-     * An IRL where human-readable information describing the {@link Activity} can be found.
-     *
-     * @var IRL|null
-     */
     private $moreInfo;
-
-    /**
-     * Extensions associated with the {@link Activity}.
-     *
-     * @var Extensions|null
-     */
     private $extensions;
 
-    /**
-     * @param LanguageMap|null $name
-     * @param LanguageMap|null $description
-     * @param IRI|null         $type
-     * @param IRL|null         $moreInfo
-     * @param Extensions|null  $extensions
-     */
     public function __construct(LanguageMap $name = null, LanguageMap $description = null, IRI $type = null, IRL $moreInfo = null, Extensions $extensions = null)
     {
         $this->name = $name;
@@ -97,11 +65,6 @@ class Definition
         return $definition;
     }
 
-    /**
-     * @param IRI|null $type
-     *
-     * @return static
-     */
     public function withType(IRI $type = null): self
     {
         $definition = clone $this;
@@ -110,11 +73,6 @@ class Definition
         return $definition;
     }
 
-    /**
-     * @param IRL|null $moreInfo
-     *
-     * @return static
-     */
     public function withMoreInfo(IRL $moreInfo = null): self
     {
         $definition = clone $this;
@@ -133,8 +91,6 @@ class Definition
 
     /**
      * Returns the human readable names.
-     *
-     * @return LanguageMap|null The name language map
      */
     public function getName(): ?LanguageMap
     {
@@ -143,8 +99,6 @@ class Definition
 
     /**
      * Returns the human readable descriptions.
-     *
-     * @return LanguageMap|null The description language map
      */
     public function getDescription(): ?LanguageMap
     {
@@ -153,8 +107,6 @@ class Definition
 
     /**
      * Returns the {@link Activity} type.
-     *
-     * @return IRI|null The type
      */
     public function getType(): ?IRI
     {
@@ -163,8 +115,6 @@ class Definition
 
     /**
      * Returns an IRL where human-readable information about the activity can be found.
-     *
-     * @return IRL|null
      */
     public function getMoreInfo(): ?IRL
     {
@@ -180,10 +130,6 @@ class Definition
      * Checks if another definition is equal.
      *
      * Two definitions are equal if and only if all of their properties are equal.
-     *
-     * @param Definition $definition The definition to compare with
-     *
-     * @return bool True if the definitions are equal, false otherwise
      */
     public function equals(Definition $definition): bool
     {

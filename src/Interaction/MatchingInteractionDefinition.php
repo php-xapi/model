@@ -29,11 +29,6 @@ final class MatchingInteractionDefinition extends InteractionDefinition
     private $target;
 
     /**
-     * @param LanguageMap|null            $name
-     * @param LanguageMap|null            $description
-     * @param IRI|null                    $type
-     * @param IRL|null                    $moreInfo
-     * @param Extensions|null             $extensions
      * @param string[]|null               $correctResponsesPattern
      * @param InteractionComponent[]|null $source
      * @param InteractionComponent[]|null $target
@@ -48,8 +43,6 @@ final class MatchingInteractionDefinition extends InteractionDefinition
 
     /**
      * @param InteractionComponent[]|null $source
-     *
-     * @return static
      */
     public function withSource(array $source = null): self
     {
@@ -61,8 +54,6 @@ final class MatchingInteractionDefinition extends InteractionDefinition
 
     /**
      * @param InteractionComponent[]|null $target
-     *
-     * @return static
      */
     public function withTarget(array $target = null): self
     {
@@ -72,11 +63,17 @@ final class MatchingInteractionDefinition extends InteractionDefinition
         return $interaction;
     }
 
+    /**
+     * @return InteractionComponent[]|null
+     */
     public function getSource(): ?array
     {
         return $this->source;
     }
 
+    /**
+     * @return InteractionComponent[]|null
+     */
     public function getTarget(): ?array
     {
         return $this->target;

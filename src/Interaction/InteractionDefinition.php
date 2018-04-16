@@ -27,12 +27,7 @@ abstract class InteractionDefinition extends Definition
     private $correctResponsesPattern;
 
     /**
-     * @param LanguageMap|null $name
-     * @param LanguageMap|null $description
-     * @param IRI|null         $type
-     * @param IRL|null         $moreInfo
-     * @param Extensions|null  $extensions
-     * @param string[]|null    $correctResponsesPattern
+     * @param string[]|null $correctResponsesPattern
      */
     public function __construct(LanguageMap $name = null, LanguageMap $description = null, IRI $type = null, IRL $moreInfo = null, Extensions $extensions = null, array $correctResponsesPattern = null)
     {
@@ -43,8 +38,6 @@ abstract class InteractionDefinition extends Definition
 
     /**
      * @param string[]|null $correctResponsesPattern
-     *
-     * @return static
      */
     public function withCorrectResponsesPattern(array $correctResponsesPattern = null): self
     {
@@ -54,6 +47,9 @@ abstract class InteractionDefinition extends Definition
         return $interaction;
     }
 
+    /**
+     * @return string[]|null
+     */
     public function getCorrectResponsesPattern(): ?array
     {
         return $this->correctResponsesPattern;

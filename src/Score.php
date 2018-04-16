@@ -18,31 +18,16 @@ namespace Xabbuh\XApi\Model;
  */
 final class Score
 {
-    /**
-     * @var float|int The scaled score (a number between -1 and 1)
-     */
     private $scaled;
-
-    /**
-     * @var float|int The Agent's score (a number between min and max)
-     */
     private $raw;
-
-    /**
-     * @var float|int The minimum score being possible
-     */
     private $min;
-
-    /**
-     * @var float|int The maximum score being possible
-     */
     private $max;
 
     /**
-     * @param float|int $scaled
-     * @param float|int $raw
-     * @param float|int $min
-     * @param float|int $max
+     * @param float|int|null $scaled
+     * @param float|int|null $raw
+     * @param float|int|null $min
+     * @param float|int|null $max
      */
     public function __construct($scaled = null, $raw = null, $min = null, $max = null)
     {
@@ -53,9 +38,7 @@ final class Score
     }
 
     /**
-     * @param float|int $scaled
-     *
-     * @return Score
+     * @param float|int|null $scaled
      */
     public function withScaled($scaled): self
     {
@@ -66,9 +49,7 @@ final class Score
     }
 
     /**
-     * @param float|int $raw
-     *
-     * @return Score
+     * @param float|int|null $raw
      */
     public function withRaw($raw): self
     {
@@ -79,9 +60,7 @@ final class Score
     }
 
     /**
-     * @param float|int $min
-     *
-     * @return Score
+     * @param float|int|null $min
      */
     public function withMin($min): self
     {
@@ -92,9 +71,7 @@ final class Score
     }
 
     /**
-     * @param float|int $max
-     *
-     * @return Score
+     * @param float|int|null $max
      */
     public function withMax($max): self
     {
@@ -107,7 +84,7 @@ final class Score
     /**
      * Returns the Agent's scaled score (a number between -1 and 1).
      *
-     * @return float|int The scaled score
+     * @return float|int|null The scaled score
      */
     public function getScaled()
     {
@@ -115,9 +92,9 @@ final class Score
     }
 
     /**
-     * Returns the Agent's score.
+     * Returns the Agent's score (a number between min and max).
      *
-     * @return float|int The score
+     * @return float|int|null The score
      */
     public function getRaw()
     {
@@ -127,7 +104,7 @@ final class Score
     /**
      * Returns the lowest possible score.
      *
-     * @return float|int The lowest possible score
+     * @return float|int|null The lowest possible score
      */
     public function getMin()
     {
@@ -137,7 +114,7 @@ final class Score
     /**
      * Returns the highest possible score.
      *
-     * @return float|int The highest possible score
+     * @return float|int|null The highest possible score
      */
     public function getMax()
     {
@@ -148,10 +125,6 @@ final class Score
      * Checks if another score is equal.
      *
      * Two scores are equal if and only if all of their properties are equal.
-     *
-     * @param Score $score The score to compare with
-     *
-     * @return bool True if the scores are equal, false otherwise
      */
     public function equals(Score $score): bool
     {

@@ -24,9 +24,6 @@ use Xabbuh\XApi\Common\Exception\UnsupportedOperationException;
  */
 final class DocumentData implements \ArrayAccess
 {
-    /**
-     * @var array The data
-     */
     private $data = array();
 
     public function __construct(array $data = array())
@@ -56,6 +53,8 @@ final class DocumentData implements \ArrayAccess
 
     /**
      * {@inheritDoc}
+     *
+     * @throws UnsupportedOperationException Documents are immutable
      */
     public function offsetSet($offset, $value): void
     {
@@ -64,6 +63,8 @@ final class DocumentData implements \ArrayAccess
 
     /**
      * {@inheritDoc}
+     *
+     * @throws UnsupportedOperationException Documents are immutable
      */
     public function offsetUnset($offset): void
     {
@@ -72,8 +73,6 @@ final class DocumentData implements \ArrayAccess
 
     /**
      * Returns all data as an array.
-     *
-     * @return array The data
      */
     public function getData(): array
     {

@@ -18,67 +18,20 @@ namespace Xabbuh\XApi\Model;
  */
 final class Statement
 {
-    /**
-     * @var StatementId|null The unique identifier
-     */
     private $id;
-
-    /**
-     * @var Verb $verb The {@link Verb}
-     */
     private $verb;
-
-    /**
-     * @var Actor The {@link Actor}
-     */
     private $actor;
-
-    /**
-     * @var StatementObject The {@link StatementObject}
-     */
     private $object;
-
-    /**
-     * @var Result|null The {@link Activity} {@link Result}
-     */
     private $result;
-
-    /**
-     * @var Actor|null The Authority that asserted the Statement true
-     */
     private $authority;
-
-    /**
-     * @var \DateTime|null The timestamp of when the events described in this statement occurred
-     */
     private $created;
-
-    /**
-     * @var \DateTime|null The timestamp of when this statement was recorded by the LRS
-     */
     private $stored;
-
-    /**
-     * @var Context|null A context giving the statement more meaning
-     */
     private $context;
-
     private $attachments;
-
     private $version;
 
     /**
-     * @param StatementId|null  $id
-     * @param Actor             $actor
-     * @param Verb              $verb
-     * @param StatementObject   $object
-     * @param Result|null       $result
-     * @param Actor|null        $authority
-     * @param \DateTime|null    $created
-     * @param \DateTime|null    $stored
-     * @param Context|null      $context
      * @param Attachment[]|null $attachments
-     * @param string|null       $version
      */
     public function __construct(StatementId $id = null, Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, string $version = null)
     {
@@ -138,10 +91,6 @@ final class Statement
     /**
      * Creates a new Statement based on the current one containing an Authority
      * that asserts the Statement true.
-     *
-     * @param Actor $authority The Authority asserting the Statement true
-     *
-     * @return Statement The new Statement
      */
     public function withAuthority(Actor $authority = null): self
     {
@@ -177,8 +126,6 @@ final class Statement
 
     /**
      * @param Attachment[]|null $attachments
-     *
-     * @return self
      */
     public function withAttachments(array $attachments = null): self
     {
@@ -188,12 +135,7 @@ final class Statement
         return $statement;
     }
 
-    /**
-     * @param string $version
-     *
-     * @return self
-     */
-    public function withVersion(string $version): self
+    public function withVersion(string $version = null): self
     {
         $statement = clone $this;
         $statement->version = $version;
@@ -203,8 +145,6 @@ final class Statement
 
     /**
      * Returns the Statement's unique identifier.
-     *
-     * @return StatementId|null The identifier
      */
     public function getId(): ?StatementId
     {
@@ -213,8 +153,6 @@ final class Statement
 
     /**
      * Returns the Statement's {@link Verb}.
-     *
-     * @return Verb The Verb
      */
     public function getVerb(): Verb
     {
@@ -223,8 +161,6 @@ final class Statement
 
     /**
      * Returns the Statement's {@link Actor}.
-     *
-     * @return Actor The Actor
      */
     public function getActor(): Actor
     {
@@ -233,8 +169,6 @@ final class Statement
 
     /**
      * Returns the Statement's {@link StatementObject}.
-     *
-     * @return StatementObject The Object
      */
     public function getObject(): StatementObject
     {
@@ -243,8 +177,6 @@ final class Statement
 
     /**
      * Returns the {@link Activity} {@link Result}.
-     *
-     * @return Result|null The Result
      */
     public function getResult(): ?Result
     {
@@ -253,8 +185,6 @@ final class Statement
 
     /**
      * Returns the Authority that asserted the Statement true.
-     *
-     * @return Actor|null The Authority
      */
     public function getAuthority(): ?Actor
     {
@@ -264,8 +194,6 @@ final class Statement
     /**
      * Returns the timestamp of when the events described in this statement
      * occurred.
-     *
-     * @return \DateTime|null The timestamp
      */
     public function getCreated(): ?\DateTime
     {
@@ -274,8 +202,6 @@ final class Statement
 
     /**
      * Returns the timestamp of when this statement was recorded by the LRS.
-     *
-     * @return \DateTime|null The timestamp
      */
     public function getStored(): ?\DateTime
     {
@@ -284,14 +210,15 @@ final class Statement
 
     /**
      * Returns the context that gives the statement more meaning.
-     *
-     * @return Context|null
      */
     public function getContext(): ?Context
     {
         return $this->context;
     }
 
+    /**
+     * @return Attachment[]|null
+     */
     public function getAttachments(): ?array
     {
         return $this->attachments;
@@ -305,34 +232,24 @@ final class Statement
     /**
      * Tests whether or not this Statement is a void Statement (i.e. it voids
      * another Statement).
-     *
-     * @return bool True if the Statement voids another Statement, false otherwise
      */
-    public function isVoidStatement()
+    public function isVoidStatement(): bool
     {
         return $this->verb->isVoidVerb();
     }
 
     /**
      * Returns a {@link StatementReference} for the Statement.
-     *
-     * @return StatementReference The reference
      */
-    public function getStatementReference()
+    public function getStatementReference(): StatementReference
     {
-        $reference = new StatementReference($this->id);
-
-        return $reference;
+        return new StatementReference($this->id);
     }
 
     /**
      * Returns a Statement that voids the current Statement.
-     *
-     * @param Actor $actor The Actor voiding this Statement
-     *
-     * @return Statement The voiding Statement
      */
-    public function getVoidStatement(Actor $actor)
+    public function getVoidStatement(Actor $actor): self
     {
         return new Statement(
             null,
@@ -346,12 +263,8 @@ final class Statement
      * Checks if another statement is equal.
      *
      * Two statements are equal if and only if all of their properties are equal.
-     *
-     * @param Statement $statement The statement to compare with
-     *
-     * @return bool True if the statements are equal, false otherwise
      */
-    public function equals(Statement $statement)
+    public function equals(Statement $statement): bool
     {
         if (null !== $this->id xor null !== $statement->id) {
             return false;
