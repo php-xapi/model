@@ -80,8 +80,6 @@ final class StatementFactory
      *
      * Multiple calls to this method will return different instances.
      *
-     * @return Statement
-     *
      * @throws InvalidStateException
      */
     public function createStatement(): Statement

@@ -18,9 +18,6 @@ namespace Xabbuh\XApi\Model;
  */
 final class StatementId
 {
-    /**
-     * @var Uuid
-     */
     private $uuid;
 
     private function __construct()
@@ -37,10 +34,6 @@ final class StatementId
 
     /**
      * Creates a statement id based on the given UUID string.
-     *
-     * @param string $id
-     *
-     * @return StatementId
      *
      * @throws \InvalidArgumentException when the given id is not a well-formed UUID
      */

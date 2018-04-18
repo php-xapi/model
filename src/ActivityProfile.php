@@ -18,9 +18,6 @@ namespace Xabbuh\XApi\Model;
  */
 final class ActivityProfile extends Profile
 {
-    /**
-     * @var Activity The activity
-     */
     private $activity;
 
     public function __construct(string $profileId, Activity $activity)
@@ -32,8 +29,6 @@ final class ActivityProfile extends Profile
 
     /**
      * Returns the {@link Activity}.
-     *
-     * @return Activity The activity
      */
     public function getActivity(): Activity
     {

@@ -29,11 +29,6 @@ final class Uuid
         $this->uuid = $uuid;
     }
 
-    /**
-     * @param string $uuid
-     *
-     * @return Uuid
-     */
     public static function fromString(string $uuid): self
     {
         if (class_exists(RhumsaaUuid::class)) {
@@ -51,8 +46,6 @@ final class Uuid
      * @param int        $clockSeq a 14-bit number used to help avoid duplicates that
      *                             could arise when the clock is set backwards in time or if the node ID
      *                             changes
-     *
-     * @return self
      */
     public static function uuid1($node = null, int $clockSeq = null): self
     {
@@ -69,8 +62,6 @@ final class Uuid
      *
      * @param string $ns   The UUID namespace in which to create the named UUID
      * @param string $name The name to create a UUID for
-     *
-     * @return self
      */
     public static function uuid3(string $ns, string $name): self
     {
@@ -83,8 +74,6 @@ final class Uuid
 
     /**
      * Generate a version 4 (random) UUID.
-     *
-     * @return self
      */
     public static function uuid4(): self
     {
@@ -101,8 +90,6 @@ final class Uuid
      *
      * @param string $ns   The UUID namespace in which to create the named UUID
      * @param string $name The name to create a UUID for
-     *
-     * @return self
      */
     public static function uuid5(string $ns, string $name): self
     {

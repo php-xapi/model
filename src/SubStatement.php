@@ -18,38 +18,17 @@ namespace Xabbuh\XApi\Model;
  */
 final class SubStatement extends StatementObject
 {
-    /**
-     * @var Verb $verb The {@link Verb}
-     */
     private $verb;
-
-    /**
-     * @var Actor The {@link Actor}
-     */
     private $actor;
-
-    /**
-     * @var Object The {@link StatementObject}
-     */
     private $object;
-
-    /**
-     * @var Result The {@link Activity} {@link Result}
-     */
     private $result;
-
-    /**
-     * @var \DateTime The timestamp of when the events described in this statement occurred
-     */
     private $created;
-
-    /**
-     * @var Context The {@link Statement} {@link Context}
-     */
     private $context;
-
     private $attachments;
 
+    /**
+     * @param Attachment[]|null $attachments
+     */
     public function __construct(Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Context $context = null, \DateTime $created = null, array $attachments = null)
     {
         if ($object instanceof SubStatement) {
@@ -115,8 +94,6 @@ final class SubStatement extends StatementObject
 
     /**
      * @param Attachment[]|null $attachments
-     *
-     * @return self
      */
     public function withAttachments(array $attachments = null): self
     {
@@ -128,8 +105,6 @@ final class SubStatement extends StatementObject
 
     /**
      * Returns the Statement's {@link Verb}.
-     *
-     * @return Verb The Verb
      */
     public function getVerb(): Verb
     {
@@ -138,8 +113,6 @@ final class SubStatement extends StatementObject
 
     /**
      * Returns the Statement's {@link Actor}.
-     *
-     * @return Actor The Actor
      */
     public function getActor(): Actor
     {
@@ -148,8 +121,6 @@ final class SubStatement extends StatementObject
 
     /**
      * Returns the Statement's {@link StatementObject}.
-     *
-     * @return \Xabbuh\XApi\Model\StatementObject The Object
      */
     public function getObject(): StatementObject
     {
@@ -158,10 +129,8 @@ final class SubStatement extends StatementObject
 
     /**
      * Returns the {@link Activity} {@link Result}.
-     *
-     * @return Result The Result
      */
-    public function getResult(): Result
+    public function getResult(): ?Result
     {
         return $this->result;
     }
@@ -169,24 +138,23 @@ final class SubStatement extends StatementObject
     /**
      * Returns the timestamp of when the events described in this statement
      * occurred.
-     *
-     * @return \DateTime The timestamp
      */
-    public function getCreated(): \DateTime
+    public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
     /**
      * Returns the {@link Statement} {@link Context}.
-     *
-     * @return Context The Context
      */
-    public function getContext(): Context
+    public function getContext(): ?Context
     {
         return $this->context;
     }
 
+    /**
+     * @return Attachment[]|null
+     */
     public function getAttachments(): ?array
     {
         return $this->attachments;
@@ -195,8 +163,6 @@ final class SubStatement extends StatementObject
     /**
      * Tests whether or not this Statement is a void Statement (i.e. it voids
      * another Statement).
-     *
-     * @return bool True if the Statement voids another Statement, false otherwise
      */
     public function isVoidStatement(): bool
     {
@@ -211,8 +177,6 @@ final class SubStatement extends StatementObject
         if (!$statement instanceof SubStatement) {
             return false;
         }
-
-        /** @var SubStatement $statement */
 
         if (!$this->actor->equals($statement->actor)) {
             return false;

@@ -18,24 +18,9 @@ namespace Xabbuh\XApi\Model;
  */
 final class State
 {
-    /**
-     * @var Activity The associated activity
-     */
     private $activity;
-
-    /**
-     * @var Actor The associated actor
-     */
     private $actor;
-
-    /**
-     * @var string|null An optional registration id
-     */
     private $registrationId;
-
-    /**
-     * @var string The state id
-     */
     private $stateId;
 
     public function __construct(Activity $activity, Actor $actor, string $stateId, string $registrationId = null)
@@ -48,8 +33,6 @@ final class State
 
     /**
      * Returns the activity.
-     *
-     * @return Activity The activity
      */
     public function getActivity(): Activity
     {
@@ -58,8 +41,6 @@ final class State
 
     /**
      * Returns the actor.
-     *
-     * @return Actor The actor
      */
     public function getActor(): Actor
     {
@@ -68,8 +49,6 @@ final class State
 
     /**
      * Returns the registration id.
-     *
-     * @return string|null The registration id
      */
     public function getRegistrationId(): ?string
     {
@@ -78,8 +57,6 @@ final class State
 
     /**
      * Returns the state's id.
-     *
-     * @return string The id
      */
     public function getStateId(): string
     {

@@ -18,17 +18,7 @@ namespace Xabbuh\XApi\Model;
  */
 abstract class Actor extends StatementObject
 {
-    /**
-     * The actor's {@link InverseFunctionalIdentifier inverse functional identifier}
-     *
-     * @var InverseFunctionalIdentifier|null
-     */
     private $iri;
-
-    /**
-     * Name of the {@link Agent} or {@link Group}
-     * @var string|null
-     */
     private $name;
 
     public function __construct(InverseFunctionalIdentifier $iri = null, string $name = null)
@@ -39,8 +29,6 @@ abstract class Actor extends StatementObject
 
     /**
      * Returns the Actor's {@link InverseFunctionalIdentifier inverse functional identifier}.
-     *
-     * @return InverseFunctionalIdentifier|null The inverse functional identifier
      */
     public function getInverseFunctionalIdentifier(): ?InverseFunctionalIdentifier
     {
@@ -49,8 +37,6 @@ abstract class Actor extends StatementObject
 
     /**
      * Returns the name of the {@link Agent} or {@link Group}.
-     *
-     * @return string|null The name
      */
     public function getName(): ?string
     {
@@ -61,10 +47,6 @@ abstract class Actor extends StatementObject
      * Checks if another actor is equal.
      *
      * Two actors are equal if and only if all of their properties are equal.
-     *
-     * @param Object $actor The actor to compare with
-     *
-     * @return bool True if the actors are equal, false otherwise
      */
     public function equals(StatementObject $actor): bool
     {

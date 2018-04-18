@@ -42,8 +42,6 @@ final class StatementReference extends StatementObject
             return false;
         }
 
-        /** @var StatementReference $object */
-
         return $this->statementId->equals($object->statementId);
     }
 }

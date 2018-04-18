@@ -18,14 +18,7 @@ namespace Xabbuh\XApi\Model;
  */
 final class Account
 {
-    /**
-     * @var string The unique id or name used to log in to this account
-     */
     private $name;
-
-    /**
-     * @var IRL Canonical home page for the system the account is on
-     */
     private $homePage;
 
     public function __construct(string $name, IRL $homePage)
@@ -36,8 +29,6 @@ final class Account
 
     /**
      * Returns the unique id or name used to log in to this account.
-     *
-     * @return string The user name
      */
     public function getName(): string
     {
@@ -46,8 +37,6 @@ final class Account
 
     /**
      * Returns the home page for the system the account is on.
-     *
-     * @return IRL The home page
      */
     public function getHomePage(): IRL
     {
@@ -58,10 +47,6 @@ final class Account
      * Checks if another account is equal.
      *
      * Two accounts are equal if and only if all of their properties are equal.
-     *
-     * @param Account $account The account to compare with
-     *
-     * @return bool True if the accounts are equal, false otherwise
      */
     public function equals(Account $account): bool
     {

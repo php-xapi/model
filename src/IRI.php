@@ -25,10 +25,6 @@ final class IRI
     }
 
     /**
-     * @param string $value
-     *
-     * @return self
-     *
      * @throws \InvalidArgumentException if the given value is no valid IRI
      */
     public static function fromString(string $value): self
@@ -39,9 +35,6 @@ final class IRI
         return $iri;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;

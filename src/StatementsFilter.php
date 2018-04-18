@@ -18,17 +18,10 @@ namespace Xabbuh\XApi\Model;
  */
 class StatementsFilter
 {
-    /**
-     * @var array The generated filter
-     */
     private $filter = array();
 
     /**
      * Filters by an Agent or an identified Group.
-     *
-     * @param Actor $actor The Actor to filter by
-     *
-     * @return self The statements filter
      */
     public function byActor(Actor $actor): self
     {
@@ -39,10 +32,6 @@ class StatementsFilter
 
     /**
      * Filters by a verb.
-     *
-     * @param Verb $verb The Verb to filter by
-     *
-     * @return self The statements filter
      */
     public function byVerb(Verb $verb): self
     {
@@ -53,10 +42,6 @@ class StatementsFilter
 
     /**
      * Filter by an Activity.
-     *
-     * @param Activity $activity The Activity to filter by
-     *
-     * @return self The statements filter
      */
     public function byActivity(Activity $activity): self
     {
@@ -67,10 +52,6 @@ class StatementsFilter
 
     /**
      * Filters for Statements matching the given registration id.
-     *
-     * @param string $registration A registration id
-     *
-     * @return self The statements filter
      */
     public function byRegistration(string $registration): self
     {
@@ -81,8 +62,6 @@ class StatementsFilter
 
     /**
      * Applies the Activity filter to Sub-Statements.
-     *
-     * @return self The statements filter
      */
     public function enableRelatedActivityFilter(): self
     {
@@ -93,8 +72,6 @@ class StatementsFilter
 
     /**
      * Don't apply the Activity filter to Sub-Statements.
-     *
-     * @return self The statements filter
      */
     public function disableRelatedActivityFilter(): self
     {
@@ -105,8 +82,6 @@ class StatementsFilter
 
     /**
      * Applies the Agent filter to Sub-Statements.
-     *
-     * @return self The statements filter
      */
     public function enableRelatedAgentFilter(): self
     {
@@ -117,8 +92,6 @@ class StatementsFilter
 
     /**
      * Don't apply the Agent filter to Sub-Statements.
-     *
-     * @return self The statements filter
      */
     public function disableRelatedAgentFilter(): self
     {
@@ -129,10 +102,6 @@ class StatementsFilter
 
     /**
      * Filters for Statements stored since the specified timestamp (exclusive).
-     *
-     * @param \DateTime $timestamp The timestamp
-     *
-     * @return self The statements filter
      */
     public function since(\DateTime $timestamp): self
     {
@@ -143,10 +112,6 @@ class StatementsFilter
 
     /**
      * Filters for Statements stored at or before the specified timestamp.
-     *
-     * @param \DateTime $timestamp The timestamp as a unix timestamp
-     *
-     * @return self The statements filter
      */
     public function until(\DateTime $timestamp): self
     {
@@ -158,10 +123,6 @@ class StatementsFilter
     /**
      * Sets the maximum number of Statements to return. The server side sets
      * the maximum number of results when this value is not set or when it is 0.
-     *
-     * @param int $limit Maximum number of Statements to return
-     *
-     * @return self The statements filter
      *
      * @throws \InvalidArgumentException if the limit is not a non-negative
      *                                   integer
@@ -179,8 +140,6 @@ class StatementsFilter
 
     /**
      * Return statements in ascending order of stored time.
-     *
-     * @return self The statements filter
      */
     public function ascending(): self
     {
@@ -191,8 +150,6 @@ class StatementsFilter
 
     /**
      *Return statements in descending order of stored time (the default behavior).
-     *
-     * @return self The statements filter
      */
     public function descending(): self
     {
@@ -203,8 +160,6 @@ class StatementsFilter
 
     /**
      * Returns the generated filter.
-     *
-     * @return array The filter
      */
     public function getFilter(): array
     {

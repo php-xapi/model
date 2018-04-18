@@ -25,10 +25,6 @@ final class IRL
     }
 
     /**
-     * @param string $value
-     *
-     * @return self
-     *
      * @throws \InvalidArgumentException if the given value is no valid IRL
      */
     public static function fromString(string $value): self

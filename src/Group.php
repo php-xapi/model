@@ -18,15 +18,10 @@ namespace Xabbuh\XApi\Model;
  */
 final class Group extends Actor
 {
-    /**
-     * @var Agent[] The members of the Group
-     */
     private $members = array();
 
     /**
-     * @param InverseFunctionalIdentifier|null $iri
-     * @param string|null                      $name
-     * @param Agent[]                          $members
+     * @param Agent[] $members
      */
     public function __construct(InverseFunctionalIdentifier $iri = null, string $name = null, array $members = array())
     {
@@ -38,7 +33,7 @@ final class Group extends Actor
     /**
      * Returns the members of this group.
      *
-     * @return Agent[] The members
+     * @return Agent[]
      */
     public function getMembers(): array
     {

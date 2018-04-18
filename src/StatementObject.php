@@ -22,10 +22,6 @@ abstract class StatementObject
      * Checks if another object is equal.
      *
      * Two objects are equal if and only if all of their properties are equal.
-     *
-     * @param StatementObject $object The object to compare with
-     *
-     * @return bool True if the objects are equal, false otherwise
      */
     public function equals(StatementObject $object): bool
     {

@@ -19,19 +19,11 @@ namespace Xabbuh\XApi\Model;
  */
 final class StatementResult
 {
-    /**
-     * @var Statement[] The collection of Statements
-     */
     private $statements;
-
-    /**
-     * @var IRL|null
-     */
     private $moreUrlPath;
 
     /**
-     * @param Statement[] $statements  The collection of Statements
-     * @param IRL|null    $moreUrlPath The URL path
+     * @param Statement[] $statements The collection of Statements
      */
     public function __construct(array $statements, IRL $moreUrlPath = null)
     {
@@ -42,7 +34,7 @@ final class StatementResult
     /**
      * Returns the Statements.
      *
-     * @return Statement[] The Statements
+     * @return Statement[]
      */
     public function getStatements(): array
     {
@@ -51,8 +43,6 @@ final class StatementResult
 
     /**
      * Relative IRL that can be used to retrieve the next results.
-     *
-     * @return IRL|null The URL path
      */
     public function getMoreUrlPath(): ?IRL
     {

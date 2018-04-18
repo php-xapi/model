@@ -18,9 +18,6 @@ namespace Xabbuh\XApi\Model;
  */
 final class AgentProfileDocument extends Document
 {
-    /**
-     * @var AgentProfile The agent profile
-     */
     private $profile;
 
     public function __construct(AgentProfile $profile, DocumentData $data)
@@ -30,11 +27,6 @@ final class AgentProfileDocument extends Document
         $this->profile = $profile;
     }
 
-    /**
-     * Returns the agent profile.
-     *
-     * @return AgentProfile The agent profile
-     */
     public function getAgentProfile(): AgentProfile
     {
         return $this->profile;

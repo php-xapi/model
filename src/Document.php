@@ -22,9 +22,6 @@ namespace Xabbuh\XApi\Model;
  */
 abstract class Document implements \ArrayAccess
 {
-    /**
-     * @var DocumentData The document's data
-     */
     private $data;
 
     public function __construct(DocumentData $data)
@@ -66,8 +63,6 @@ abstract class Document implements \ArrayAccess
 
     /**
      * Returns the document's data.
-     *
-     * @return DocumentData The data
      */
     public function getData(): DocumentData
     {

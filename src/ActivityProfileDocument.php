@@ -18,9 +18,6 @@ namespace Xabbuh\XApi\Model;
  */
 final class ActivityProfileDocument extends Document
 {
-    /**
-     * @var ActivityProfile The activity profile
-     */
     private $profile;
 
     public function __construct(ActivityProfile $profile, DocumentData $data)
@@ -30,11 +27,6 @@ final class ActivityProfileDocument extends Document
         $this->profile = $profile;
     }
 
-    /**
-     * Returns the {@link ActivityProfile activity profile}.
-     *
-     * @return ActivityProfile The activity profile
-     */
     public function getActivityProfile(): ActivityProfile
     {
         return $this->profile;

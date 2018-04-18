@@ -28,11 +28,6 @@ final class PerformanceInteractionDefinition extends InteractionDefinition
     private $steps;
 
     /**
-     * @param LanguageMap|null            $name
-     * @param LanguageMap|null            $description
-     * @param IRI|null                    $type
-     * @param IRL|null                    $moreInfo
-     * @param Extensions|null             $extensions
      * @param string[]|null               $correctResponsesPattern
      * @param InteractionComponent[]|null $steps
      */
@@ -45,8 +40,6 @@ final class PerformanceInteractionDefinition extends InteractionDefinition
 
     /**
      * @param InteractionComponent[]|null $steps
-     *
-     * @return static
      */
     public function withSteps(array $steps = null): self
     {
@@ -56,6 +49,9 @@ final class PerformanceInteractionDefinition extends InteractionDefinition
         return $interaction;
     }
 
+    /**
+     * @return InteractionComponent[]|null
+     */
     public function getSteps(): ?array
     {
         return $this->steps;

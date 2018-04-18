@@ -28,11 +28,6 @@ final class LikertInteractionDefinition extends InteractionDefinition
     private $scale;
 
     /**
-     * @param LanguageMap|null            $name
-     * @param LanguageMap|null            $description
-     * @param IRI|null                    $type
-     * @param IRL|null                    $moreInfo
-     * @param Extensions|null             $extensions
      * @param string[]|null               $correctResponsesPattern
      * @param InteractionComponent[]|null $scale
      */
@@ -45,8 +40,6 @@ final class LikertInteractionDefinition extends InteractionDefinition
 
     /**
      * @param InteractionComponent[]|null $scale
-     *
-     * @return static
      */
     public function withScale(array $scale = null): self
     {
@@ -56,6 +49,9 @@ final class LikertInteractionDefinition extends InteractionDefinition
         return $interaction;
     }
 
+    /**
+     * @return InteractionComponent[]|null
+     */
     public function getScale(): ?array
     {
         return $this->scale;

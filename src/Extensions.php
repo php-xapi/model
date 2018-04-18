@@ -67,6 +67,8 @@ final class Extensions implements \ArrayAccess
 
     /**
      * {@inheritdoc}
+     *
+     * @throws UnsupportedOperationException Statement extensions are immutable
      */
     public function offsetSet($offset, $value): void
     {
@@ -75,6 +77,8 @@ final class Extensions implements \ArrayAccess
 
     /**
      * {@inheritdoc}
+     *
+     * @throws UnsupportedOperationException Statement extensions are immutable
      */
     public function offsetUnset($offset): void
     {

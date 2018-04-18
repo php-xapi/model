@@ -18,54 +18,16 @@ namespace Xabbuh\XApi\Model;
  */
 final class Context
 {
-    /**
-     * @var string|null
-     */
     private $registration;
-
-    /**
-     * @var Actor|null
-     */
     private $instructor;
-
-    /**
-     * @var Group|null
-     */
     private $team;
-
-    /**
-     * @var ContextActivities|null
-     */
     private $contextActivities;
-    /**
-     * @var string|null
-     */
     private $revision;
-    /**
-     * @var string|null
-     */
     private $platform;
-
-    /**
-     * @var string|null
-     */
     private $language;
-
-    /**
-     * @var StatementReference|null
-     */
     private $statement;
-
-    /**
-     * @var Extensions|null
-     */
     private $extensions;
 
-    /**
-     * @param string $registration
-     *
-     * @return self
-     */
     public function withRegistration(string $registration): self
     {
         $context = clone $this;
@@ -98,11 +60,6 @@ final class Context
         return $context;
     }
 
-    /**
-     * @param string $revision
-     *
-     * @return self
-     */
     public function withRevision(string $revision): self
     {
         $context = clone $this;
@@ -111,11 +68,6 @@ final class Context
         return $context;
     }
 
-    /**
-     * @param string $platform
-     *
-     * @return self
-     */
     public function withPlatform(string $platform): self
     {
         $context = clone $this;
@@ -124,11 +76,6 @@ final class Context
         return $context;
     }
 
-    /**
-     * @param string $language
-     *
-     * @return self
-     */
     public function withLanguage(string $language): self
     {
         $context = clone $this;
@@ -153,73 +100,46 @@ final class Context
         return $context;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRegistration(): ?string
     {
         return $this->registration;
     }
 
-    /**
-     * @return Actor|null
-     */
     public function getInstructor(): ?Actor
     {
         return $this->instructor;
     }
 
-    /**
-     * @return Group|null
-     */
     public function getTeam(): ?Group
     {
         return $this->team;
     }
 
-    /**
-     * @return ContextActivities|null
-     */
     public function getContextActivities(): ?ContextActivities
     {
         return $this->contextActivities;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRevision(): ?string
     {
         return $this->revision;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPlatform(): ?string
     {
         return $this->platform;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLanguage(): ?string
     {
         return $this->language;
     }
 
-    /**
-     * @return StatementReference|null
-     */
     public function getStatement(): ?StatementReference
     {
         return $this->statement;
     }
 
-    /**
-     * @return Extensions|null
-     */
     public function getExtensions(): ?Extensions
     {
         return $this->extensions;
