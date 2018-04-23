@@ -57,10 +57,8 @@ final class State
 
     /**
      * Returns the agent.
-     *
-     * @return Actor The agent
      */
-    public function getAgent()
+    public function getAgent(): Agent
     {
         return $this->actor;
     }

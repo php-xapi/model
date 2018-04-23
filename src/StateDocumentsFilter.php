@@ -25,12 +25,8 @@ class StateDocumentsFilter
 
     /**
      * Filter by an Activity.
-     *
-     * @param Activity $activity The Activity to filter by
-     *
-     * @return $this
      */
-    public function byActivity(Activity $activity)
+    public function byActivity(Activity $activity): self
     {
         $this->filter['activity'] = $activity->getId()->getValue();
 
@@ -39,12 +35,8 @@ class StateDocumentsFilter
 
     /**
      * Filters by an Agent.
-     *
-     * @param Agent $agent The Agent to filter by
-     *
-     * @return $this
      */
-    public function byAgent(Agent $agent)
+    public function byAgent(Agent $agent): self
     {
         $this->filter['agent'] = $agent;
 
@@ -53,12 +45,8 @@ class StateDocumentsFilter
 
     /**
      * Filters for State documents matching the given registration id.
-     *
-     * @param string $registration A registration id
-     *
-     * @return $this
      */
-    public function byRegistration($registration)
+    public function byRegistration(string $registration): self
     {
         $this->filter['registration'] = $registration;
 
@@ -67,12 +55,8 @@ class StateDocumentsFilter
 
     /**
      * Filters for State documents stored since the specified timestamp (exclusive).
-     *
-     * @param \DateTime $timestamp The timestamp
-     *
-     * @return $this
      */
-    public function since(\DateTime $timestamp)
+    public function since(\DateTime $timestamp): self
     {
         $this->filter['since'] = $timestamp->format('c');
 
@@ -84,7 +68,7 @@ class StateDocumentsFilter
      *
      * @return array The filter
      */
-    public function getFilter()
+    public function getFilter(): array
     {
         return $this->filter;
     }
