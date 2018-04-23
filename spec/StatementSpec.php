@@ -388,4 +388,12 @@ class StatementSpec extends ObjectBehavior
 
         $statement->equals($statement->withAttachments(array($jsonAttachment)))->shouldReturn(false);
     }
+
+    function it_is_equal_with_other_statement_even_if_versions_differ()
+    {
+        $statement = $this->withVersion('1.0.0');
+        $otherStatement = $this->withVersion('1.0.1');
+
+        $statement->equals($otherStatement)->shouldReturn(true);
+    }
 }

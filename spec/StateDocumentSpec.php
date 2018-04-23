@@ -25,8 +25,8 @@ class StateDocumentSpec extends ObjectBehavior
     function let()
     {
         $activity = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
-        $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
-        $this->beConstructedWith(new State($activity, $actor, 'state-id'), new DocumentData(array(
+        $agent = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
+        $this->beConstructedWith(new State($activity, $agent, 'state-id'), new DocumentData(array(
             'x' => 'foo',
             'y' => 'bar',
         )));

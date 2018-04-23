@@ -16,6 +16,18 @@ CHANGELOG
 * The `Object` class was renamed to `StatementObject` for compatibility with PHP
   7.2.
 
+2.2.0
+-----
+
+* Introduce a new `Person` class.
+* Constructing a `State` object with an instance of any child class of `Actor`
+  other than `Agent` as the second argument is deprecated. Starting with `4.0`,
+  only instances of `Agent` will be accepted.
+* The `State::getActor()` method is deprecated and will be removed in `4.0`.
+  Use `State::getAgent()` instead.
+* Added a `StateDocumentsFilter` class that allows to draft filters for
+  `StateDocument` objects.
+
 2.1.0
 -----
 
@@ -55,6 +67,14 @@ CHANGELOG
   3.0. Use `SubStatement::getCreated()` instead.
 * The `SubStatement::withTimestamp()` method is deprecated and will be removed in
   3.0. Use `SubStatement::withCreated()` instead.
+* Introduce a new `Person` class.
+* Constructing a `State` object with an instance of any child class of `Actor`
+  other than `Agent` as the second argument is deprecated. Starting with `4.0`,
+  only instances of `Agent` will be accepted.
+* The `State::getActor()` method is deprecated and will be removed in `4.0`.
+  Use `State::getAgent()` instead.
+* Added a `StateDocumentsFilter` class that allows to draft filters for
+  `StateDocument` objects.
 
 1.1.1
 -----
