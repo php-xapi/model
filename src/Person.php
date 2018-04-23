@@ -49,10 +49,8 @@ final class Person
 
     /**
      * @param Agent[] $agents
-     *
-     * @return $this
      */
-    public static function createFromAgents(array $agents)
+    public static function createFromAgents(array $agents): self
     {
         $person = new self();
 
@@ -83,27 +81,42 @@ final class Person
         return $person;
     }
 
-    public function getNames()
+    /**
+     * @return string[]
+     */
+    public function getNames(): array
     {
         return $this->names;
     }
 
-    public function getMboxes()
+    /**
+     * @return IRI[]
+     */
+    public function getMboxes(): array
     {
         return $this->mboxes;
     }
 
-    public function getMboxSha1Sums()
+    /**
+     * @return string[]
+     */
+    public function getMboxSha1Sums(): array
     {
         return $this->mboxSha1Sums;
     }
 
-    public function getOpenIds()
+    /**
+     * @return string[]
+     */
+    public function getOpenIds(): array
     {
         return $this->openIds;
     }
 
-    public function getAccounts()
+    /**
+     * @return Account[]
+     */
+    public function getAccounts(): array
     {
         return $this->accounts;
     }
