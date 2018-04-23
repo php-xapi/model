@@ -11,6 +11,7 @@ CHANGELOG
 * The `State::getActor()` method is deprecated and will be removed in `4.0`.
   Use `State::getAgent()` instead.
 * Added a `StateDocumentsFilter` class that allows to draft filters for
+  `StateDocument` objects.
 
 2.1.0
 -----
