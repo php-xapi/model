@@ -46,6 +46,8 @@ jobs:
           restore-keys: 'php-${{ matrix.php-version }}-composer-locked-'
 
       - name: 'Install dependencies'
+        env:
+          COMPOSER_OPTIONS: '${{ matrix.composer-options }}'
         run: 'composer update --no-progress $COMPOSER_OPTIONS'
 
       - name: 'Run PhpSpec'
