@@ -12,12 +12,12 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.1 || ^8.0",
         "php-xapi/exception": "~0.1",
         "ramsey/uuid": "^2.9 || ^3.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.3"
+        "phpspec/phpspec": "^5.0 || ^6.0 || ^7.0"
     },
     "conflict": {
         "xabbuh/xapi-model": "*"

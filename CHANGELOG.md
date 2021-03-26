@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+3.2.0
+-----
+
+* Added support for PHP 8.
+
 3.1.0
 -----
 
