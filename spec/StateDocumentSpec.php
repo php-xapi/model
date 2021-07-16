@@ -22,22 +22,22 @@ use Xabbuh\XApi\Model\State;
 
 class StateDocumentSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $activity = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $agent = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
-        $this->beConstructedWith(new State($activity, $agent, 'state-id'), new DocumentData(array(
+        $this->beConstructedWith(new State($activity, $agent, 'state-id'), new DocumentData([
             'x' => 'foo',
             'y' => 'bar',
-        )));
+        ]));
     }
 
-    function it_is_a_document()
+    public function it_is_a_document()
     {
         $this->shouldHaveType(Document::class);
     }
 
-    function its_data_can_be_read()
+    public function its_data_can_be_read()
     {
         $this->offsetExists('x')->shouldReturn(true);
         $this->offsetGet('x')->shouldReturn('foo');
@@ -46,12 +46,12 @@ class StateDocumentSpec extends ObjectBehavior
         $this->offsetExists('z')->shouldReturn(false);
     }
 
-    function it_throws_exception_when_not_existing_data_is_being_read()
+    public function it_throws_exception_when_not_existing_data_is_being_read()
     {
         $this->shouldThrow('\InvalidArgumentException')->duringOffsetGet('z');
     }
 
-    function its_data_cannot_be_manipulated()
+    public function its_data_cannot_be_manipulated()
     {
         $this->shouldThrow('\Xabbuh\XApi\Common\Exception\UnsupportedOperationException')->duringOffsetSet('z', 'baz');
         $this->shouldThrow('\Xabbuh\XApi\Common\Exception\UnsupportedOperationException')->duringOffsetUnset('x');

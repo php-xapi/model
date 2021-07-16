@@ -36,7 +36,7 @@ class ContextActivitiesSpec extends ObjectBehavior
     {
         $activity = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
 
-        $this->beConstructedWith(array($activity));
+        $this->beConstructedWith([$activity]);
 
         $contextActivities = $this->withoutParentActivities();
 
@@ -70,7 +70,7 @@ class ContextActivitiesSpec extends ObjectBehavior
     {
         $activity = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
 
-        $this->beConstructedWith(null, array($activity));
+        $this->beConstructedWith(null, [$activity]);
 
         $contextActivities = $this->withoutGroupingActivities();
 
@@ -104,7 +104,7 @@ class ContextActivitiesSpec extends ObjectBehavior
     {
         $activity = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
 
-        $this->beConstructedWith(null, null, array($activity));
+        $this->beConstructedWith(null, null, [$activity]);
 
         $contextActivities = $this->withoutCategoryActivities();
 
@@ -138,7 +138,7 @@ class ContextActivitiesSpec extends ObjectBehavior
     {
         $activity = new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
 
-        $this->beConstructedWith(null, null, null, array($activity));
+        $this->beConstructedWith(null, null, null, [$activity]);
 
         $contextActivities = $this->withoutOtherActivities();
 

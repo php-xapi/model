@@ -18,12 +18,12 @@ namespace Xabbuh\XApi\Model;
  */
 final class Group extends Actor
 {
-    private $members = array();
+    private $members = [];
 
     /**
      * @param Agent[] $members
      */
-    public function __construct(InverseFunctionalIdentifier $iri = null, string $name = null, array $members = array())
+    public function __construct(InverseFunctionalIdentifier $iri = null, string $name = null, array $members = [])
     {
         parent::__construct($iri, $name);
 

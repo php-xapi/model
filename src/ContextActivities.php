@@ -42,7 +42,7 @@ final class ContextActivities
         $contextActivities = clone $this;
 
         if (!is_array($contextActivities->parentActivities)) {
-            $contextActivities->parentActivities = array();
+            $contextActivities->parentActivities = [];
         }
 
         $contextActivities->parentActivities[] = $parentActivity;
@@ -63,7 +63,7 @@ final class ContextActivities
         $contextActivities = clone $this;
 
         if (!is_array($contextActivities->groupingActivities)) {
-            $contextActivities->groupingActivities = array();
+            $contextActivities->groupingActivities = [];
         }
 
         $contextActivities->groupingActivities[] = $groupingActivity;
@@ -84,7 +84,7 @@ final class ContextActivities
         $contextActivities = clone $this;
 
         if (!is_array($contextActivities->categoryActivities)) {
-            $contextActivities->categoryActivities = array();
+            $contextActivities->categoryActivities = [];
         }
 
         $contextActivities->categoryActivities[] = $categoryActivity;
@@ -105,7 +105,7 @@ final class ContextActivities
         $contextActivities = clone $this;
 
         if (!is_array($contextActivities->otherActivities)) {
-            $contextActivities->otherActivities = array();
+            $contextActivities->otherActivities = [];
         }
 
         $contextActivities->otherActivities[] = $otherActivity;

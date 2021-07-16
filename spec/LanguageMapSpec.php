@@ -7,33 +7,33 @@ use Xabbuh\XApi\Model\LanguageMap;
 
 class LanguageMapSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
-        $this->beConstructedThrough('create', array(array(
+        $this->beConstructedThrough('create', [[
             'de-DE' => 'teilgenommen',
             'en-GB' => 'attended',
-        )));
+        ]]);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(LanguageMap::class);
     }
 
-    function it_can_be_created_with_an_existing_array_map()
+    public function it_can_be_created_with_an_existing_array_map()
     {
-        $this->beConstructedThrough('create', array(array(
+        $this->beConstructedThrough('create', [[
             'de-DE' => 'teilgenommen',
             'en-GB' => 'attended',
             'en-US' => 'attended',
-        )));
+        ]]);
 
         $this->offsetGet('de-DE')->shouldReturn('teilgenommen');
         $this->offsetGet('en-GB')->shouldReturn('attended');
         $this->offsetGet('en-US')->shouldReturn('attended');
     }
 
-    function it_returns_a_new_instance_with_an_added_entry()
+    public function it_returns_a_new_instance_with_an_added_entry()
     {
         $languageTag = $this->withEntry('en-US', 'attended');
         $languageTag->offsetExists('en-US')->shouldReturn(true);
@@ -41,7 +41,7 @@ class LanguageMapSpec extends ObjectBehavior
         $this->offsetExists('en-US')->shouldReturn(false);
     }
 
-    function it_returns_a_new_instance_with_a_modified_entry()
+    public function it_returns_a_new_instance_with_a_modified_entry()
     {
         $languageTag = $this->withEntry('en-GB', 'test');
         $languageTag->offsetGet('en-GB')->shouldReturn('test');
@@ -49,7 +49,7 @@ class LanguageMapSpec extends ObjectBehavior
         $this->offsetGet('en-GB')->shouldReturn('attended');
     }
 
-    function its_language_tags_can_be_retrieved()
+    public function its_language_tags_can_be_retrieved()
     {
         $languageTags = $this->languageTags();
         $languageTags->shouldBeArray();
@@ -58,69 +58,69 @@ class LanguageMapSpec extends ObjectBehavior
         $languageTags->shouldContain('en-GB');
     }
 
-    function it_throws_an_exception_when_a_non_existent_language_tag_is_requested()
+    public function it_throws_an_exception_when_a_non_existent_language_tag_is_requested()
     {
-        $this->shouldThrow('\InvalidArgumentException')->during('offsetGet', array('en-US'));
+        $this->shouldThrow('\InvalidArgumentException')->during('offsetGet', ['en-US']);
     }
 
-    function it_can_be_asked_if_a_language_tag_is_known()
+    public function it_can_be_asked_if_a_language_tag_is_known()
     {
         $this->offsetExists('en-GB')->shouldReturn(true);
         $this->offsetExists('en-US')->shouldReturn(false);
     }
 
-    function its_values_cannot_be_modified()
+    public function its_values_cannot_be_modified()
     {
-        $this->shouldThrow('\LogicException')->during('offsetSet', array('en-US', 'attended'));
+        $this->shouldThrow('\LogicException')->during('offsetSet', ['en-US', 'attended']);
     }
 
-    function its_values_cannot_be_removed()
+    public function its_values_cannot_be_removed()
     {
-        $this->shouldThrow('\LogicException')->during('offsetUnset', array('en-US'));
+        $this->shouldThrow('\LogicException')->during('offsetUnset', ['en-US']);
     }
 
-    function it_is_not_equal_with_another_language_map_if_number_of_entries_differ()
+    public function it_is_not_equal_with_another_language_map_if_number_of_entries_differ()
     {
-        $languageMap = LanguageMap::create(array(
+        $languageMap = LanguageMap::create([
             'de-DE' => 'teilgenommen',
             'en-GB' => 'attended',
             'en-US' => 'attended',
-        ));
+        ]);
 
         $this->equals($languageMap)->shouldReturn(false);
     }
 
-    function it_is_not_equal_with_another_language_map_if_keys_differ()
+    public function it_is_not_equal_with_another_language_map_if_keys_differ()
     {
-        $languageMap = LanguageMap::create(array(
+        $languageMap = LanguageMap::create([
             'de-DE' => 'teilgenommen',
             'en-US' => 'attended',
-        ));
+        ]);
 
         $this->equals($languageMap)->shouldReturn(false);
     }
 
-    function it_is_not_equal_with_another_language_map_if_values_differ()
+    public function it_is_not_equal_with_another_language_map_if_values_differ()
     {
-        $languageMap = LanguageMap::create(array(
+        $languageMap = LanguageMap::create([
             'de-DE' => 'teilgenommen',
             'en-GB' => 'participated',
-        ));
+        ]);
 
         $this->equals($languageMap)->shouldReturn(false);
     }
 
-    function it_is_equal_with_itself()
+    public function it_is_equal_with_itself()
     {
         $this->equals($this)->shouldReturn(true);
     }
 
-    function it_is_equal_with_another_language_map_if_key_value_pairs_are_equal()
+    public function it_is_equal_with_another_language_map_if_key_value_pairs_are_equal()
     {
-        $languageMap = LanguageMap::create(array(
+        $languageMap = LanguageMap::create([
             'en-GB' => 'attended',
             'de-DE' => 'teilgenommen',
-        ));
+        ]);
 
         $this->equals($languageMap)->shouldReturn(true);
     }

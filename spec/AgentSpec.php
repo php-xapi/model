@@ -20,14 +20,14 @@ use Xabbuh\XApi\Model\IRI;
 
 class AgentSpec extends ObjectBehavior
 {
-    function it_is_an_actor()
+    public function it_is_an_actor()
     {
         $iri = InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'));
         $this->beConstructedWith($iri);
         $this->shouldHaveType(Actor::class);
     }
 
-    function its_properties_can_be_read()
+    public function its_properties_can_be_read()
     {
         $iri = InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'));
         $this->beConstructedWith($iri, 'test');
@@ -36,14 +36,14 @@ class AgentSpec extends ObjectBehavior
         $this->getName()->shouldReturn('test');
     }
 
-    function it_is_not_equal_to_a_group()
+    public function it_is_not_equal_to_a_group()
     {
         $this->beConstructedWith(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
 
         $this->equals(new Group(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com'))))->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_an_activity()
+    public function it_is_not_equal_to_an_activity()
     {
         $this->beConstructedWith(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
 

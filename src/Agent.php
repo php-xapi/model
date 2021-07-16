@@ -22,16 +22,4 @@ final class Agent extends Actor
     {
         parent::__construct($iri, $name);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function equals(StatementObject $actor): bool
-    {
-        if (!parent::equals($actor)) {
-            return false;
-        }
-
-        return true;
-    }
 }

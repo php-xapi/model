@@ -31,9 +31,16 @@ final class Statement
     private $version;
 
     /**
+     * @param \Xabbuh\XApi\Model\StatementId|null $id
+     * @param \Xabbuh\XApi\Model\Result|null $result
+     * @param \Xabbuh\XApi\Model\Actor|null $authority
+     * @param \DateTimeInterface|null $created
+     * @param \DateTimeInterface|null $stored
+     * @param \Xabbuh\XApi\Model\Context|null $context
      * @param Attachment[]|null $attachments
+     * @param string|null $version
      */
-    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Actor $authority = null, \DateTime $created = null, \DateTime $stored = null, Context $context = null, array $attachments = null, string $version = null)
+    public function __construct(StatementId $id = null, Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Actor $authority = null, \DateTimeInterface $created = null, \DateTimeInterface $stored = null, Context $context = null, array $attachments = null, string $version = null)
     {
         $this->id = $id;
         $this->actor = $actor;
@@ -100,7 +107,10 @@ final class Statement
         return $statement;
     }
 
-    public function withCreated(\DateTime $created = null): self
+    /**
+     * @param \DateTimeInterface|null $created
+     */
+    public function withCreated(\DateTimeInterface $created = null): self
     {
         $statement = clone $this;
         $statement->created = $created;
@@ -108,7 +118,10 @@ final class Statement
         return $statement;
     }
 
-    public function withStored(\DateTime $stored = null): self
+    /**
+     * @param \DateTimeInterface|null $stored
+     */
+    public function withStored(\DateTimeInterface $stored = null): self
     {
         $statement = clone $this;
         $statement->stored = $stored;
@@ -310,7 +323,7 @@ final class Statement
             return false;
         }
 
-        if ($this->created != $statement->created) {
+        if ($this->created !== $statement->created) {
             return false;
         }
 

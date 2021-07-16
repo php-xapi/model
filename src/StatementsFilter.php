@@ -18,7 +18,7 @@ namespace Xabbuh\XApi\Model;
  */
 class StatementsFilter
 {
-    private $filter = array();
+    private $filter = [];
 
     /**
      * Filters by an Agent or an identified Group.
@@ -102,8 +102,9 @@ class StatementsFilter
 
     /**
      * Filters for Statements stored since the specified timestamp (exclusive).
+     * @param \DateTime|\DateTimeImmutable $timestamp
      */
-    public function since(\DateTime $timestamp): self
+    public function since(\DateTimeInterface $timestamp): self
     {
         $this->filter['since'] = $timestamp->format('c');
 
@@ -112,8 +113,9 @@ class StatementsFilter
 
     /**
      * Filters for Statements stored at or before the specified timestamp.
+     * @param \DateTime|\DateTimeImmutable $timestamp
      */
-    public function until(\DateTime $timestamp): self
+    public function until(\DateTimeInterface $timestamp): self
     {
         $this->filter['until'] = $timestamp->format('c');
 

@@ -18,7 +18,7 @@ class PerformanceInteractionDefinitionSpec extends InteractionDefinitionSpec
 {
     public function it_returns_a_new_instance_with_steps()
     {
-        $steps = array(new InteractionComponent('test'));
+        $steps = [new InteractionComponent('test')];
         $interaction = $this->withSteps($steps);
 
         $this->getSteps()->shouldBeNull();
@@ -28,47 +28,47 @@ class PerformanceInteractionDefinitionSpec extends InteractionDefinitionSpec
         $interaction->getSteps()->shouldReturn($steps);
     }
 
-    function it_is_not_equal_if_only_other_interaction_has_steps()
+    public function it_is_not_equal_if_only_other_interaction_has_steps()
     {
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withSteps(array(new InteractionComponent('test')));
+        $interaction = $interaction->withSteps([new InteractionComponent('test')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_only_this_interaction_has_steps()
+    public function it_is_not_equal_if_only_this_interaction_has_steps()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $this->equals($this->createEmptyDefinition())->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_number_of_steps_differs()
+    public function it_is_not_equal_if_number_of_steps_differs()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withSteps(array(new InteractionComponent('test'), new InteractionComponent('foo')));
+        $interaction = $interaction->withSteps([new InteractionComponent('test'), new InteractionComponent('foo')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_steps_differ()
+    public function it_is_not_equal_if_steps_differ()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('foo')));
+        $this->beConstructedWith(null, null, null, null, null, null, [new InteractionComponent('foo')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withSteps(array(new InteractionComponent('bar')));
+        $interaction = $interaction->withSteps([new InteractionComponent('bar')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_equal_if_steps_are_equal()
+    public function it_is_equal_if_steps_are_equal()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withSteps(array(new InteractionComponent('test')));
+        $interaction = $interaction->withSteps([new InteractionComponent('test')]);
 
         $this->equals($interaction)->shouldReturn(true);
     }

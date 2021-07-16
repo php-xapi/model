@@ -16,7 +16,7 @@ use Xabbuh\XApi\Model\Score;
 
 class ScoreSpec extends ObjectBehavior
 {
-    function its_properties_can_be_read()
+    public function its_properties_can_be_read()
     {
         $this->beConstructedWith(1, 100, 0, 100);
 
@@ -26,7 +26,7 @@ class ScoreSpec extends ObjectBehavior
         $this->getMax()->shouldReturn(100);
     }
 
-    function it_can_be_constructed_with_a_scaled_value_only()
+    public function it_can_be_constructed_with_a_scaled_value_only()
     {
         $this->beConstructedWith(1);
 
@@ -36,7 +36,7 @@ class ScoreSpec extends ObjectBehavior
         $this->getMax()->shouldReturn(null);
     }
 
-    function it_can_be_constructed_with_a_raw_value_only()
+    public function it_can_be_constructed_with_a_raw_value_only()
     {
         $this->beConstructedWith(null, 100);
 
@@ -46,7 +46,7 @@ class ScoreSpec extends ObjectBehavior
         $this->getMax()->shouldReturn(null);
     }
 
-    function it_can_be_constructed_with_a_min_value_only()
+    public function it_can_be_constructed_with_a_min_value_only()
     {
         $this->beConstructedWith(null, null, 0);
 
@@ -56,7 +56,7 @@ class ScoreSpec extends ObjectBehavior
         $this->getMax()->shouldReturn(null);
     }
 
-    function it_can_be_constructed_with_a_max_value_only()
+    public function it_can_be_constructed_with_a_max_value_only()
     {
         $this->beConstructedWith(null, null, null, 100);
 
@@ -110,7 +110,7 @@ class ScoreSpec extends ObjectBehavior
         $score->getMax()->shouldReturn(100);
     }
 
-    function it_treats_integers_as_floats_when_comparing()
+    public function it_treats_integers_as_floats_when_comparing()
     {
         $this->beConstructedWith(1, 100, 0, 100);
 

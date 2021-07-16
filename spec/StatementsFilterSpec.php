@@ -21,13 +21,13 @@ use Xabbuh\XApi\Model\Verb;
 
 class StatementsFilterSpec extends ObjectBehavior
 {
-    function it_does_not_filter_anything_by_default()
+    public function it_does_not_filter_anything_by_default()
     {
         $filter = $this->getFilter();
         $filter->shouldHaveCount(0);
     }
 
-    function it_can_filter_by_actor()
+    public function it_can_filter_by_actor()
     {
         $actor = new Agent(InverseFunctionalIdentifier::withMbox(IRI::fromString('mailto:conformancetest@tincanapi.com')));
         $this->byActor($actor)->shouldReturn($this);
@@ -37,18 +37,18 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('agent', $actor);
     }
 
-    function it_can_filter_by_verb()
+    public function it_can_filter_by_verb()
     {
-        $this->byVerb(new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'), LanguageMap::create(array('en-US' => 'test'))))->shouldReturn($this);
+        $this->byVerb(new Verb(IRI::fromString('http://tincanapi.com/conformancetest/verbid'), LanguageMap::create(['en-US' => 'test'])))->shouldReturn($this);
 
         $filter = $this->getFilter();
         $filter->shouldHaveCount(1);
         $filter->shouldHaveKeyWithValue('verb', 'http://tincanapi.com/conformancetest/verbid');
     }
 
-    function it_can_filter_by_activity()
+    public function it_can_filter_by_activity()
     {
-        $iri = IRI::fromString('http://tincanapi.com/conformancetest/activityid');
+        IRI::fromString('http://tincanapi.com/conformancetest/activityid');
         $this->byActivity(new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid')))->shouldReturn($this);
 
         $filter = $this->getFilter();
@@ -56,7 +56,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('activity', 'http://tincanapi.com/conformancetest/activityid');
     }
 
-    function it_can_filter_by_registration()
+    public function it_can_filter_by_registration()
     {
         $this->byRegistration('foo')->shouldReturn($this);
 
@@ -65,7 +65,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('registration', 'foo');
     }
 
-    function it_can_enable_to_filter_related_activities()
+    public function it_can_enable_to_filter_related_activities()
     {
         $this->enableRelatedActivityFilter()->shouldReturn($this);
 
@@ -74,7 +74,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('related_activities', 'true');
     }
 
-    function it_can_disable_to_filter_related_activities()
+    public function it_can_disable_to_filter_related_activities()
     {
         $this->disableRelatedActivityFilter()->shouldReturn($this);
 
@@ -83,7 +83,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('related_activities', 'false');
     }
 
-    function it_can_enable_to_filter_related_agents()
+    public function it_can_enable_to_filter_related_agents()
     {
         $this->enableRelatedAgentFilter()->shouldReturn($this);
 
@@ -92,7 +92,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('related_agents', 'true');
     }
 
-    function it_can_disable_to_filter_related_agents()
+    public function it_can_disable_to_filter_related_agents()
     {
         $this->disableRelatedAgentFilter()->shouldReturn($this);
 
@@ -101,7 +101,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('related_agents', 'false');
     }
 
-    function it_can_filter_by_timestamp()
+    public function it_can_filter_by_timestamp()
     {
         $this->since(\DateTime::createFromFormat(\DateTime::ISO8601, '2013-05-18T05:32:34Z'))->shouldReturn($this);
         $this->getFilter()->shouldHaveKeyWithValue('since', '2013-05-18T05:32:34+00:00');
@@ -110,7 +110,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $this->getFilter()->shouldHaveKeyWithValue('until', '2014-05-18T05:32:34+00:00');
     }
 
-    function it_can_sort_the_result_in_ascending_order()
+    public function it_can_sort_the_result_in_ascending_order()
     {
         $this->ascending()->shouldReturn($this);
 
@@ -119,7 +119,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('ascending', 'true');
     }
 
-    function it_can_sort_the_result_in_descending_order()
+    public function it_can_sort_the_result_in_descending_order()
     {
         $this->descending()->shouldReturn($this);
 
@@ -128,7 +128,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('ascending', 'false');
     }
 
-    function it_can_limit_the_number_of_results()
+    public function it_can_limit_the_number_of_results()
     {
         $this->limit(10)->shouldReturn($this);
 
@@ -137,7 +137,7 @@ class StatementsFilterSpec extends ObjectBehavior
         $filter->shouldHaveKeyWithValue('limit', 10);
     }
 
-    function it_rejects_choosing_a_negative_number_of_results()
+    public function it_rejects_choosing_a_negative_number_of_results()
     {
         $this->shouldThrow('\InvalidArgumentException')->duringLimit(-1);
     }

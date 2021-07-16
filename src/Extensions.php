@@ -24,7 +24,7 @@ final class Extensions implements \ArrayAccess
 
     public function __construct(\SplObjectStorage $extensions = null)
     {
-        $this->extensions = array();
+        $this->extensions = [];
 
         if (null !== $extensions) {
             foreach ($extensions as $iri) {
@@ -102,7 +102,7 @@ final class Extensions implements \ArrayAccess
             return false;
         }
 
-        foreach ($this->extensions as $iri => $value) {
+        foreach (array_keys($this->extensions) as $iri) {
             if (!array_key_exists($iri, $otherExtensions->extensions)) {
                 return false;
             }

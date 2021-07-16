@@ -18,7 +18,7 @@ class MatchingInteractionDefinitionSpec extends InteractionDefinitionSpec
 {
     public function it_returns_a_new_instance_with_source()
     {
-        $source = array(new InteractionComponent('test'));
+        $source = [new InteractionComponent('test')];
         $interaction = $this->withSource($source);
 
         $this->getSource()->shouldBeNull();
@@ -30,7 +30,7 @@ class MatchingInteractionDefinitionSpec extends InteractionDefinitionSpec
 
     public function it_returns_a_new_instance_with_target()
     {
-        $target = array(new InteractionComponent('test'));
+        $target = [new InteractionComponent('test')];
         $interaction = $this->withTarget($target);
 
         $this->getTarget()->shouldBeNull();
@@ -40,92 +40,92 @@ class MatchingInteractionDefinitionSpec extends InteractionDefinitionSpec
         $interaction->getTarget()->shouldReturn($target);
     }
 
-    function it_is_not_equal_if_only_other_interaction_has_source()
+    public function it_is_not_equal_if_only_other_interaction_has_source()
     {
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withSource(array(new InteractionComponent('test')));
+        $interaction = $interaction->withSource([new InteractionComponent('test')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_only_this_interaction_has_source()
+    public function it_is_not_equal_if_only_this_interaction_has_source()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $this->equals($this->createEmptyDefinition())->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_number_of_source_differs()
+    public function it_is_not_equal_if_number_of_source_differs()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withSource(array(new InteractionComponent('test'), new InteractionComponent('foo')));
+        $interaction = $interaction->withSource([new InteractionComponent('test'), new InteractionComponent('foo')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_source_differ()
+    public function it_is_not_equal_if_source_differ()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('foo')));
+        $this->beConstructedWith(null, null, null, null, null, null, [new InteractionComponent('foo')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withSource(array(new InteractionComponent('bar')));
+        $interaction = $interaction->withSource([new InteractionComponent('bar')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_equal_if_sources_are_equal()
+    public function it_is_equal_if_sources_are_equal()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withSource(array(new InteractionComponent('test')));
+        $interaction = $interaction->withSource([new InteractionComponent('test')]);
 
         $this->equals($interaction)->shouldReturn(true);
     }
 
-    function it_is_not_equal_if_only_other_interaction_has_target()
+    public function it_is_not_equal_if_only_other_interaction_has_target()
     {
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withTarget(array(new InteractionComponent('test')));
+        $interaction = $interaction->withTarget([new InteractionComponent('test')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_only_this_interaction_has_target()
+    public function it_is_not_equal_if_only_this_interaction_has_target()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $this->equals($this->createEmptyDefinition())->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_number_of_target_differs()
+    public function it_is_not_equal_if_number_of_target_differs()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withTarget(array(new InteractionComponent('test'), new InteractionComponent('foo')));
+        $interaction = $interaction->withTarget([new InteractionComponent('test'), new InteractionComponent('foo')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_target_differ()
+    public function it_is_not_equal_if_target_differ()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, null, array(new InteractionComponent('foo')));
+        $this->beConstructedWith(null, null, null, null, null, null, null, [new InteractionComponent('foo')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withTarget(array(new InteractionComponent('bar')));
+        $interaction = $interaction->withTarget([new InteractionComponent('bar')]);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_equal_if_targets_are_equal()
+    public function it_is_equal_if_targets_are_equal()
     {
-        $this->beConstructedWith(null, null, null, null, null, null, null, array(new InteractionComponent('test')));
+        $this->beConstructedWith(null, null, null, null, null, null, null, [new InteractionComponent('test')]);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withTarget(array(new InteractionComponent('test')));
+        $interaction = $interaction->withTarget([new InteractionComponent('test')]);
 
         $this->equals($interaction)->shouldReturn(true);
     }

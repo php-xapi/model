@@ -24,9 +24,9 @@ use Xabbuh\XApi\Common\Exception\UnsupportedOperationException;
  */
 final class DocumentData implements \ArrayAccess
 {
-    private $data = array();
+    private $data = [];
 
-    public function __construct(array $data = array())
+    public function __construct(array $data = [])
     {
         $this->data = $data;
     }

@@ -17,62 +17,62 @@ use Xabbuh\XApi\Model\Interaction\InteractionDefinition;
 
 abstract class InteractionDefinitionSpec extends DefinitionSpec
 {
-    function it_is_a_definition()
+    public function it_is_a_definition()
     {
         $this->shouldHaveType(Definition::class);
     }
 
-    function it_is_an_interaction()
+    public function it_is_an_interaction()
     {
         $this->shouldHaveType(InteractionDefinition::class);
     }
 
-    function it_is_not_equal_to_generic_definition()
+    public function it_is_not_equal_to_generic_definition()
     {
         $this->equals(new Definition())->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_only_other_interaction_has_correct_responses_pattern()
+    public function it_is_not_equal_if_only_other_interaction_has_correct_responses_pattern()
     {
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withCorrectResponsesPattern(array('test'));
+        $interaction = $interaction->withCorrectResponsesPattern(['test']);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_only_this_interaction_has_correct_responses_pattern()
+    public function it_is_not_equal_if_only_this_interaction_has_correct_responses_pattern()
     {
-        $this->beConstructedWith(null, null, null, null, null, array('test'));
+        $this->beConstructedWith(null, null, null, null, null, ['test']);
 
         $this->equals($this->createEmptyDefinition())->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_number_of_correct_responses_pattern_differs()
+    public function it_is_not_equal_if_number_of_correct_responses_pattern_differs()
     {
-        $this->beConstructedWith(null, null, null, null, null, array('test'));
+        $this->beConstructedWith(null, null, null, null, null, ['test']);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withCorrectResponsesPattern(array('test', 'foo'));
+        $interaction = $interaction->withCorrectResponsesPattern(['test', 'foo']);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_not_equal_if_correct_responses_pattern_values_differ()
+    public function it_is_not_equal_if_correct_responses_pattern_values_differ()
     {
-        $this->beConstructedWith(null, null, null, null, null, array('foo'));
+        $this->beConstructedWith(null, null, null, null, null, ['foo']);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withCorrectResponsesPattern(array('bar'));
+        $interaction = $interaction->withCorrectResponsesPattern(['bar']);
 
         $this->equals($interaction)->shouldReturn(false);
     }
 
-    function it_is_equal_if_correct_responses_pattern_values_are_equal()
+    public function it_is_equal_if_correct_responses_pattern_values_are_equal()
     {
-        $this->beConstructedWith(null, null, null, null, null, array('test'));
+        $this->beConstructedWith(null, null, null, null, null, ['test']);
 
         $interaction = $this->createEmptyDefinition();
-        $interaction = $interaction->withCorrectResponsesPattern(array('test'));
+        $interaction = $interaction->withCorrectResponsesPattern(['test']);
 
         $this->equals($interaction)->shouldReturn(true);
     }

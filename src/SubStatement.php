@@ -28,8 +28,9 @@ final class SubStatement extends StatementObject
 
     /**
      * @param Attachment[]|null $attachments
+     * @param \DateTime|\DateTimeImmutable $created
      */
-    public function __construct(Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Context $context = null, \DateTime $created = null, array $attachments = null)
+    public function __construct(Actor $actor, Verb $verb, StatementObject $object, Result $result = null, Context $context = null, \DateTimeInterface $created = null, array $attachments = null)
     {
         if ($object instanceof SubStatement) {
             throw new \InvalidArgumentException('Nesting sub statements is forbidden by the xAPI spec.');
@@ -76,7 +77,10 @@ final class SubStatement extends StatementObject
         return $subStatement;
     }
 
-    public function withCreated(\DateTime $created = null): self
+    /**
+     * @param \DateTime|\DateTimeImmutable $created
+     */
+    public function withCreated(\DateTimeInterface $created = null): self
     {
         $statement = clone $this;
         $statement->created = $created;
@@ -202,7 +206,7 @@ final class SubStatement extends StatementObject
             return false;
         }
 
-        if ($this->created != $statement->created) {
+        if ($this->created !== $statement->created) {
             return false;
         }
 

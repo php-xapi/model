@@ -20,20 +20,20 @@ use Xabbuh\XApi\Model\IRI;
 
 class ActivityProfileDocumentSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
-        $this->beConstructedWith(new ActivityProfile('id', new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'))), new DocumentData(array(
+        $this->beConstructedWith(new ActivityProfile('id', new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'))), new DocumentData([
             'x' => 'foo',
             'y' => 'bar',
-        )));
+        ]));
     }
 
-    function it_is_a_document()
+    public function it_is_a_document()
     {
         $this->shouldHaveType(Document::class);
     }
 
-    function its_data_can_be_read()
+    public function its_data_can_be_read()
     {
         $this->offsetExists('x')->shouldReturn(true);
         $this->offsetGet('x')->shouldReturn('foo');
@@ -42,12 +42,12 @@ class ActivityProfileDocumentSpec extends ObjectBehavior
         $this->offsetExists('z')->shouldReturn(false);
     }
 
-    function it_throws_exception_when_not_existing_data_is_being_read()
+    public function it_throws_exception_when_not_existing_data_is_being_read()
     {
         $this->shouldThrow('\InvalidArgumentException')->duringOffsetGet('z');
     }
 
-    function its_data_cannot_be_manipulated()
+    public function its_data_cannot_be_manipulated()
     {
         $this->shouldThrow('\Xabbuh\XApi\Common\Exception\UnsupportedOperationException')->duringOffsetSet('z', 'baz');
         $this->shouldThrow('\Xabbuh\XApi\Common\Exception\UnsupportedOperationException')->duringOffsetUnset('x');

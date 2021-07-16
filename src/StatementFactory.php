@@ -60,12 +60,18 @@ final class StatementFactory
         $this->context = $context;
     }
 
-    public function withCreated(\DateTime $created = null): void
+    /**
+     * @param \DateTimeInterface|null $created
+     */
+    public function withCreated(\DateTimeInterface $created = null): void
     {
         $this->created = $created;
     }
 
-    public function withStored(\DateTime $stored = null): void
+    /**
+     * @param \DateTimeInterface|null $stored
+     */
+    public function withStored(\DateTimeInterface $stored = null): void
     {
         $this->stored = $stored;
     }

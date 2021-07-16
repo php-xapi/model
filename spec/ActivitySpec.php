@@ -18,13 +18,13 @@ use Xabbuh\XApi\Model\StatementObject;
 
 class ActivitySpec extends ObjectBehavior
 {
-    function it_is_an_xapi_object()
+    public function it_is_an_xapi_object()
     {
         $this->beConstructedWith(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
         $this->shouldHaveType(StatementObject::class);
     }
 
-    function it_is_equal_with_other_activity_if_ids_are_equal_and_definitions_are_missing()
+    public function it_is_equal_with_other_activity_if_ids_are_equal_and_definitions_are_missing()
     {
         $this->beConstructedWith(IRI::fromString('http://tincanapi.com/conformancetest/activityid'));
 

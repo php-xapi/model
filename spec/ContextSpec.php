@@ -134,21 +134,21 @@ class ContextSpec extends ObjectBehavior
         $context->getExtensions()->shouldReturn($extensions);
     }
 
-    function it_is_not_equal_to_other_context_if_only_this_context_has_a_team()
+    public function it_is_not_equal_to_other_context_if_only_this_context_has_a_team()
     {
         $context = $this->withTeam(new Group());
 
         $context->equals(new Context())->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_context_if_only_the_other_context_has_a_team()
+    public function it_is_not_equal_to_other_context_if_only_the_other_context_has_a_team()
     {
         $otherContext = $this->withTeam(new Group());
 
         $this->equals($otherContext)->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_context_if_teams_are_not_equal()
+    public function it_is_not_equal_to_other_context_if_teams_are_not_equal()
     {
         $context = $this->withTeam(new Group());
 
@@ -158,21 +158,21 @@ class ContextSpec extends ObjectBehavior
         $context->equals($otherContext)->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_context_if_only_this_context_has_a_statement_reference()
+    public function it_is_not_equal_to_other_context_if_only_this_context_has_a_statement_reference()
     {
         $context = $this->withStatement(new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da')));
 
         $context->equals(new Context())->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_context_if_only_the_other_context_has_a_statement_reference()
+    public function it_is_not_equal_to_other_context_if_only_the_other_context_has_a_statement_reference()
     {
         $otherContext = $this->withStatement(new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da')));
 
         $this->equals($otherContext)->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_context_if_statement_references_are_not_equal()
+    public function it_is_not_equal_to_other_context_if_statement_references_are_not_equal()
     {
         $context = $this->withStatement(new StatementReference(StatementId::fromString('16fd2706-8baf-433b-82eb-8c7fada847da')));
 
@@ -182,21 +182,21 @@ class ContextSpec extends ObjectBehavior
         $context->equals($otherContext)->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_context_if_only_this_context_has_extensions()
+    public function it_is_not_equal_to_other_context_if_only_this_context_has_extensions()
     {
         $context = $this->withExtensions(new Extensions());
 
         $context->equals(new Context())->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_context_if_only_the_other_context_has_extensions()
+    public function it_is_not_equal_to_other_context_if_only_the_other_context_has_extensions()
     {
         $otherContext = $this->withExtensions(new Extensions());
 
         $this->equals($otherContext)->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_context_if_extensions_are_not_equal()
+    public function it_is_not_equal_to_other_context_if_extensions_are_not_equal()
     {
         $extensions = new \SplObjectStorage();
         $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/subject'), 'Conformance Testing');

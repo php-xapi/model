@@ -19,7 +19,7 @@ use Xabbuh\XApi\Model\Score;
 
 class ResultSpec extends ObjectBehavior
 {
-    function its_properties_can_be_read()
+    public function its_properties_can_be_read()
     {
         $score = new Score(1);
         $this->beConstructedWith($score, true, true, 'test', 'PT2H');
@@ -31,7 +31,7 @@ class ResultSpec extends ObjectBehavior
         $this->getDuration()->shouldReturn('PT2H');
     }
 
-    function it_can_be_empty()
+    public function it_can_be_empty()
     {
         $this->getScore()->shouldReturn(null);
         $this->getSuccess()->shouldReturn(null);
@@ -42,12 +42,12 @@ class ResultSpec extends ObjectBehavior
         $this->equals(new Result())->shouldReturn(true);
     }
 
-    function it_is_empty_and_is_not_equal_to_a_result_with_a_score()
+    public function it_is_empty_and_is_not_equal_to_a_result_with_a_score()
     {
         $this->equals(new Result(new Score(1)))->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_result_if_not_both_results_have_extensions()
+    public function it_is_not_equal_to_other_result_if_not_both_results_have_extensions()
     {
         $this->beConstructedWith(new Score(1), true, true, 'test', 'PT2H');
 
@@ -58,7 +58,7 @@ class ResultSpec extends ObjectBehavior
             ->shouldReturn(false);
     }
 
-    function it_is_not_equal_to_other_result_if_extensions_are_not_equal()
+    public function it_is_not_equal_to_other_result_if_extensions_are_not_equal()
     {
         $extensions = new \SplObjectStorage();
         $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/topic'), 'Conformance Testing');
