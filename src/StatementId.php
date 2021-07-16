@@ -11,6 +11,9 @@
 
 namespace Xabbuh\XApi\Model;
 
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
+
 /**
  * An Experience API {@link https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md#statement Statement} identifier.
  *
@@ -18,13 +21,14 @@ namespace Xabbuh\XApi\Model;
  */
 final class StatementId
 {
+    /** @var UuidInterface */
     private $uuid;
 
     private function __construct()
     {
     }
 
-    public static function fromUuid(Uuid $uuid): self
+    public static function fromUuid(UuidInterface $uuid): self
     {
         $id = new self();
         $id->uuid = $uuid;
@@ -44,7 +48,7 @@ final class StatementId
 
     public function getValue(): string
     {
-        return (string) $this->uuid;
+        return $this->uuid->toString();
     }
 
     public function equals(StatementId $id): bool
