@@ -53,8 +53,8 @@ jobs:
 
       - name: 'Run coding standard checks'
         run: |
-          vendor/bin/ecs check
           vendor/bin/rector process -n
+          vendor/bin/ecs check
         if: ${{ matrix.quality-check }}
 
       - name: 'Run PhpSpec'
