@@ -23,6 +23,7 @@ jobs:
             composer-options: '--prefer-stable'
           - php-version: '8.0'
             composer-options: '--prefer-stable'
+            quality-check: true
 
     steps:
       - name: 'Check out'
@@ -49,6 +50,12 @@ jobs:
         env:
           COMPOSER_OPTIONS: '${{ matrix.composer-options }}'
         run: 'composer update --no-progress $COMPOSER_OPTIONS'
+
+      - name: 'Run coding standard checks'
+        run: |
+          vendor/bin/ecs check
+          vendor/bin/rector process -n
+        if: ${{ matrix.quality-check }}
 
       - name: 'Run PhpSpec'
         run: 'vendor/bin/phpspec run'
