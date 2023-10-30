@@ -36,11 +36,11 @@ class AgentProfileDocumentSpec extends ObjectBehavior
 
     function its_data_can_be_read()
     {
-        $this->offsetExists('x')->shouldReturn(true);
+        $this->shouldHaveKey('x');
         $this->offsetGet('x')->shouldReturn('foo');
-        $this->offsetExists('y')->shouldReturn(true);
+        $this->shouldHaveKey('y');
         $this->offsetGet('y')->shouldReturn('bar');
-        $this->offsetExists('z')->shouldReturn(false);
+        $this->shouldNotHaveKey('z');
     }
 
     function it_throws_exception_when_not_existing_data_is_being_read()

@@ -22,7 +22,7 @@ use Xabbuh\XApi\Model\LanguageMap;
  *
  * @author Christian Flothmann <christian.flothmann@xabbuh.de>
  */
-abstract class InteractionDefinition extends Definition
+class InteractionDefinition extends Definition
 {
     private $correctResponsesPattern;
 

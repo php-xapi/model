@@ -15,11 +15,17 @@ use spec\Xabbuh\XApi\Model\DefinitionSpec;
 use Xabbuh\XApi\Model\Definition;
 use Xabbuh\XApi\Model\Interaction\InteractionDefinition;
 
-abstract class InteractionDefinitionSpec extends DefinitionSpec
+class InteractionDefinitionSpec extends DefinitionSpec
 {
-    function it_is_a_definition()
+
+    protected function createEmptyDefinition()
     {
-        $this->shouldHaveType(Definition::class);
+        return new InteractionDefinition();
+    }
+
+    public function it_is_a_definition()
+    {
+        $this->shouldHaveType(InteractionDefinition::class);
     }
 
     function it_is_an_interaction()

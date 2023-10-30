@@ -12,12 +12,12 @@
         }
     ],
     "require": {
-        "php": "^7.1 || ^8.0",
-        "php-xapi/exception": "~0.1",
-        "ramsey/uuid": "^2.9 || ^3.0 || ^4.0"
+        "php": "^7.4 || ^8.0",
+        "php-xapi/exception": "v1.0.0-rc.1 as 1.0.0",
+        "ramsey/uuid": "^3.0 || ^4.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^5.0 || ^6.0 || ^7.0"
+        "phpspec/phpspec": "^6.0 || ^7.0"
     },
     "conflict": {
         "xabbuh/xapi-model": "*"
@@ -32,11 +32,10 @@
             "spec\\Xabbuh\\XApi\\Model\\": "spec/"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "1.x-dev": "1.2.x-dev",
-            "2.x-dev": "2.2.x-dev",
-            "3.x-dev": "3.2.x-dev"
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/erickr/php-xapi-exception.git"
         }
-    }
+    ]
 }

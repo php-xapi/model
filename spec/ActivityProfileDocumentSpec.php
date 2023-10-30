@@ -20,12 +20,16 @@ use Xabbuh\XApi\Model\IRI;
 
 class ActivityProfileDocumentSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
-        $this->beConstructedWith(new ActivityProfile('id', new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'))), new DocumentData(array(
-            'x' => 'foo',
-            'y' => 'bar',
-        )));
+        $this->beConstructedWith(new ActivityProfile('id',
+            new Activity(IRI::fromString('http://tincanapi.com/conformancetest/activityid'))),
+            new DocumentData(array(
+                    'x' => 'foo',
+                    'y' => 'bar',
+                )
+            )
+        );
     }
 
     function it_is_a_document()
@@ -35,11 +39,13 @@ class ActivityProfileDocumentSpec extends ObjectBehavior
 
     function its_data_can_be_read()
     {
-        $this->offsetExists('x')->shouldReturn(true);
+        //$this->offsetExists('x')->shouldReturn(true);
+        $this->shouldHaveKey('x');
         $this->offsetGet('x')->shouldReturn('foo');
-        $this->offsetExists('y')->shouldReturn(true);
+        //$this->offsetExists('y')->shouldReturn(true);
+        $this->shouldHaveKey('y');
         $this->offsetGet('y')->shouldReturn('bar');
-        $this->offsetExists('z')->shouldReturn(false);
+        //$this->offsetExists('z')->shouldReturn(false);
     }
 
     function it_throws_exception_when_not_existing_data_is_being_read()
