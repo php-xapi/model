@@ -12,17 +12,11 @@ jobs:
 
     strategy:
       matrix:
-        include:
-          - php-version: '7.1'
-            composer-options: '--prefer-stable'
-          - php-version: '7.2'
-            composer-options: '--prefer-lowest --prefer-stable'
-          - php-version: '7.3'
-            composer-options: '--prefer-stable'
-          - php-version: '7.4'
-            composer-options: '--prefer-stable'
-          - php-version: '8.0'
-            composer-options: '--prefer-stable'
+        php-version:
+          - '7.4'
+          - '8.0'
+          - '8.1'
+          - '8.2'
 
     steps:
       - name: 'Check out'

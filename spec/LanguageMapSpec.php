@@ -36,9 +36,9 @@ class LanguageMapSpec extends ObjectBehavior
     function it_returns_a_new_instance_with_an_added_entry()
     {
         $languageTag = $this->withEntry('en-US', 'attended');
-        $languageTag->offsetExists('en-US')->shouldReturn(true);
+        $languageTag->shouldHaveKey('en-US');
         $languageTag->shouldNotBe($this);
-        $this->offsetExists('en-US')->shouldReturn(false);
+        $this->offsetExists('en-US');
     }
 
     function it_returns_a_new_instance_with_a_modified_entry()
@@ -65,8 +65,8 @@ class LanguageMapSpec extends ObjectBehavior
 
     function it_can_be_asked_if_a_language_tag_is_known()
     {
-        $this->offsetExists('en-GB')->shouldReturn(true);
-        $this->offsetExists('en-US')->shouldReturn(false);
+        $this->shouldHaveKey('en-GB');
+        $this->shouldNotHaveKey('en-US');
     }
 
     function its_values_cannot_be_modified()

@@ -27,16 +27,16 @@ class ExtensionsSpec extends ObjectBehavior
         $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/starting-position'), 1);
         $this->beConstructedWith($extensions);
 
-        $this->offsetExists(IRI::fromString('http://id.tincanapi.com/extension/topic'))->shouldReturn(true);
+        $this->shouldHaveKey(IRI::fromString('http://id.tincanapi.com/extension/topic'));
         $this->offsetGet(IRI::fromString('http://id.tincanapi.com/extension/topic'))->shouldReturn('Conformance Testing');
 
-        $this->offsetExists(IRI::fromString('http://id.tincanapi.com/extension/color'))->shouldReturn(true);
+        $this->shouldHaveKey(IRI::fromString('http://id.tincanapi.com/extension/color'));
         $this->offsetGet(IRI::fromString('http://id.tincanapi.com/extension/color'))->shouldReturn(array(
             'model' => 'RGB',
             'value' => '#FFFFFF',
         ));
 
-        $this->offsetExists(IRI::fromString('http://id.tincanapi.com/extension/starting-position'))->shouldReturn(true);
+        $this->shouldHaveKey(IRI::fromString('http://id.tincanapi.com/extension/starting-position'));
         $this->offsetGet(IRI::fromString('http://id.tincanapi.com/extension/starting-position'))->shouldReturn(1);
 
         $returnedExtensions = $this->getExtensions();
