@@ -27,16 +27,13 @@ class ExtensionsSpec extends ObjectBehavior
         $extensions->attach(IRI::fromString('http://id.tincanapi.com/extension/starting-position'), 1);
         $this->beConstructedWith($extensions);
 
-        $this->offsetExists(IRI::fromString('http://id.tincanapi.com/extension/topic'))->shouldReturn(true);
         $this->offsetGet(IRI::fromString('http://id.tincanapi.com/extension/topic'))->shouldReturn('Conformance Testing');
 
-        $this->offsetExists(IRI::fromString('http://id.tincanapi.com/extension/color'))->shouldReturn(true);
         $this->offsetGet(IRI::fromString('http://id.tincanapi.com/extension/color'))->shouldReturn(array(
             'model' => 'RGB',
             'value' => '#FFFFFF',
         ));
 
-        $this->offsetExists(IRI::fromString('http://id.tincanapi.com/extension/starting-position'))->shouldReturn(true);
         $this->offsetGet(IRI::fromString('http://id.tincanapi.com/extension/starting-position'))->shouldReturn(1);
 
         $returnedExtensions = $this->getExtensions();
@@ -54,7 +51,6 @@ class ExtensionsSpec extends ObjectBehavior
 
     function it_throws_exception_when_keys_are_passed_that_are_not_iri_instances()
     {
-        $this->shouldThrow('\InvalidArgumentException')->during('offsetExists', array('http://id.tincanapi.com/extension/topic'));
         $this->shouldThrow('\InvalidArgumentException')->during('offsetGet', array('http://id.tincanapi.com/extension/topic'));
     }
 
