@@ -23,6 +23,12 @@ jobs:
             composer-options: '--prefer-stable'
           - php-version: '8.0'
             composer-options: '--prefer-stable'
+          - php-version: '8.1'
+            composer-options: '--prefer-stable'
+          - php-version: '8.2'
+            composer-options: '--prefer-stable'
+          - php-version: '8.3'
+            composer-options: '--prefer-stable'
 
     steps:
       - name: 'Check out'
